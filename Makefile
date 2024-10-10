@@ -9,6 +9,7 @@ SRCS_DIR = ./srcs
 
 SRCS =\
 		main.c \
+		test.c
 		
 
 
@@ -37,7 +38,7 @@ MLX_TARGET = ./mlx/libmlx_Linux.a
 
 CC = cc
 
-CFLAGS = -Werror -Wextra -Wall -g3 -MMD -MP -O3
+CFLAGS = -Werror -Wextra -Wall -MMD -MP -O3
 
 CPPFLAGS = -I$(INCS) -I$(INCS_LIBFT) -I$(INCS_MLX)
 
@@ -63,7 +64,7 @@ bonus:
 -include $(DEPS_BONUS)
 
 $(NAME): $(LIBFT_TARGET) $(MLX_TARGET) $(OBJS)
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJS) -L$(dir $(LIBFT_TARGET)) -lft $(MLX_FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) -g3 $(CPPFLAGS) $(OBJS) -L$(dir $(LIBFT_TARGET)) -lft $(MLX_FLAGS) -o $(NAME)
 
 $(LIBFT_TARGET): FORCE
 	@echo " "
@@ -83,7 +84,7 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@$(DIR_DUP)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
-fsanitize : fclean $(LIBS_TARGET) $(MLX_TARGET) $(OBJS) $(INCS)
+fsanitize : fclean $(LIBS_TARGET) $(MLX_TARGET) $(OBJS)
 	$(CC) $(CFLAGS) $(CFSIGSEV) $(CPPFLAGS) $(OBJS) -L$(dir $(LIBS_TARGET)) -lft -L$(dir $(MLX_TARGET)) -lmlx -L$(dir $(MLX_TARGET)) -lmlx_Linux -o $(NAME)
 
 clean :
