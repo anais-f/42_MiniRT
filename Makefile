@@ -38,13 +38,15 @@ MLX_TARGET = ./mlx/libmlx_Linux.a
 
 CC = cc
 
-CFLAGS = -Werror -Wextra -Wall -MMD -MP -O3
+CFLAGS = -Werror -Wextra -Wall -g3 -O3 
 
-CPPFLAGS = -I$(INCS) -I$(INCS_LIBFT) -I$(INCS_MLX)
+CFLAGS_DEBUG = -Wextra -Wall -g3
 
-MLX_FLAGS = -L$(dir $(MLX_TARGET)) -lmlx_Linux -L/usr/lib -lX11 -lXext -lm -lz
+CPPFLAGS = -I$(INCS) -I$(INCS_LIBFT) -I$(INCS_MLX) -MMD -MP
 
-CFSIGSEV = -fsanitize=address
+MLX_FLAGS = -L$(dir $(MLX_TARGET)) -lmlx_Linux -L/usr/lib -lX11 -lXext -lm -lz -lmlx
+
+CFSIGSEV = -Wextra -Wall -fsanitize=address
 
 RM = rm -rf
 
@@ -56,8 +58,10 @@ MAKEFLAGS += --no-print-directory
 
 # **********************************RULES**************************************** #
 
+.PHONY: all
 all: $(NAME)
 
+.PHONY: bonus
 bonus:
 
 -include $(DEPS)
@@ -84,26 +88,38 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@$(DIR_DUP)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
-fsanitize : fclean $(LIBS_TARGET) $(MLX_TARGET) $(OBJS)
-	$(CC) $(CFLAGS) $(CFSIGSEV) $(CPPFLAGS) $(OBJS) -L$(dir $(LIBS_TARGET)) -lft -L$(dir $(MLX_TARGET)) -lmlx -L$(dir $(MLX_TARGET)) -lmlx_Linux -o $(NAME)
+.PHONY: fsanitize
+fsanitize: CFLAGS = $(CFSIGSEV)
+fsanitize : fclean $(LIBFT_TARGET) $(MLX_TARGET) $(OBJS)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJS) -L$(dir $(LIBFT_TARGET)) -lft $(MLX_FLAGS) -o $(NAME)
 
+
+.PHONY: debug
+debug: CFLAGS = $(CFLAGS_DEBUG)
+debug : $(LIBFT_TARGET) $(MLX_TARGET) $(OBJS)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJS) -L$(dir $(LIBFT_TARGET)) -lft $(MLX_FLAGS) -o $(NAME)
+
+.PHONY: clean
 clean :
 	$(RM) $(OBJS_DIR)
 	$(MAKE) $@ -C ./libft
 	$(MAKE) $@ -C ./mlx
 
+.PHONY: fclean
 fclean : clean
 	$(RM) $(NAME)
 	$(MAKE) $@ -C ./libft
 	$(MAKE) $@ -C ./mlx
 
+.PHONY: re
 re : fclean all
 
+.PHONY: print%
 print% :
 	@echo $(patsubst print%,%,$@)=
 	@echo $($(patsubst print%,%,$@))
 
-.PHONY: all clean fclean re FORCE bonus fsanitize print%
+.PHONY: FORCE
 FORCE:
 
 # Colors
