@@ -10,8 +10,30 @@ typedef struct s_data
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
+	double			win_size_max;
+	double			win_size_min;
+	double			offset_x;
+	double			offset_y;
 }				t_data;
 
+
+double	scaling_x(t_data *data, double coordinate, double osw_max)
+{
+	double	new_coordinate;
+
+	new_coordinate = (data->win_size_max - data->win_size_min) * coordinate / \
+			osw_max + (data->win_size_min + data->offset_x);
+	return (new_coordinate);
+}
+
+double	scaling_y(t_data *data, double coordinate, double osw_max)
+{
+	double	new_coordinate;
+
+	new_coordinate = (data->win_size_max - data->win_size_min) * coordinate / \
+			osw_max + (data->win_size_min + data->offset_y);
+	return (-new_coordinate);
+}
 
 int	kb_event(int keycode, t_data *data)
 {
@@ -79,7 +101,7 @@ int test(void)
 		x = 0;
 		while (x <= xmax)
 		{
-			my_mlx_pixel_put(&data, x, y, 0x00FF00F0);
+			my_mlx_pixel_put(&data, x, y, 0x00FFFF00);
 			x++;
 		}
 		y++;
