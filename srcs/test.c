@@ -1,5 +1,6 @@
 #include "miniRT.h"
 #include "libft.h"
+#include "mlx_int.h"
 
 typedef struct s_data
 {
@@ -20,8 +21,8 @@ typedef struct s_data
 double	scaling_x(t_data *data, double coordinate, double osw_max)
 {
 	double	new_coordinate;
-
-	new_coordinate = (data->win_size_max - data->win_size_min) * coordinate / \
+	
+	new_coordinate = (1. - 0.) * coordinate / \
 			osw_max + (data->win_size_min + data->offset_x);
 	return (new_coordinate);
 }
@@ -30,9 +31,9 @@ double	scaling_y(t_data *data, double coordinate, double osw_max)
 {
 	double	new_coordinate;
 
-	new_coordinate = (data->win_size_max - data->win_size_min) * coordinate / \
+	new_coordinate = (1.0 - 0.) * coordinate / \
 			osw_max + (data->win_size_min + data->offset_y);
-	return (-new_coordinate);
+	return (-new_coordinate + 1);
 }
 
 int	kb_event(int keycode, t_data *data)
@@ -44,7 +45,6 @@ int	kb_event(int keycode, t_data *data)
 
 void	mlx_destroy_all(t_data *data)
 {
-	if (data->img)
 		mlx_destroy_image(data->mlx, data->img);
 	if (data->win)
 		mlx_destroy_window(data->mlx, data->win);
@@ -80,12 +80,21 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+int mouse_click(int button, int x, int y, t_data *data) {
+	(void)data;
+    if (button == 1) { // Vérifie si c'est un clic gauche
+        printf("Mouse Clicked at: X: %d, Y: %d\n", x, y);
+    }
+    return 0;
+}
 
 int test(void)
 {
 	t_data	data;
-	int y;
-	int x;
+	double new_y;
+	double new_x = 0;
+	int	x;
+	int	y;
 	int	xmax;
 	int	ymax;
 
@@ -93,6 +102,10 @@ int test(void)
 	y = 0;
 	xmax = 1080;
 	ymax = 1080;
+	data.win_size_max = xmax;
+	data.win_size_min = 0;
+	data.offset_x = 0;
+	data.offset_y = 0;
 	if (mlx_init_protected(&data) != 0)
 		return (-1);
 	printf("Hello Nana_ïs\n");
@@ -101,51 +114,57 @@ int test(void)
 		x = 0;
 		while (x <= xmax)
 		{
-			my_mlx_pixel_put(&data, x, y, 0x00FFFF00);
+			new_x = scaling_x(&data, (double)x, SIZE_W);
+			new_y = scaling_y(&data, (double)y, SIZE_H);
+			my_mlx_pixel_put(&data, x, y, 0x00ff0000);
 			x++;
 		}
 		y++;
+		sleep(1);
+		printf("new_y = %f \n", new_y);
 	}
-	int cx = 540; // Centre en x (coordonnée centrale)
-	int cy = 540; // Centre en y (coordonnée centrale)
-	int r = 100;  // Rayon du cercle
-	int lx = 440; // Position x de la lumière
-	int ly = 440; // Position y de la lumière
+	
+	// int cx = 100; // Centre en x (coordonnée centrale)
+	// int cy = 100; // Centre en y (coordonnée centrale)
+	// int r = 100;  // Rayon du cercle
+	// int lx = 440; // Position x de la lumière
+	// int ly = 440; // Position y de la lumière
 
-	y = cy - r;
-	while (y <= cy + r)
-	{
-		x = cx - r;
-		while (x <= cx + r)
-		{
-			// Calculer si le point est à l'intérieur du cercle (surface de la sphère)
-			int dx = x - cx; // = (x - decalage)
-			int dy = y - cy; // = (y - decalage)
-			if (dx * dx + dy * dy <= r * r) // equation cercle 
-			{
-				// Calculer la normale au point (x, y)
-				float nx = dx / (float)r;
-				float ny = dy / (float)r;
+	// y = cy - r;
+	// while (y <= cy + r)
+	// {
+	// 	x = cx - r;
+	// 	while (x <= cx + r)
+	// 	{
+	// 		// Calculer si le point est à l'intérieur du cercle (surface de la sphère)
+	// 		int dx = x - cx; // = (x - decalage)
+	// 		int dy = y - cy; // = (y - decalage)
+	// 		if (dx * dx + dy * dy <= r * r) // equation cercle 
+	// 		{
+	// 			// Calculer la normale au point (x, y)
+	// 			float nx = dx / (float)r;
+	// 			float ny = dy / (float)r;
 
-				// Calculer la direction de la lumière
-				float lx_norm = (lx - x) / (float)r;
-				float ly_norm = (ly - y) / (float)r;
+	// 			// Calculer la direction de la lumière
+	// 			float lx_norm = (lx - x) / (float)r;
+	// 			float ly_norm = (ly - y) / (float)r;
 
-				// Calculer l'intensité de la lumière en fonction de la normale
-				float dot_product = (nx * lx_norm + ny * ly_norm);
-				float intensity = fmax(0, dot_product); // L'intensité est comprise entre 0 et 1
+	// 			// Calculer l'intensité de la lumière en fonction de la normale
+	// 			float dot_product = (nx * lx_norm + ny * ly_norm);
+	// 			float intensity = fmax(0, dot_product); // L'intensité est comprise entre 0 et 1
 
-				// Couleur avec dégradé (0xFFFFFF est blanc pur, multiplié par l'intensité)
-				int color = (int)(intensity * 255) << 16 | (int)(intensity * 255) << 8 | (int)(intensity * 255);
+	// 			// Couleur avec dégradé (0xFFFFFF est blanc pur, multiplié par l'intensité)
+	// 			int color = (int)(intensity * 255) << 16 | (int)(intensity * 255) << 8 | (int)(intensity * 255);
 
-				// Dessiner le pixel avec la couleur calculée
-				my_mlx_pixel_put(&data, x, y, color); //color
-			}
-			x++;
-		}
-		y++;
-	}
+	// 			// Dessiner le pixel avec la couleur calculée
+	// 			my_mlx_pixel_put(&data, x, y, color); //color
+	// 		}
+	// 		x++;
+	// 	}
+	// 	y++;
+	// }
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
+	mlx_mouse_hook(data.win, mouse_click, &data);
 	mlx_hook(data.win, 2, 1L << 0, kb_event, &data);
 	mlx_hook(data.win, 17, 0L, mlx_loop_end, data.mlx);
 	mlx_loop(data.mlx);
