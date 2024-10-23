@@ -21,9 +21,9 @@ typedef struct s_data
 double	scaling_x(t_data *data, double coordinate, double osw_max)
 {
 	double	new_coordinate;
-	
-	new_coordinate = (1. - 0.) * coordinate / \
-			osw_max + (data->win_size_min + data->offset_x);
+
+	(void) osw_max;
+	new_coordinate = coordinate - data->win_size_max / 2;
 	return (new_coordinate);
 }
 
@@ -31,9 +31,9 @@ double	scaling_y(t_data *data, double coordinate, double osw_max)
 {
 	double	new_coordinate;
 
-	new_coordinate = (1.0 - 0.) * coordinate / \
-			osw_max + (data->win_size_min + data->offset_y);
-	return (-new_coordinate + 1);
+	(void) osw_max;
+	new_coordinate = coordinate - data->win_size_max / 2;
+	return (new_coordinate);
 }
 
 int	kb_event(int keycode, t_data *data)
@@ -80,10 +80,18 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int mouse_click(int button, int x, int y, t_data *data) {
+int mouse_click(int button, int x, int y, t_data *data) 
+{
+	int	nx;
+	int ny;
+
 	(void)data;
-    if (button == 1) { // Vérifie si c'est un clic gauche
-        printf("Mouse Clicked at: X: %d, Y: %d\n", x, y);
+	if (button == 1)
+	{
+		printf("Mouse Clicked at: X: %d, Y: %d\n", x, y);
+		nx = x - 540;
+		ny = y - 540;
+		printf("Mouse Clicked at: Nx: %d, Ny: %d\n", nx, ny);
     }
     return 0;
 }
@@ -120,8 +128,6 @@ int test(void)
 			x++;
 		}
 		y++;
-		sleep(1);
-		printf("new_y = %f \n", new_y);
 	}
 	
 	// int cx = 100; // Centre en x (coordonnée centrale)
