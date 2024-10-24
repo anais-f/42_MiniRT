@@ -143,5 +143,6 @@ _deps
 
 # Divers
 19920104*/
+*.pdf
 
 # End of https://www.toptal.com/developers/gitignore/api/cmake,clion+all,c++
