@@ -8,6 +8,7 @@ a negative dot product indicates opposite directions,
 and a zero dot product indicates that the vectors are perpendicular.
 (A⋅B = ∣∣A∣∣ ∣∣B∣∣ cos(θ))
 - vector projection
+- calculate diffuse light intensity
 - length calculation (to calculate the norm)
 
 A⋅B = A1​B1 ​+ A2​B2 ​+ A3​B3

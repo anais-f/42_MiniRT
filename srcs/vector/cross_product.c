@@ -6,8 +6,8 @@ Several applications :
 - calculate how much light is reflected or absorbed, which is essential for shading
 - reflections and refractions : help to determine the angle for light reflect in reflection, or used
 to apply Snell's law for refraction
+- calculate orthogonal vectors, used to define camera axes
 - calculating area of parallelgoram formed by 2 vectors.
-
 If cross product = 0 -> both vectors are parallel
 */
 
