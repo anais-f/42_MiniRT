@@ -1,16 +1,19 @@
 #include "vector.h"
 
-//produit scalaire
-/* utiliser pour determiner l'amgle entre 2 vecteurs
+/* The dot product gives a scalar (a numerical value), not a new vector.
+Several applications : 
+- angle measurement: it allows you to calculate the angle between two vectors. 
+A positive dot product indicates that the vectors point in similar directions, 
+a negative dot product indicates opposite directions, 
+and a zero dot product indicates that the vectors are perpendicular.
+(A⋅B = ∣∣A∣∣ ∣∣B∣∣ cos(θ))
+- vector projection
+- length calculation (to calculate the norm)
 
-Le produit scalaire de 2 vecteurs permet de calculer 
-des distances, des directions et des angles. Il est noté u · v.
-
-dot = 0 -> les vecteurs sont perpendiculaires
-u · v = uxvx + uyvy + uzvz
+A⋅B = A1​B1 ​+ A2​B2 ​+ A3​B3
 */
 
-t_vec3	dot_vec3(t_vec3 a, t_vec3 b)
+float	dot_vec3(t_vec3 a, t_vec3 b)
 {
-	
+	return (a.x*b.x + a.y*b.y + a.z*b.z);
 }

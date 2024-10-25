@@ -1,18 +1,14 @@
 #include "vector.h"
 
-//produit vectoriel
-/*
-Dot Product : Produit scalaire, résultat scalaire, utilisé pour des mesures d'angle et des projections.
-Cross Product : Produit vectoriel, résultat vectoriel,
- utilisé pour des directions perpendiculaires et des calculs de surfaces.
+/* The cross product gives a new vector -> a * b = c.
+Several applications : 
+- compute the normal vectors of surfaces, for lighting calculations (to determine how light interacts with surfaces).
+- calculate how much light is reflected or absorbed, which is essential for shading
+- reflections and refractions : help to determine the angle for light reflect in reflection, or used
+to apply Snell's law for refraction
+- calculating area of parallelgoram formed by 2 vectors.
 
-
-*/
-
-/* donne un nouveau vecteur
-
-cross = 0 -> ls deux vecteurs sont parralleles
-w(uyvz - uzvy, uzvx - uxvz, uxvy - uyvx)
+If cross product = 0 -> both vectors are parallel
 */
 
 t_vec3	cross_vec3(t_vec3 a, t_vec3 b)

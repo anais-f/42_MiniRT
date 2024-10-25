@@ -15,8 +15,11 @@ SRCS=\
 
 SRCS_VECTOR=\
 		arithmetic_vector.c \
+		multiply.c \
+		divide.c \
 		dot_product.c \
 		cross_product.c \
+		normalize.c \
 
 
 

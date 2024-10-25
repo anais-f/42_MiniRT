@@ -31,12 +31,15 @@ typedef struct s_vec4
 
 t_vec3 add_vec3(t_vec3 a, t_vec3 b);
 t_vec3 sub_vec3(t_vec3 a, t_vec3 b);
-t_vec3 mult_vec3(t_vec3 a, float nb);
+t_vec3 mult_vec3(t_vec3 a, t_vec3 b);
+t_vec3 mult_nb_vec3(t_vec3 a, float nb);
+t_vec3 div_vec3(t_vec3 a, t_vec3 b);
 t_vec3 div_denom_vec3(t_vec3 a, float nb);
 t_vec3 div_num_vec3(t_vec3 a, float nb);
 t_vec3	cross_vec3(t_vec3 a, t_vec3 b);
-
-
+float	dot_vec3(t_vec3 a, t_vec3 b);
+float	norm_vec3(t_vec3 a);
+t_vec3	normalize_vec3(t_vec3 a);
 
 
 #endif
