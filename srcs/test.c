@@ -87,8 +87,8 @@ int test(void)
 	int cx = 540; // Centre en x (coordonnée centrale)
 	int cy = 540; // Centre en y (coordonnée centrale)
 	int r = 100;  // Rayon du cercle
-	int lx = 440; // Position x de la lumière
-	int ly = 440; // Position y de la lumière
+	//int lx = 440; // Position x de la lumière
+	//int ly = 440; // Position y de la lumière
 
 	y = cy - r;
 	while (y <= cy + r)
@@ -102,22 +102,22 @@ int test(void)
 			if (dx * dx + dy * dy <= r * r) // equation cercle 
 			{
 				// Calculer la normale au point (x, y)
-				float nx = dx / (float)r;
-				float ny = dy / (float)r;
+				// float nx = dx / (float)r;
+				// float ny = dy / (float)r;
 
 				// Calculer la direction de la lumière
-				float lx_norm = (lx - x) / (float)r;
-				float ly_norm = (ly - y) / (float)r;
+				// float lx_norm = (lx - x) / (float)r;
+				// float ly_norm = (ly - y) / (float)r;
 
 				// Calculer l'intensité de la lumière en fonction de la normale
-				float dot_product = (nx * lx_norm + ny * ly_norm);
-				float intensity = fmax(0, dot_product); // L'intensité est comprise entre 0 et 1
+				// float dot_product = (nx * lx_norm + ny * ly_norm);
+				// float intensity = fmax(0, dot_product); // L'intensité est comprise entre 0 et 1
 
 				// Couleur avec dégradé (0xFFFFFF est blanc pur, multiplié par l'intensité)
-				int color = (int)(intensity * 255) << 16 | (int)(intensity * 255) << 8 | (int)(intensity * 255);
+				// int color = (int)(intensity * 255) << 16 | (int)(intensity * 255) << 8 | (int)(intensity * 255);
 
 				// Dessiner le pixel avec la couleur calculée
-				my_mlx_pixel_put(&data, x, y, color); //color
+				my_mlx_pixel_put(&data, x, y, 0x00000000); //color
 			}
 			x++;
 		}
@@ -157,6 +157,3 @@ int test(void)
 	// 	y++;
 	// 	x = 440;
  	// }
-
-
-	
