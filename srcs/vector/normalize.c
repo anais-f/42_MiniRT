@@ -36,5 +36,6 @@ int	compare_norm_vec3(t_vec3 a, t_vec3 b)
 		return (1);
 	else if (length_a < length_b)
 		return (2);
+	return (0);
 }
 

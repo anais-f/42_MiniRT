@@ -11,6 +11,8 @@ SRCS=\
 		main.c \
 		test.c \
 		$(addprefix vector/, $(SRCS_VECTOR)) \
+		$(addprefix display_mlx/, $(SRCS_DISPLAY)) \
+		
 
 
 SRCS_VECTOR=\
@@ -21,7 +23,11 @@ SRCS_VECTOR=\
 		cross_product.c \
 		normalize.c \
 
-
+SRCS_DISPLAY=\
+		init_mlx.c \
+		destroy_mlx.c \
+		event_mlx.c \
+		my_pxl_put.c \
 
 
 
