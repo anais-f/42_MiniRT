@@ -6,10 +6,19 @@
 # include <mlx.h>
 # include <math.h>
 
-# define SIZE_H 1080 // HEIGHT of MLX WIN
-# define SIZE_W 1080 // WIDTH of MLX WIN
-# define ESC_KB 65307 // ESC BUTTON
+/******OTHERS HEADERS******/ 
+#include "vector.h"
+#include "libft.h"
+#include "display_mlx.h"
 
-int	test(void);
+typedef struct s_minirt
+{
+	t_img	img;
+
+}	t_minirt;
+
+
+int test(t_img *img);
+
 
 #endif

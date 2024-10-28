@@ -7,13 +7,31 @@ MLX = libmlx_Linux.a
 
 SRCS_DIR = ./srcs
 
-SRCS =\
+SRCS=\
 		main.c \
-		test.c
+		test.c \
+		$(addprefix vector/, $(SRCS_VECTOR)) \
+		$(addprefix display_mlx/, $(SRCS_DISPLAY)) \
 		
 
 
-SRCS := $(SRCS:%=$(SRCS_DIR)/%)
+SRCS_VECTOR=\
+		arithmetic_vector.c \
+		multiply.c \
+		divide.c \
+		dot_product.c \
+		cross_product.c \
+		normalize.c \
+
+SRCS_DISPLAY=\
+		init_mlx.c \
+		destroy_mlx.c \
+		event_mlx.c \
+		my_pxl_put.c \
+
+
+
+SRCS := $(SRCS:%=$(SRCS_DIR)/%) \
 
 SRCS_BONUS =\
 
