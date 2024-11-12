@@ -28,8 +28,9 @@ int	check_argv(int argc, char *str)
 
 int main(int argc, char **argv)
 {
-
 	t_minirt	minirt;
+	(void)argc;
+	(void)argv;
 
 	//check l'input check argv
 	if (check_argv(argc, argv[1]) == 1)
