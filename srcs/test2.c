@@ -120,7 +120,7 @@ int create_rgb(int r, int g, int b) {
 	return ((r << 16) | (g << 8) | b);
 }
 
-int test(void)
+int test2(void)
 {
 	t_data	data;
 	// t_coord pixel; /*Where x = red, y = green & z = blue*/
