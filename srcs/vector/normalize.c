@@ -6,7 +6,6 @@ float	norm_vec3(t_vec3 a)
 	float length;
 
 	length = sqrtf(a.x*a.x + a.y*a.y + a.z*a.z);
-	printf("len vecteur =%f\n", length);
 	return (length);
 
 }

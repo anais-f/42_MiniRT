@@ -17,7 +17,6 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	float	ratio; // ratio = width / height
 }	t_img;
 
 int		mlx_init_protected(t_img *img);
