@@ -41,7 +41,6 @@ int test(t_img *img)
 	// cam.direction = (t_vec3){0, 0, -1};
 	// cam.FOV = 60 * M_PI / 180;
 	cam.ratio = (float)WIDTH_WIN / (float)HEIGHT_WIN;
-	// printf("cam FOV = %f\n", cam.FOV);
 
 	
 	/* render */		
@@ -82,7 +81,7 @@ int test(t_img *img)
 				float light = dot_vec3(normal, light_dir); // calcul de la lumiere
 				if (light < 0)
 					light = 0;
-				printf("light = %f\n", light);
+				//printf("light = %f\n", light);
 
 				color.r = 255 * light;
 				color.g = 0 * light;

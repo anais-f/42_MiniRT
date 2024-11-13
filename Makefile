@@ -10,10 +10,36 @@ SRCS_DIR = ./srcs
 SRCS=\
 		main.c \
 		test.c \
+		$(addprefix camera/, $(SRCS_CAMERA)) \
+		$(addprefix display_mlx/, $(SRCS_DISPLAYMLX)) \
+		$(addprefix objects/, $(SRCS_OBJECTS)) \
+		$(addprefix parsing/, $(SRCS_PARSING)) \
+		$(addprefix render/, $(SRCS_RENDER)) \
 		$(addprefix vector/, $(SRCS_VECTOR)) \
-		$(addprefix display_mlx/, $(SRCS_DISPLAY)) \
 		
 
+SRCS_CAMERA=\
+		camera.c \
+
+SRCS_DISPLAYMLX=\
+		init_mlx.c \
+		destroy_mlx.c \
+		event_mlx.c \
+		my_pxl_put.c \
+
+SRCS_CAMERA=\
+		camera.c \
+
+SRCS_OBJECTS=\
+		sphere.c \
+		plane.c \
+		cylinder.c \
+
+SRCS_PARSING=\
+		check_input.c \
+
+SRCS_RENDER=\
+		render.c \
 
 SRCS_VECTOR=\
 		arithmetic_vector.c \
@@ -22,12 +48,6 @@ SRCS_VECTOR=\
 		dot_product.c \
 		cross_product.c \
 		normalize.c \
-
-SRCS_DISPLAY=\
-		init_mlx.c \
-		destroy_mlx.c \
-		event_mlx.c \
-		my_pxl_put.c \
 
 
 
