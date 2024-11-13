@@ -41,8 +41,8 @@ void	display_sphere(t_minirt *minirt, int x, int y)
 			light = 0;
 		//printf("light = %f\n", light);
 
-		minirt->color.r = 255 * light;
-		minirt->color.g = 0 * light;
+		minirt->color.r = 0 * light;
+		minirt->color.g = 205 * light;
 		minirt->color.b = 205 * light;
 		minirt->color.a = 0;
 	}
