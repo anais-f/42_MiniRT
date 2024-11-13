@@ -1,7 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-# include "miniRT.h"
+#include "vector.h"
 
 typedef struct s_camera
 {
@@ -10,7 +10,7 @@ typedef struct s_camera
 	float	FOV; //penser a convertir les angles recus en radian = angle * PI/180
 	float	ratio; // ratio = width / height
 
-
 }	t_camera;
+
 
 #endif
