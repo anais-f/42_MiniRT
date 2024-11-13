@@ -37,7 +37,7 @@ SRCS_BONUS =\
 
 SRCS_BONUS := $(SRCS_BONUS:%=$(SRCS_DIR)/%)
 
-OBJS_DIR = ./objs
+OBJS_DIR = ./.objs
 
 OBJS = $(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 OBJS_BONUS = $(SRCS_BONUS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
