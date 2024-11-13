@@ -17,6 +17,21 @@ typedef struct s_data
 	double			offset_y;
 }				t_data;
 
+typedef struct s_coord
+{
+	float	x;
+	float	y;
+	float	z;
+}				t_coord;
+
+typedef struct s_factor
+{
+	float	a;
+	float	b;
+	float	c;
+}				t_factor;
+
+
 
 double	scaling_x(t_data *data, double coordinate, double osw_max)
 {
@@ -58,6 +73,7 @@ void	mlx_destroy_all(t_data *data)
 
 int	mlx_init_protected(t_data *data)
 {
+	(void)data;
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (-1);
@@ -73,6 +89,11 @@ int	mlx_init_protected(t_data *data)
 	return (0);
 }
 
+long ft_pow(int num)
+{
+	return (num * num);
+}
+
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -85,51 +106,80 @@ int mouse_click(int button, int x, int y, t_data *data)
 	int	nx;
 	int ny;
 
-	(void)data;
 	if (button == 1)
 	{
 		printf("Mouse Clicked at: X: %d, Y: %d\n", x, y);
-		nx = x - 540;
-		ny = y - 540;
+		nx = x - (data->win_size_max / 2);
+		ny = y - (data->win_size_max / 2);
 		printf("Mouse Clicked at: Nx: %d, Ny: %d\n", nx, ny);
-    }
-    return 0;
+	}
+	return 0;
+}
+
+int create_rgb(int r, int g, int b) {
+	return ((r << 16) | (g << 8) | b);
 }
 
 int test(void)
 {
 	t_data	data;
-	double new_y;
-	double new_x = 0;
+	// t_coord pixel; /*Where x = red, y = green & z = blue*/
+	// t_coord point;
+
+	t_coord camera_center;
 	int	x;
 	int	y;
-	int	xmax;
-	int	ymax;
+
+	/*Camera*/
+	double	focal_length = 1.0;
+	double	viewport_height = 2.0;
+	double	viewport_width = viewport_height * ((double)(SIZE_W) / SIZE_H);
+	camera_center = (t_coord){0, 0, 0};
+
+
 
 	x = 0;
 	y = 0;
-	xmax = 1080;
-	ymax = 1080;
-	data.win_size_max = xmax;
-	data.win_size_min = 0;
-	data.offset_x = 0;
-	data.offset_y = 0;
+	data.win_size_max = SIZE_W;
 	if (mlx_init_protected(&data) != 0)
 		return (-1);
 	printf("Hello Nana_ïs\n");
-	while (y <= ymax)
+	while (y <= SIZE_H)
 	{
 		x = 0;
-		while (x <= xmax)
+		printf("\rScanlines remaining %d ", (SIZE_H - y));
+		fflush(stdout);
+		usleep(500);
+		while (x <= SIZE_W)
 		{
-			new_x = scaling_x(&data, (double)x, SIZE_W);
-			new_y = scaling_y(&data, (double)y, SIZE_H);
-			my_mlx_pixel_put(&data, x, y, 0x00ff0000);
+			// nx = (double)x;
+			// ny = (double)y;
+			// r = nx / (SIZE_W);
+			// g = ny / (SIZE_H);
+			// b = 0.0;
+			double	ir = (1.0 - (0.5 * x + 1.0)* 1 + (0.5 * x + 1.0)* 0.5);
+			double	ig = (1.0 - (0.5 * x + 1.0)* 1 + (0.5 * x + 1.0)* 0.7);
+			double	ib = (1.0 - (0.5 * x + 1.0)* 1 + (0.5 * x + 1.0)* 1);
+			int color = create_rgb((255.999 * (double)x / SIZE_W), (255.999 * (double)y / SIZE_H), 0);
+			// int	color = create_rgb(ir , ig, ib);
+			my_mlx_pixel_put(&data, x, y, color);
+			
+			ir = 0.0;
+			ig = ir;
+			ib = ir;
 			x++;
 		}
 		y++;
 	}
-	
+	printf("\nDone				\n");
+	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
+	mlx_mouse_hook(data.win, mouse_click, &data);
+	mlx_hook(data.win, 2, 1L << 0, kb_event, &data);
+	mlx_hook(data.win, 17, 0L, mlx_loop_end, data.mlx);
+	mlx_loop(data.mlx);
+	mlx_destroy_all(&data);
+	return (0);
+}
 	// int cx = 100; // Centre en x (coordonnée centrale)
 	// int cy = 100; // Centre en y (coordonnée centrale)
 	// int r = 100;  // Rayon du cercle
@@ -169,14 +219,15 @@ int test(void)
 	// 	}
 	// 	y++;
 	// }
-	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
-	mlx_mouse_hook(data.win, mouse_click, &data);
-	mlx_hook(data.win, 2, 1L << 0, kb_event, &data);
-	mlx_hook(data.win, 17, 0L, mlx_loop_end, data.mlx);
-	mlx_loop(data.mlx);
-	mlx_destroy_all(&data);
-	return (0);
-}
+
+
+
+
+
+
+
+
+
 	// y = 0;
 	// while (y <= cy + r)
 	// {
