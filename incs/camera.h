@@ -1,7 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-# include "miniRT.h"
+#include "vector.h"
 
 typedef struct s_camera
 {
@@ -12,5 +12,6 @@ typedef struct s_camera
 
 
 }	t_camera;
+
 
 #endif
