@@ -77,8 +77,8 @@ int	mlx_init_protected(t_data *data)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (-1);
-	data->win = mlx_new_window(data->mlx, SIZE_W, SIZE_H, "miniRT");
-	data->img = mlx_new_image(data->mlx, SIZE_W, SIZE_H);
+	data->win = mlx_new_window(data->mlx, WIDTH_WIN, HEIGHT_WIN, "miniRT");
+	data->img = mlx_new_image(data->mlx, WIDTH_WIN, HEIGHT_WIN);
 	if (!data->win || !data->img)
 	{
 		mlx_destroy_all(data);
@@ -133,24 +133,24 @@ int test2(void)
 	/*Camera*/
 	double	focal_length = 1.0;
 	double	viewport_height = 2.0;
-	double	viewport_width = viewport_height * ((double)(SIZE_W) / SIZE_H);
+	double	viewport_width = viewport_height * ((double)(WIDTH_WIN) / HEIGHT_WIN);
 	camera_center = (t_coord){0, 0, 0};
 
 
 
 	x = 0;
 	y = 0;
-	data.win_size_max = SIZE_W;
+	data.win_size_max = WIDTH_WIN;
 	if (mlx_init_protected(&data) != 0)
 		return (-1);
 	printf("Hello Nana_ïs\n");
-	while (y <= SIZE_H)
+	while (y <= WIDTH_WIN)
 	{
 		x = 0;
-		printf("\rScanlines remaining %d ", (SIZE_H - y));
+		printf("\rScanlines remaining %d ", (HEIGHT_WIN - y));
 		fflush(stdout);
 		usleep(500);
-		while (x <= SIZE_W)
+		while (x <= WIDTH_WIN)
 		{
 			// nx = (double)x;
 			// ny = (double)y;
@@ -160,7 +160,7 @@ int test2(void)
 			double	ir = (1.0 - (0.5 * x + 1.0)* 1 + (0.5 * x + 1.0)* 0.5);
 			double	ig = (1.0 - (0.5 * x + 1.0)* 1 + (0.5 * x + 1.0)* 0.7);
 			double	ib = (1.0 - (0.5 * x + 1.0)* 1 + (0.5 * x + 1.0)* 1);
-			int color = create_rgb((255.999 * (double)x / SIZE_W), (255.999 * (double)y / SIZE_H), 0);
+			int color = create_rgb((255.999 * (double)x / WIDTH_WIN), (255.999 * (double)y / WIDTH_WIN), 0);
 			// int	color = create_rgb(ir , ig, ib);
 			my_mlx_pixel_put(&data, x, y, color);
 			
