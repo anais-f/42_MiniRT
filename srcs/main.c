@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 
 	// ouvrir le fichier
 	// parser le fichier
-	prasing_map(argv[1]);
+	prasing_map(&minirt, argv[1]);
 
 
 	if (mlx_init_protected(&minirt.img) != 0)

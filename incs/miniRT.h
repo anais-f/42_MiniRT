@@ -36,7 +36,7 @@ typedef struct s_ray
 
 /* Parsing */
 int	check_argv(int argc, char *str);
-int	prasing_map(char *file); //t_minirt *minirt,
+int	prasing_map(t_minirt *minirt, char *file); //t_minirt *minirt,
 void	print_tab(char **tab);
 
 
