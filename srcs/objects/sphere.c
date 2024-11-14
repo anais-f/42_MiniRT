@@ -1,6 +1,6 @@
 #include "miniRT.h"
 
-void	display_sphere(t_minirt *minirt, int x, int y)
+int	display_sphere(t_minirt *minirt, int x, int y)
 {
 	(void)x, (void)y, (void)minirt;
 	// printf("cam ratio = %f et fov = %f\n", minirt->cam.ratio, minirt->cam.FOV);
@@ -38,10 +38,12 @@ void	display_sphere(t_minirt *minirt, int x, int y)
 		/* chercher le point d'intersection*/
 		t_vec3 hitPosition = add_vec3(ray_origin, mult_nb_vec3(ray_dir, t0)); // point d'impact
 		t_vec3 normal = normalize_vec3(sub_vec3(hitPosition, minirt->object.position)); // normalisation du vecteur - A REVOIR
+		if (dot_vec3(minirt->object.position, minirt->cam.position) < minirt->object.spec.sphere.radius) // test si on est a l'interieur de la sphere
+			normal = mult_nb_vec3(normal, -1.0f); // inversion de la normal si on est a l'interieur de la sphere
 
 		/* gestion lumiere */
 		t_vec3 light_dir = normalize_vec3(sub_vec3(minirt->light.position, hitPosition)); // calcul de la direction de la lumiere
-	//	light_dir = mult_nb_vec3(light_dir, -1.0f); // inversion de la direction de la lumiere (et necessite d'inverser la sub au dessus)
+	//	light_dir = mult_nb_vec3(light_dir, -1.0f); // inversion de la direction de la lumiere (et necessite d'inverser la sub)
 		float light = dot_vec3(normal, light_dir); // calcul de la lumiere
 		if (light < 0)
 			light = 0;
@@ -53,6 +55,7 @@ void	display_sphere(t_minirt *minirt, int x, int y)
 		minirt->color.b = minirt->object.color.b * light;
 		minirt->color.a = 0;
 
+		return (t0); //retourne la distance entre le point d'origine et le point d'intersection
 	}
 	else // remplissage de l'image, de la couleur du pixel, a ressortir dans render ?
 	{
@@ -61,4 +64,5 @@ void	display_sphere(t_minirt *minirt, int x, int y)
 		minirt->color.b = 0;
 		minirt->color.a = 0;
 	}
+	return (-1);
 }

@@ -4,7 +4,7 @@
 
 int	init_camera(t_minirt *minirt)
 {
-	minirt->cam.position = (t_vec3){0.f, 0.f, -2.f};
+	minirt->cam.position = (t_vec3){0.f, 0.f, 0.f};
 	minirt->cam.direction = (t_vec3){0.f, 0.f, 1.f};
 	minirt->cam.FOV = 60 * M_PI / 180;
 	minirt->cam.ratio = (float)WIDTH_WIN / (float)HEIGHT_WIN;
@@ -29,7 +29,7 @@ int	init_minirt(t_minirt *minirt)
 
 int	init_light(t_minirt *minirt)
 {
-	minirt->light.position = (t_vec3){2.f, 2.f, -2.f};
+	minirt->light.position = (t_vec3){2.f, 2.f, 2.f};
 	minirt->light.brightness = 1.0f; // entre 0 et 1
 
 	//RGB non necessaire dans le mandatory
