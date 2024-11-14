@@ -16,5 +16,5 @@ A⋅B = A1​B1 ​+ A2​B2 ​+ A3​B3
 
 float	dot_vec3(t_vec3 a, t_vec3 b)
 {
-	return (a.x*b.x + a.y*b.y + a.z*b.z);
+	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }

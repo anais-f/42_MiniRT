@@ -10,6 +10,7 @@ SRCS_DIR = ./srcs
 SRCS=\
 		main.c \
 		test.c \
+		init.c \
 		$(addprefix camera/, $(SRCS_CAMERA)) \
 		$(addprefix display_mlx/, $(SRCS_DISPLAYMLX)) \
 		$(addprefix objects/, $(SRCS_OBJECTS)) \

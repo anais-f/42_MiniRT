@@ -1,12 +1,5 @@
 #include "miniRT.h"
 
-void	init_color(t_minirt *minirt)
-{
-	minirt->color.r = 0;
-	minirt->color.g = 0;
-	minirt->color.b = 0;
-	minirt->color.a = 0;
-}
 
 int main(int argc, char **argv)
 {
@@ -32,8 +25,12 @@ int main(int argc, char **argv)
 	/************************* */
 	//test(&minirt.img, &minirt);
 
+	//init minirt
 	init_camera(&minirt);
 	init_color(&minirt);
+	init_light(&minirt);
+	init_object(&minirt);
+	printf("main color = %hhu %hhu %hhu\n", minirt.object.color.r, minirt.object.color.g, minirt.object.color.b);
 	render_scene(&minirt, &minirt.img);
 
 

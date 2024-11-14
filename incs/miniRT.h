@@ -7,21 +7,25 @@
 # include <math.h>
 
 /******OTHERS HEADERS******/ 
-#include "libft.h"
-#include "vector.h"
-#include "display_mlx.h"
-#include "camera.h"
-#include "color.h"
+# include "libft.h"
+# include "vector.h"
+# include "display_mlx.h"
+# include "camera.h"
+# include "color.h"
+# include "objects.h"
 
 
 typedef struct s_minirt
 {
-	t_img		img;
-	t_camera	cam;
-	t_color		color;
+	t_img			img;
+	t_camera		cam;
+	t_color			color;
+	t_object		object;
+	t_light			light;
+	t_ambient_light	ambient_light;
 
-	float	to_radian; // a initialiser : M_PI / 180 // a voir pour mettre dans la structure principale car sera utilise plein de fois a plein d'endroit pour les calculs
-	float	to_degree; // radian / 180 * PI -> 180 / M_PI
+	float	to_radian;
+	float	to_degree;
 
 }	t_minirt;
 
@@ -38,15 +42,21 @@ typedef struct s_ray
 int	check_argv(int argc, char *str);
 
 
-
 /* Others */
+int		test(t_img *img, t_minirt *minirt);
 
 
-int test(t_img *img, t_minirt *minirt);
+/* a changer de header plus tard */
 void	render_scene(t_minirt *minirt, t_img *img);
-void	init_color(t_minirt *minirt);
-int	init_camera(t_minirt *minirt);
 void	display_sphere(t_minirt *minirt, int x, int y);
+
+void	init_color(t_minirt *minirt);
+int		init_camera(t_minirt *minirt);
+int		init_minirt(t_minirt *minirt);
+int		init_light(t_minirt *minirt);
+int	init_object(t_minirt *minirt);
+int	init_ambient_light(t_minirt *minirt);
+
 
 
 
