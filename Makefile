@@ -50,7 +50,6 @@ SRCS_VECTOR=\
 		normalize.c \
 
 
-
 SRCS := $(SRCS:%=$(SRCS_DIR)/%) \
 
 SRCS_BONUS =\
