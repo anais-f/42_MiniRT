@@ -21,6 +21,7 @@ typedef struct s_minirt
 	t_camera		cam;
 	t_color			color;
 	t_object	 	object;
+	t_object		*objects;
 	t_light			light;
 	t_ambient_light	ambient_light;
 

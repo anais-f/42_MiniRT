@@ -70,15 +70,18 @@ int	prasing_map(t_minirt *minirt, char *file)
 	int		map_file;
 	char	*line;
 
-	open(file, O_RDONLY);
+	map_file = open(file, O_RDONLY);
+	
 	line = get_next_line(map_file);
 	while (line)
 	{
 		pars_line(line, minirt);
+		printf("%s", line);
 		free(line);
 		line = get_next_line(map_file);
 	}
-
+	free(line);
+	close(map_file);
 }
 
 
