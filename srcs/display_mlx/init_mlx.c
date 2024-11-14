@@ -3,7 +3,7 @@
 
 int	mlx_init_protected(t_img *img)
 {
-	ft_bzero(img, sizeof(t_img)); //effacer l'image pour redessiner dessus
+	// ft_bzero(img, sizeof(t_img)); SEGFAULT CHELOU //effacer l'image pour redessiner dessus 
 	// fonction pour init la structure si on ajoute des donnees?
 
 	img->mlx_ptr = mlx_init();

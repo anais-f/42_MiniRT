@@ -3,16 +3,19 @@
 
 int main(int argc, char **argv)
 {
+	printf("Hello Adrien\n");
+	// test2();
 	t_minirt	minirt;
-	(void)argc;
-	(void)argv;
-
+	// minirt = (t_minirt){0};
+	if (check_argv(argc, argv[1]) == 1)
+		return (1);
 	//check l'input check argv
 	// if (check_argv(argc, argv[1]) == 1)
 	// 	return (1);
 
 	// ouvrir le fichier
 	// parser le fichier
+	prasing_map(&minirt, argv[1]);
 
 
 	if (mlx_init_protected(&minirt.img) != 0)
@@ -20,7 +23,6 @@ int main(int argc, char **argv)
 		// free les trucs de la scene ?
 		return (-1);
 	}
-
 
 	/************************* */
 	//test(&minirt.img, &minirt);

@@ -38,6 +38,7 @@ SRCS_OBJECTS=\
 
 SRCS_PARSING=\
 		check_input.c \
+		parsing.c
 
 SRCS_RENDER=\
 		render.c \
