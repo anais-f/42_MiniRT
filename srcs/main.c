@@ -6,7 +6,7 @@ int main(int argc, char **argv)
 	printf("Hello Adrien\n");
 	// test2();
 	t_minirt	minirt;
-	// minirt = (t_minirt){0};
+	minirt = (t_minirt){0}; // bzero ? 
 	if (check_argv(argc, argv[1]) == 1)
 		return (1);
 	//check l'input check argv
@@ -15,6 +15,7 @@ int main(int argc, char **argv)
 
 	// ouvrir le fichier
 	// parser le fichier
+	init_camera(&minirt); // for test pars
 	prasing_map(&minirt, argv[1]);
 
 
@@ -28,7 +29,7 @@ int main(int argc, char **argv)
 	//test(&minirt.img, &minirt);
 
 	//init minirt
-	init_camera(&minirt);
+//	init_camera(&minirt); for test parsing coord
 	init_color(&minirt);
 	init_light(&minirt);
 	init_object(&minirt);

@@ -15,6 +15,7 @@ typedef struct ambient_light
 {
 	t_color	color;
 	float	brightness;
+	bool	is_init;
 }	t_ambient_light;
 
 typedef enum e_object_type

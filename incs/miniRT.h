@@ -5,6 +5,10 @@
 # include <stdio.h>
 # include <mlx.h>
 # include <math.h>
+# include <stdbool.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <errno.h>
 
 /******OTHERS HEADERS******/ 
 # include "libft.h"
@@ -41,8 +45,7 @@ typedef struct s_ray
 
 /* Parsing */
 int	check_argv(int argc, char *str);
-int	prasing_map(t_minirt *minirt, char *file); //t_minirt *minirt,
-void	print_tab(char **tab);
+int	prasing_map(t_minirt *minirt, char *file);
 
 
 /* Others */
