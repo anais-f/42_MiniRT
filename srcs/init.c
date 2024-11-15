@@ -4,7 +4,7 @@
 
 int	init_camera(t_minirt *minirt)
 {
-	minirt->cam.position = (t_vec3){0.f, 0.f, 0.f};
+	minirt->cam.position = (t_vec3){0.f, 0.f, -2.f};
 	minirt->cam.direction = (t_vec3){0.f, 0.f, 1.f};
 	minirt->cam.FOV = 60 * M_PI / 180;
 	minirt->cam.ratio = (float)WIDTH_WIN / (float)HEIGHT_WIN;
@@ -29,7 +29,7 @@ int	init_minirt(t_minirt *minirt)
 
 int	init_light(t_minirt *minirt)
 {
-	minirt->light.position = (t_vec3){2.f, 2.f, 4.f};
+	minirt->light.position = (t_vec3){2.f, 2.f, -2.f};
 	minirt->light.brightness = 1.0f; // entre 0 et 1
 
 	//RGB non necessaire dans le mandatory
@@ -48,17 +48,17 @@ int	init_ambient_light(t_minirt *minirt)
 	minirt->ambient_light.color.a = 0;
 	minirt->ambient_light.brightness = 0.1f;
 	return (0);
-}		//printf("vecteur direction lumiere = %f %f %f\n", light_dir.x, light_dir.y, light_dir.z);	
+}
 
 int	init_object(t_minirt *minirt)
 {
 	minirt->object.type = SPHERE;
-	minirt->object.position = (t_vec3){1.f, 0.f, 3.f};
+	minirt->object.position = (t_vec3){0.f, 0.f, 0.f};
 	minirt->object.direction = (t_vec3){0.f, 0.f, 0.f};
 	minirt->object.color.b = 255;
 	minirt->object.color.g = 0;
 	minirt->object.color.r = 255;
 	minirt->object.color.a = 0;
-	minirt->object.spec.sphere.radius = 0.6f;
+	minirt->object.spec.sphere.radius = 0.5f;
 	return (0);
 }

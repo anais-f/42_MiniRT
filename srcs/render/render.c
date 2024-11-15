@@ -33,7 +33,11 @@ void	render_scene(t_minirt *minirt, t_img *img)
 		while (x <= WIDTH_WIN)
 		{
 			// on va afficher l'objet le plus proche en premier
-		
+			/* initialisation de la couleur*/	
+			minirt->color.r = 0;
+			minirt->color.g = 0;
+			minirt->color.b = 0;
+			minirt->color.a = 0;
 			display_sphere(minirt, x, y); // renvoi un int pour faire le calcul pour trouver l'objet le plus proche 
 			my_mlx_pixel_put(img, x, y, minirt->color.color);
 			x++;
