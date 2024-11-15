@@ -75,7 +75,7 @@ int	prasing_map(t_minirt *minirt, char *file)
 	line = get_next_line(map_file);
 	while (line)
 	{
-		pars_line(line, minirt);
+	//	pars_line(line, minirt);
 		printf("%s", line);
 		free(line);
 		line = get_next_line(map_file);

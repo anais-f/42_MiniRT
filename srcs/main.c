@@ -7,15 +7,15 @@ int main(int argc, char **argv)
 	// test2();
 	t_minirt	minirt;
 	// minirt = (t_minirt){0};
-	if (check_argv(argc, argv[1]) == 1)
-		return (1);
+
+	(void)argc, (void)argv;
 	//check l'input check argv
 	// if (check_argv(argc, argv[1]) == 1)
 	// 	return (1);
 
 	// ouvrir le fichier
 	// parser le fichier
-	prasing_map(&minirt, argv[1]);
+	//prasing_map(&minirt, argv[1]);
 
 
 	if (mlx_init_protected(&minirt.img) != 0)
