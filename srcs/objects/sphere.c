@@ -1,6 +1,6 @@
 #include "miniRT.h"
 
-int	display_sphere(t_minirt *minirt, int x, int y)
+int	display_sphere(t_minirt *minirt, int x, int y, int i)
 {
 	(void)x, (void)y, (void)minirt;
 	// printf("cam ratio = %f et fov = %f\n", minirt->cam.ratio, minirt->cam.FOV);
@@ -14,14 +14,14 @@ int	display_sphere(t_minirt *minirt, int x, int y)
 	coord.y = -((float)y / (float)HEIGHT_WIN * 2.0f - 1.0f);
 	
 
-	/**********************************  lancé des rayons depuis la caméra ******************************/
+	/**********************************  creation des rayons depuis la caméra ******************************/
 	t_ray ray;
 	ray.origin = minirt->cam.position;
 	ray.direction = (t_vec3){coord.x, coord.y, minirt->cam.direction.z}; // direction du rayon
 	//ray.direction = normalize_vec3(ray.direction);
 	
 	
-	t_vec3 offset_ray_origin = sub_vec3(ray.origin, minirt->object.position); // vecteur entre le point d'origine et le centre de la sphere
+	t_vec3 offset_ray_origin = sub_vec3(ray.origin, minirt->object[i].position); // vecteur entre le point d'origine et le centre de la sphere
 
 	
 
@@ -34,10 +34,9 @@ int	display_sphere(t_minirt *minirt, int x, int y)
 	// r = rayon de la sphere
 
 	float a = dot_vec3(ray.direction, ray.direction); 
-	float b = 2.0f * dot_vec3(offset_ray_origin, ray.direction); // ou off set ray origin ?
-	float c = dot_vec3(offset_ray_origin, offset_ray_origin) - minirt->object.spec.sphere.radius * minirt->object.spec.sphere.radius;
+	float b = 2.0f * dot_vec3(offset_ray_origin, ray.direction); // ou off set ray origin / ray.origin ?
+	float c = dot_vec3(offset_ray_origin, offset_ray_origin) - minirt->object[i].spec.sphere.radius * minirt->object[i].spec.sphere.radius;
 	float discriminant = b * b - 4.0f * a * c;
-
 
 	if (discriminant >= 0.f) // colorisation de la scene
 	{
@@ -51,10 +50,10 @@ int	display_sphere(t_minirt *minirt, int x, int y)
 
 		/******************************* chercher le point d'intersection**************************************/
 		t_vec3 hit_position = add_vec3(ray.origin, mult_nb_vec3(ray.direction, t0)); // point d'impact
-		t_vec3 normal = normalize_vec3(sub_vec3(hit_position, minirt->object.position)); // normalisation du vecteur - A REVOIR
+		t_vec3 normal = normalize_vec3(sub_vec3(hit_position, minirt->object[i].position)); // normalisation du vecteur - A REVOIR
 
-		t_vec3 sphere_in = sub_vec3(minirt->cam.position, minirt->object.position);
-		if (dot_vec3(sphere_in, sphere_in) <= minirt->object.spec.sphere.radius) // test si on est a l'interieur de la sphere
+		t_vec3 sphere_in = sub_vec3(minirt->cam.position, minirt->object[i].position);
+		if (dot_vec3(sphere_in, sphere_in) <= minirt->object[i].spec.sphere.radius) // test si on est a l'interieur de la sphere
 		{
 			printf("HERE\n");
 			normal = mult_nb_vec3(normal, -1.0f); // inversion de la normal si on est a l'interieur de la sphere
@@ -64,7 +63,6 @@ int	display_sphere(t_minirt *minirt, int x, int y)
 		/********************************************* gestion lumiere ********************************************/
 		
 		t_vec3 light_dir = normalize_vec3(sub_vec3(hit_position, minirt->light.position)); // calcul de la direction de la lumiere
-	//	printf("light dir = %f %f %f\n", light_dir.x, light_dir.y, light_dir.z);
 		light_dir = mult_nb_vec3(light_dir, -1.0f); // inversion de la direction de la lumiere pour aller de nous a la lumiere et pas le contraire
 		float light = dot_vec3(normal, light_dir); // calcul de la lumiere, == cos(angle)
 		if (light < 0.0f) // on ne veut pas de valeur negative, c'est le plus grand entre 0 et la lumiere
@@ -72,9 +70,9 @@ int	display_sphere(t_minirt *minirt, int x, int y)
 
 
 		/***************************************** gestion de la couleur ****************************************/
-		minirt->color.r = minirt->object.color.r * light;
-		minirt->color.g = minirt->object.color.g * light;
-		minirt->color.b = minirt->object.color.b * light;
+		minirt->color.r = minirt->object[i].color.r * light;
+		minirt->color.g = minirt->object[i].color.g * light;
+		minirt->color.b = minirt->object[i].color.b * light;
 		minirt->color.a = 0;
 
 		return (t0); //retourne la distance entre le point d'origine et le point d'intersection

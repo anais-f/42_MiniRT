@@ -3,7 +3,7 @@
 
 int main(int argc, char **argv)
 {
-	printf("Hello Adrien\n");
+	//printf("Hello Adrien\n");
 	// test2();
 	t_minirt	minirt;
 	// minirt = (t_minirt){0};
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 	init_color(&minirt);
 	init_light(&minirt);
 	init_object(&minirt);
-	printf("main color = %hhu %hhu %hhu\n", minirt.object.color.r, minirt.object.color.g, minirt.object.color.b);
+	//printf("main color = %hhu %hhu %hhu\n", minirt.object.color.r, minirt.object.color.g, minirt.object.color.b);
 	render_scene(&minirt, &minirt.img);
 
 

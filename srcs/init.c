@@ -29,7 +29,7 @@ int	init_minirt(t_minirt *minirt)
 
 int	init_light(t_minirt *minirt)
 {
-	minirt->light.position = (t_vec3){2.f, 2.f, -2.f};
+	minirt->light.position = (t_vec3){2.f, 2.f, 0.f};
 	minirt->light.brightness = 1.0f; // entre 0 et 1
 
 	//RGB non necessaire dans le mandatory
@@ -52,13 +52,31 @@ int	init_ambient_light(t_minirt *minirt)
 
 int	init_object(t_minirt *minirt)
 {
-	minirt->object.type = SPHERE;
-	minirt->object.position = (t_vec3){0.f, 0.f, 0.f};
-	minirt->object.direction = (t_vec3){0.f, 0.f, 0.f};
-	minirt->object.color.b = 255;
-	minirt->object.color.g = 0;
-	minirt->object.color.r = 255;
-	minirt->object.color.a = 0;
-	minirt->object.spec.sphere.radius = 0.5f;
+	minirt->object[0].type = SPHERE;
+	minirt->object[0].position = (t_vec3){-1.f, 1.f, 0.f};
+	minirt->object[0].direction = (t_vec3){0.f, 0.f, 0.f};
+	minirt->object[0].color.b = 85;
+	minirt->object[0].color.g = 97;
+	minirt->object[0].color.r = 205;
+	minirt->object[0].color.a = 0;
+	minirt->object[0].spec.sphere.radius = 0.5f;
+
+	minirt->object[1].type = SPHERE;
+	minirt->object[1].position = (t_vec3){-0.5f, 1.f, 0.f};
+	minirt->object[1].direction = (t_vec3){0.f, 0.f, 0.f};
+	minirt->object[1].color.b = 14;
+	minirt->object[1].color.g = 65;
+	minirt->object[1].color.r = 92;
+	minirt->object[1].color.a = 0;
+	minirt->object[1].spec.sphere.radius = 0.5f;
+
+	minirt->object[2].type = SPHERE;
+	minirt->object[2].position = (t_vec3){0.f, 1.f, 0.f};
+	minirt->object[2].direction = (t_vec3){0.f, 0.f, 0.f};
+	minirt->object[2].color.b = 172;
+	minirt->object[2].color.g = 225;
+	minirt->object[2].color.r = 243;
+	minirt->object[2].color.a = 0;
+	minirt->object[2].spec.sphere.radius = 0.5f;
 	return (0);
 }

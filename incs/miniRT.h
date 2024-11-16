@@ -20,7 +20,7 @@ typedef struct s_minirt
 	t_img			img;
 	t_camera		cam;
 	t_color			color;
-	t_object	 	object;
+	t_object	 	object[3];
 	t_object		*objects;
 	t_light			light;
 	t_ambient_light	ambient_light;
@@ -51,7 +51,7 @@ int		test(t_img *img, t_minirt *minirt);
 
 /* a changer de header plus tard */
 void	render_scene(t_minirt *minirt, t_img *img);
-int	display_sphere(t_minirt *minirt, int x, int y);
+int	display_sphere(t_minirt *minirt, int x, int y, int i);
 
 void	init_color(t_minirt *minirt);
 int		init_camera(t_minirt *minirt);
