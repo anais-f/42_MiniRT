@@ -38,7 +38,13 @@ SRCS_OBJECTS=\
 
 SRCS_PARSING=\
 		check_input.c \
-		parsing.c
+		parsing.c \
+		array_utils.c \
+		parsing_lights.c \
+		parsing_cam.c \
+		parsing_utils.c \
+		parsing_objects.c \
+		float_utils.c
 
 SRCS_RENDER=\
 		render.c \

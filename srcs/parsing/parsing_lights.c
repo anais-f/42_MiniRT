@@ -1,0 +1,52 @@
+#include "miniRT.h"
+
+int	parse_ambient_light(char **line_parsed, t_minirt *minirt)
+{
+	if (minirt->ambient_light.is_init)
+	{
+		printf("Ambient light aleready set\n");
+		return (1);
+	}
+	if (arr_len(line_parsed) != 3)
+	{
+		printf("Ambient light must have only three parameters\n");
+		return (2);
+	}
+	parse_color(line_parsed[2], &minirt->ambient_light.color); // checker retour d'erreur parsing color si != 0 free & exit
+	if (is_valid_float(line_parsed[1]) == false)
+		return (3);
+	minirt->ambient_light.brightness = ft_atof(line_parsed[1]);
+	if (check_range_items(minirt, AMBIENT_LIGHT))
+	{
+		printf("Ambient light parameters out of range\n");
+		return (4);
+	}
+	minirt->ambient_light.is_init = true;
+	return (0);
+}
+
+int	parse_light(char **line_parsed, t_minirt *minirt)
+{
+	if (minirt->light.is_init)
+	{
+		printf("Ambient light aleready set\n");
+		return (1);
+	}
+	if (arr_len(line_parsed) != 4)
+	{
+		printf("Light must have only three parameters\n");
+		return (2);
+	}
+	parse_coordinates(line_parsed[1], &minirt->light.position); // checker retour d'erreur si != 0 free & exit
+	parse_color(line_parsed[3], &minirt->light.color); // checker retour d'erreur parsing color si != 0 free & exit
+	if (is_valid_float(line_parsed[2]) == false)
+		return (3);
+	minirt->light.brightness = ft_atof(line_parsed[2]);
+	if (check_range_items(minirt, LIGHT))
+	{
+		printf("Light parameters out of range\n");
+		return (4);
+	}
+	minirt->light.is_init = true;
+	return (0);
+}

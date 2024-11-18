@@ -41,11 +41,34 @@ typedef struct s_ray
 	t_vec3	direction; // camera orientation
 }	t_ray;
 
-
+typedef enum e_items
+{
+	AMBIENT_LIGHT,
+	CAMERA,
+	LIGHT,
+	OBJECTS,
+}			t_items;
 
 /* Parsing */
-int	check_argv(int argc, char *str);
-int	prasing_map(t_minirt *minirt, char *file);
+bool	check_range_items(t_minirt *minirt, t_items items);
+bool	is_in_range(float value, float min, float max);
+bool	is_valid_float(char *str_float);
+char	*ft_iswspace(char *str);
+float	ft_atof(const char *str);
+int		check_argv(int argc, char *str);
+int		convert_color(char **args_color, int *colors_int);
+int		parse_ambient_light(char **line_parsed, t_minirt *minirt);
+int		parse_camera(char **line_parsed, t_minirt *minirt);
+int		parse_color(char *arg_parsed, t_color *color);
+int		parse_coordinates(char *arg_parsed, t_vec3 *position);
+int		parse_light(char **line_parsed, t_minirt *minirt);
+int		parse_line(char *line, t_minirt *minirt);
+int		prasing_map(t_minirt *minirt, char *file);
+size_t	arr_len(char **arr);
+void	ft_free_arr(char **arr);
+void	print_arr(char **arr);
+int		parsing_sphere(char **line_parsed, t_minirt *minirt);
+
 
 
 /* Others */
