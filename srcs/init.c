@@ -53,7 +53,7 @@ int	init_ambient_light(t_minirt *minirt)
 int	init_object(t_minirt *minirt)
 {
 	minirt->object[0].type = SPHERE;
-	minirt->object[0].position = (t_vec3){-1.f, 1.f, 0.f};
+	minirt->object[0].position = (t_vec3){-1.f, 0.f, 0.f};
 	minirt->object[0].direction = (t_vec3){0.f, 0.f, 0.f};
 	minirt->object[0].color.b = 85;
 	minirt->object[0].color.g = 97;
@@ -62,7 +62,7 @@ int	init_object(t_minirt *minirt)
 	minirt->object[0].spec.sphere.radius = 0.5f;
 
 	minirt->object[1].type = SPHERE;
-	minirt->object[1].position = (t_vec3){-0.5f, 1.f, 0.f};
+	minirt->object[1].position = (t_vec3){0.f, 0.f, 0.f};
 	minirt->object[1].direction = (t_vec3){0.f, 0.f, 0.f};
 	minirt->object[1].color.b = 14;
 	minirt->object[1].color.g = 65;
@@ -71,7 +71,7 @@ int	init_object(t_minirt *minirt)
 	minirt->object[1].spec.sphere.radius = 0.5f;
 
 	minirt->object[2].type = SPHERE;
-	minirt->object[2].position = (t_vec3){0.f, 1.f, 0.f};
+	minirt->object[2].position = (t_vec3){1.f, 0.f, 0.f};
 	minirt->object[2].direction = (t_vec3){0.f, 0.f, 0.f};
 	minirt->object[2].color.b = 172;
 	minirt->object[2].color.g = 225;
