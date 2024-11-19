@@ -21,10 +21,17 @@
 // 	return (ray);
 // }
 
+
+
+
+
 void	render_scene(t_minirt *minirt, t_img *img)
 {
 	int 	x;
 	int		y;
+	//t_vec2	coord;
+
+	get_ambient_light(minirt);
 
 	y = 0;
 	while (y <= HEIGHT_WIN)
@@ -32,12 +39,22 @@ void	render_scene(t_minirt *minirt, t_img *img)
 		x = 0;
 		while (x <= WIDTH_WIN)
 		{
+			// coord.x = (float)x / (float)WIDTH_WIN * 2.0f - 1.0f;
+			// coord.x *= minirt->cam.ratio;
+			// coord.y = -((float)y / (float)HEIGHT_WIN * 2.0f - 1.0f);
+			
 			// on va afficher l'objet le plus proche en premier
 			/* initialisation de la couleur*/	
-			minirt->color.r = 0;
-			minirt->color.g = 0;
-			minirt->color.b = 0;
+			t_color color;
+			color = add_colors(minirt->ambient_light.color, minirt->light.color);
+			minirt->color.r = multiply_colors(minirt->background_color, color).r;
+			minirt->color.g = multiply_colors(minirt->background_color, color).g;
+			minirt->color.b = multiply_colors(minirt->background_color, color).b;
+			// minirt->color.r = 0;
+			// minirt->color.g = 0;
+			// minirt->color.b = 0;
 			minirt->color.a = 0;
+			// printf("color = %d %d %d\n", minirt->color.r, minirt->color.g, minirt->color.b);
 			int i = 0;
 			while (i < 3)
 			{

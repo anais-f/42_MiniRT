@@ -15,11 +15,25 @@
 # include "objects.h"
 
 
+typedef struct s_hit
+{
+	t_vec3	position;
+	t_vec3	normal;
+	float	dst;
+}	t_hit;
+
+typedef struct s_ray
+{
+	t_vec3	origin; // camera position
+	t_vec3	direction; // camera orientation
+}	t_ray;
+
 typedef struct s_minirt
 {
 	t_img			img;
 	t_camera		cam;
 	t_color			color;
+	t_color			background_color;
 	t_object	 	object[3];
 	t_object		*objects;
 	t_light			light;
@@ -31,11 +45,7 @@ typedef struct s_minirt
 }	t_minirt;
 
 
-typedef struct s_ray
-{
-	t_vec3	origin; // camera position
-	t_vec3	direction; // camera orientation
-}	t_ray;
+
 
 
 
@@ -60,7 +70,9 @@ int		init_light(t_minirt *minirt);
 int	init_object(t_minirt *minirt);
 int	init_ambient_light(t_minirt *minirt);
 
-
+void get_ambient_light(t_minirt *minirt);
+t_color multiply_colors(t_color color, t_color ambient_color);
+t_color add_colors(t_color ambient, t_color light);
 
 
 #endif

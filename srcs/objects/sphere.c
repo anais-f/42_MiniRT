@@ -1,5 +1,7 @@
 #include "miniRT.h"
 
+
+
 int	display_sphere(t_minirt *minirt, int x, int y, int i)
 {
 	(void)x, (void)y, (void)minirt;
@@ -63,16 +65,23 @@ int	display_sphere(t_minirt *minirt, int x, int y, int i)
 		/********************************************* gestion lumiere ********************************************/
 		
 		t_vec3 light_dir = normalize_vec3(sub_vec3(hit_position, minirt->light.position)); // calcul de la direction de la lumiere
-		light_dir = mult_nb_vec3(light_dir, -1.0f); // inversion de la direction de la lumiere pour aller de nous a la lumiere et pas le contraire
+		light_dir = mult_nb_vec3(light_dir, -1.0f * minirt->light.brightness); // inversion de la direction de la lumiere pour aller de nous a la lumiere et pas le contraire
 		float light = dot_vec3(normal, light_dir); // calcul de la lumiere, == cos(angle)
 		if (light < 0.0f) // on ne veut pas de valeur negative, c'est le plus grand entre 0 et la lumiere
 			light = 0.0f;
+		
 
-
+		t_color color;
+		color = add_colors(minirt->ambient_light.color, minirt->light.color);
 		/***************************************** gestion de la couleur ****************************************/
-		minirt->color.r = minirt->object[i].color.r * light;
-		minirt->color.g = minirt->object[i].color.g * light;
-		minirt->color.b = minirt->object[i].color.b * light;
+		minirt->color.r = multiply_colors(minirt->object[i].color,color).r * light;
+		minirt->color.g = multiply_colors(minirt->object[i].color,color).g * light;
+		minirt->color.b = multiply_colors(minirt->object[i].color,color).b * light;
+		//printf("color = %d %d %d\n", minirt->color.r, minirt->color.g, minirt->color.b);
+
+		// minirt->color.r = minirt->object[i].color.r * light;
+		// minirt->color.g = minirt->object[i].color.g * light;
+		// minirt->color.b = minirt->object[i].color.b * light;
 		minirt->color.a = 0;
 
 		return (t0); //retourne la distance entre le point d'origine et le point d'intersection

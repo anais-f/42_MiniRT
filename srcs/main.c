@@ -32,6 +32,7 @@ int main(int argc, char **argv)
 	init_color(&minirt);
 	init_light(&minirt);
 	init_object(&minirt);
+	init_ambient_light(&minirt);
 	//printf("main color = %hhu %hhu %hhu\n", minirt.object.color.r, minirt.object.color.g, minirt.object.color.b);
 	render_scene(&minirt, &minirt.img);
 
