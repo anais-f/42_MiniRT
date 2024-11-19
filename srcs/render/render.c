@@ -22,16 +22,29 @@
 // }
 
 
+t_ray	create_ray(t_minirt *minirt, int x, int y)
+{
+	t_ray	ray;
+	t_vec2 coord;
 
+	coord.x = (float)x / (float)WIDTH_WIN * 2.0f - 1.0f;
+	coord.x *= minirt->cam.ratio;
+	coord.y = -((float)y / (float)HEIGHT_WIN * 2.0f - 1.0f);
+	ray.origin = minirt->cam.position;
+	ray.direction = (t_vec3){coord.x, coord.y, minirt->cam.direction.z};
+	return (ray);
+}
 
 
 void	render_scene(t_minirt *minirt, t_img *img)
 {
-	int 	x;
+	int		x;
 	int		y;
-	//t_vec2	coord;
+	float	t; // distance de hit
+	t_ray	ray;
+	t_hit	hit;	 // a initialiser
 
-	get_ambient_light(minirt);
+	get_ambient_light(minirt); // a ressortir avec le parsing
 
 	y = 0;
 	while (y <= HEIGHT_WIN)
@@ -39,29 +52,31 @@ void	render_scene(t_minirt *minirt, t_img *img)
 		x = 0;
 		while (x <= WIDTH_WIN)
 		{
-			// coord.x = (float)x / (float)WIDTH_WIN * 2.0f - 1.0f;
-			// coord.x *= minirt->cam.ratio;
-			// coord.y = -((float)y / (float)HEIGHT_WIN * 2.0f - 1.0f);
-			
 			// on va afficher l'objet le plus proche en premier
-			/* initialisation de la couleur*/	
-			t_color color;
-			color = add_colors(minirt->ambient_light.color, minirt->light.color);
-			minirt->color.r = multiply_colors(minirt->background_color, color).r;
-			minirt->color.g = multiply_colors(minirt->background_color, color).g;
-			minirt->color.b = multiply_colors(minirt->background_color, color).b;
-			// minirt->color.r = 0;
-			// minirt->color.g = 0;
-			// minirt->color.b = 0;
-			minirt->color.a = 0;
-			// printf("color = %d %d %d\n", minirt->color.r, minirt->color.g, minirt->color.b);
+			ft_memset(&hit, 0, sizeof(t_hit));
+			hit.dst = -1;
+
+			//init_color(minirt);
+			ray = create_ray(minirt, x, y);
+
+		
 			int i = 0;
 			while (i < 3)
 			{
-				display_sphere(minirt, x, y, i); // renvoi un int pour faire le calcul pour trouver l'objet le plus proche 
-				my_mlx_pixel_put(img, x, y, minirt->color.color);
+				// trouver l'objet le plus proche - > recuperer la distance
+				t = object_intersection(minirt,ray, minirt->object[i]); // renvoi un float pour faire le calcul pour trouver l'objet le plus proche 
+				if (t != -1 && (t < hit.dst || hit.dst == -1))
+				{
+					hit.dst = t;
+					hit.object = minirt->object[i];
+				}
 				i++;
 			}
+			hit_point(minirt, ray, &hit); // calculer mon intersection et la normale
+			minirt->color = get_color_object_pixel(minirt, hit);// calculer la lumiere
+
+
+			my_mlx_pixel_put(img, x, y, minirt->color.color);
 			x++;
 		}
 		y++;

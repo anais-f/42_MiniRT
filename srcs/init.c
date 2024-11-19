@@ -16,11 +16,7 @@ void	init_color(t_minirt *minirt)
 	minirt->color.r = 0;
 	minirt->color.g = 0;
 	minirt->color.b = 0;
-	minirt->color.a = 0;
-	minirt->background_color.r = 0;
-	minirt->background_color.g = 0;
-	minirt->background_color.b = 0;
-	minirt->background_color.a = 0;
+	minirt->color.a = 0;	
 }
 
 

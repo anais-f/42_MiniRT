@@ -2,28 +2,13 @@
 
 
 
-int	display_sphere(t_minirt *minirt, int x, int y, int i)
+float	sphere_intersection(t_minirt *minirt, t_ray ray, t_object sphere)
 {
-	(void)x, (void)y, (void)minirt;
-	// printf("cam ratio = %f et fov = %f\n", minirt->cam.ratio, minirt->cam.FOV);
-	//t_vec3 light_dir = normalize_vec3((t_vec3){1.0f, 1.0f, -1.0f}); // direction de la lumiere
-
-
-	/******************* conversion des x et y de pixel sur un range [-1;1] et conserver le ratio de l'écran*****************/
-	t_vec2 coord;
-	coord.x = (float)x / (float)WIDTH_WIN * 2.0f - 1.0f;
-	coord.x *= minirt->cam.ratio;
-	coord.y = -((float)y / (float)HEIGHT_WIN * 2.0f - 1.0f);
-	
-
+	(void)minirt;
 	/**********************************  creation des rayons depuis la caméra ******************************/
-	t_ray ray;
-	ray.origin = minirt->cam.position;
-	ray.direction = (t_vec3){coord.x, coord.y, minirt->cam.direction.z}; // direction du rayon
-	//ray.direction = normalize_vec3(ray.direction);
+
 	
-	
-	t_vec3 offset_ray_origin = sub_vec3(ray.origin, minirt->object[i].position); // vecteur entre le point d'origine et le centre de la sphere
+	t_vec3 offset_ray_origin = sub_vec3(ray.origin, sphere.position); // vecteur entre le point d'origine et le centre de la sphere
 
 	
 
@@ -37,7 +22,7 @@ int	display_sphere(t_minirt *minirt, int x, int y, int i)
 
 	float a = dot_vec3(ray.direction, ray.direction); 
 	float b = 2.0f * dot_vec3(offset_ray_origin, ray.direction); // ou off set ray origin / ray.origin ?
-	float c = dot_vec3(offset_ray_origin, offset_ray_origin) - minirt->object[i].spec.sphere.radius * minirt->object[i].spec.sphere.radius;
+	float c = dot_vec3(offset_ray_origin, offset_ray_origin) - sphere.spec.sphere.radius * sphere.spec.sphere.radius;
 	float discriminant = b * b - 4.0f * a * c;
 
 	if (discriminant >= 0.f) // colorisation de la scene
@@ -48,62 +33,20 @@ int	display_sphere(t_minirt *minirt, int x, int y, int i)
 			t0 = t1;
 		if (t0 < 0) // je checke si l'objet n'est pas derriere la camera
 			return (-1);
-
-
-		/******************************* chercher le point d'intersection**************************************/
-		t_vec3 hit_position = add_vec3(ray.origin, mult_nb_vec3(ray.direction, t0)); // point d'impact
-		t_vec3 normal = normalize_vec3(sub_vec3(hit_position, minirt->object[i].position)); // normalisation du vecteur - A REVOIR
-
-		t_vec3 sphere_in = sub_vec3(minirt->cam.position, minirt->object[i].position);
-		if (dot_vec3(sphere_in, sphere_in) <= minirt->object[i].spec.sphere.radius) // test si on est a l'interieur de la sphere
-		{
-			printf("HERE\n");
-			normal = mult_nb_vec3(normal, -1.0f); // inversion de la normal si on est a l'interieur de la sphere
-		}
-
-
-		/********************************************* gestion lumiere ********************************************/
-		
-		t_vec3 light_dir = normalize_vec3(sub_vec3(hit_position, minirt->light.position)); // calcul de la direction de la lumiere
-		light_dir = mult_nb_vec3(light_dir, -1.0f * minirt->light.brightness); // inversion de la direction de la lumiere pour aller de nous a la lumiere et pas le contraire
-		float light = dot_vec3(normal, light_dir); // calcul de la lumiere, == cos(angle)
-		if (light < 0.0f) // on ne veut pas de valeur negative, c'est le plus grand entre 0 et la lumiere
-			light = 0.0f;
-		
-
-		t_color color;
-		color = add_colors(minirt->ambient_light.color, minirt->light.color);
-		/***************************************** gestion de la couleur ****************************************/
-		minirt->color.r = multiply_colors(minirt->object[i].color,color).r * light;
-		minirt->color.g = multiply_colors(minirt->object[i].color,color).g * light;
-		minirt->color.b = multiply_colors(minirt->object[i].color,color).b * light;
-		//printf("color = %d %d %d\n", minirt->color.r, minirt->color.g, minirt->color.b);
-
-		// minirt->color.r = minirt->object[i].color.r * light;
-		// minirt->color.g = minirt->object[i].color.g * light;
-		// minirt->color.b = minirt->object[i].color.b * light;
-		minirt->color.a = 0;
-
 		return (t0); //retourne la distance entre le point d'origine et le point d'intersection
 	}
-	// else // remplissage de l'image, de la couleur du pixel, a ressortir dans render ?
-	// {
-	// 	minirt->color.r = 0;
-	// 	minirt->color.g = 0;
-	// 	minirt->color.b = 0;
-	// 	minirt->color.a = 0;
-	// }
 	return (-1);
 }
 
-/*
+float	object_intersection(t_minirt *minirt, t_ray ray, t_object object)
+{
+	if (object.type == SPHERE)
+		return (sphere_intersection(minirt, ray, object));
+	if (object.type == PLANE)
+		return (plane_intersection(minirt, ray, object));
+	if (object.type == CYLINDER)	
+		return (cylinder_intersection(minirt, ray, object));
+	return (-1);
+}		
 
-equation de cercle = (x-a)^2 + (y-b)^2 - r^2 = 0
-
-
-
-
-
-
-*/
 

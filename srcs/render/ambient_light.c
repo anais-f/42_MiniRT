@@ -15,30 +15,72 @@ void get_ambient_light(t_minirt *minirt)
 }
 
 
+void	hit_point(t_minirt *minirt, t_ray ray, t_hit *hit)
+{
+
+	hit->position = add_vec3(ray.origin, mult_nb_vec3(ray.direction, hit->dst));
+	hit->normal = get_normal(minirt, *hit);
+}
+
+t_vec3	get_normal_sphere(t_minirt *minirt, t_hit hit)
+{
+	t_vec3 normal;
+	t_vec3 sphere_in;
+	
+	normal = normalize_vec3(sub_vec3(hit.position, hit.object.position));
+	sphere_in = sub_vec3(minirt->cam.position,hit.object.position);
+	if (dot_vec3(sphere_in, sphere_in) <= hit.object.spec.sphere.radius) // test si on est a l'interieur de la sphere
+	{
+	//	printf("HERE\n");
+		normal = mult_nb_vec3(normal, -1.0f); // inversion de la normal si on est a l'interieur de la sphere
+	}
+	return (normal);
+}
+
+t_vec3	get_normal(t_minirt *minirt, t_hit hit)
+{
+	(void)minirt;
+	t_vec3 normal;
+
+	ft_memset(&normal, 0, sizeof(t_vec3));
+	if (hit.object.type == SPHERE)
+		normal = normalize_vec3(sub_vec3(hit.position, hit.object.position));
+		// les autres if a faire
+	return (normal);
+}
 
 
 
-// couleur_finale = couleur_objet * (lumière_ambiante * intensité_ambiante) + couleur_directe
+float	calcul_light_ratio(t_minirt *minirt, t_hit hit)
+{
+	t_vec3 light_dir;
+	float light;
 
+	light_dir = normalize_vec3(sub_vec3(hit.position, minirt->light.position)); // calcul de la direction de la lumiere
+	light_dir = mult_nb_vec3(light_dir, -1.0f * minirt->light.brightness); // inversion de la direction de la lumiere pour aller de nous a la lumiere et pas le contraire
+	light = dot_vec3(hit.normal, light_dir); // calcul de la lumiere, == cos(angle)
+	if (light < 0.0f) // on ne veut pas de valeur negative, c'est le plus grand entre 0 et la lumiere
+		light = 0.0f;
+	return (light);
+}
 
+// t_color	get_light_color(t_minirt *minirt)
+// {
+// 	t_color color;
+// 	color = add_colors(minirt->ambient_light.color, minirt->light.color);
 
-// ultiplication de couleurs en RGB
+// }
 
-// Pour multiplier deux couleurs, on applique la multiplication composant par composant. Autrement dit, pour deux couleurs C1=(r1,g1,b1)C1​=(r1​,g1​,b1​) et C2=(r2,g2,b2)C2​=(r2​,g2​,b2​), leur multiplication donne une nouvelle couleur C=(r,g,b)C=(r,g,b), où chaque composant est calculé comme suit :
+t_color	get_color_object_pixel(t_minirt *minirt, t_hit hit)
+{
+	// t_color color;
+	float 	light;
 
-//     r=r1×r2r=r1​×r2​
-//     g=g1×g2g=g1​×g2​
-//     b=b1×b2b=b1​×b2​
+	if (hit.dst == -1)
+		return (t_color){0};
+	light = calcul_light_ratio(minirt, hit);
 
-// Cela donne une nouvelle couleur qui est le produit de la couleur de l'objet et de la couleur de la lumière incidente (ou d'autres sources comme l'ambiante).
-// Exemple d'application
+//	color = add_colors(minirt->ambient_light.color, minirt->light.color);
 
-// Prenons l'exemple d'une lumière ambiante et d'un objet dans la scène. Supposons que l'objet ait une couleur de texture Cobj=(0.5,0.2,0.1)Cobj​=(0.5,0.2,0.1) (un ton rougeâtre), et que la couleur de la lumière ambiante soit Camb=(1.0,1.0,1.0)Camb​=(1.0,1.0,1.0) (lumière blanche). Si l’intensité de la lumière ambiante est 0.30.3, l'effet de la lumière ambiante sur l'objet sera calculé en multipliant chaque composant de couleur :
-
-//     La couleur de la lumière ambiante à intensité 0.3 : Camb=(1.0,1.0,1.0)×0.3=(0.3,0.3,0.3)Camb​=(1.0,1.0,1.0)×0.3=(0.3,0.3,0.3)
-
-//     Multiplier la couleur de l'objet par la lumière ambiante : Cobj×Camb=(0.5,0.2,0.1)×(0.3,0.3,0.3)=(0.5×0.3,0.2×0.3,0.1×0.3)Cobj​×Camb​=(0.5,0.2,0.1)×(0.3,0.3,0.3)=(0.5×0.3,0.2×0.3,0.1×0.3) =(0.15,0.06,0.03)=(0.15,0.06,0.03)
-
-// Cela donne la contribution de la lumière ambiante sur la couleur de l'objet.
-
-// t_color 
+	return (multiply_color_float(hit.object.color, light));
+}
