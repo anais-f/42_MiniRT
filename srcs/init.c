@@ -59,7 +59,7 @@ int	init_object(t_minirt *minirt)
 	minirt->object[0].color.g = 97;
 	minirt->object[0].color.b = 85;
 	minirt->object[0].color.a = 0;
-	minirt->object[0].spec.sphere.radius = 1.f;
+	minirt->object[0].spec.sphere.radius = 0.2f;
 
 	minirt->object[1].type = SPHERE;
 	minirt->object[1].position = (t_vec3){0.f, 0.f, 0.f};
@@ -70,14 +70,13 @@ int	init_object(t_minirt *minirt)
 	minirt->object[1].color.a = 0;
 	minirt->object[1].spec.sphere.radius = 0.5f;
 
-	minirt->object[2].type = SPHERE;
-	minirt->object[2].position = (t_vec3){0.5f, 0.f, -1.f};
-	minirt->object[2].direction = (t_vec3){0.f, 0.f, 0.f};
-	minirt->object[2].color.r = 243;
-	minirt->object[2].color.g = 225;
-	minirt->object[2].color.b = 172;
+	minirt->object[2].type = PLANE;
+	minirt->object[2].position = (t_vec3){0.f, 0.f, 0.f};
+	minirt->object[2].direction = normalize_vec3((t_vec3){0.f, 1.f, 2.f});
+	minirt->object[2].color.r = 255;
+	minirt->object[2].color.g = 2;
+	minirt->object[2].color.b = 2;
 	minirt->object[2].color.a = 0;
-	minirt->object[2].spec.sphere.radius = 0.5f;
 	return (0);
 }
 
