@@ -28,14 +28,20 @@ t_vec3	get_normal_plane(t_minirt *minirt, t_hit hit)
 	t_vec3 normal;
 	float a;
 
+	normal = cross_vec3(minirt->cam.direction, hit.object.direction);
+	a = dot_vec3(minirt->cam.direction, hit.object.direction);	
+	if (a > 0)
+		normal = mult_nb_vec3(normal, -1.0f);
+	return (normal);
+}
+/*
 	a = dot_vec3(minirt->cam.direction, hit.object.direction);	
 	if (a > 0)
 		normal = mult_nb_vec3(hit.object.direction, -1.0f);
 	else
 		normal = hit.object.direction;
-	return (normal);
-}
 
+*/
 // pour calculer la normale d'un plan, il nous faut 2 vecteurs sur ce plan, soit la direction du plan
 // et un autre vecteur qui n'est pas parallele a la direction du plan, ici on prend la direction de la camera
 // on fait le produit vectoriel de ces deux vecteurs pour obtenir la normale du plan
