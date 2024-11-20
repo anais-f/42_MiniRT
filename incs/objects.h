@@ -53,9 +53,6 @@ typedef struct s_object
 
 }	t_object;
 
-float	sphere_intersection(t_minirt *minirt, t_ray ray, t_object sphere);
-float	cylinder_intersection(t_minirt *minirt, t_ray ray, t_object cylinder);
-float	plane_intersection(t_minirt *minirt, t_ray ray, t_object plan);
-float	object_intersection(t_minirt *minirt, t_ray ray, t_object object);
+
 
 #endif

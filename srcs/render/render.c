@@ -44,7 +44,6 @@ void	render_scene(t_minirt *minirt, t_img *img)
 	t_ray	ray;
 	t_hit	hit;	 // a initialiser
 
-	get_ambient_light(minirt); // a ressortir avec le parsing
 
 	y = 0;
 	while (y <= HEIGHT_WIN)
