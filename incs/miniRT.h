@@ -62,10 +62,7 @@ int		test(t_img *img, t_minirt *minirt);
 
 /* a changer de header plus tard */
 void	render_scene(t_minirt *minirt, t_img *img);
-float sphere_intersection(t_minirt *minirt, t_ray ray, t_object sphere);
-float	cylinder_intersection(t_minirt *minirt, t_ray ray, t_object cylinder);
-float	plane_intersection(t_minirt *minirt, t_ray ray, t_object plan);
-float	object_intersection(t_minirt *minirt, t_ray ray, t_object object);
+
 
 
 void	init_color(t_minirt *minirt);
@@ -76,14 +73,17 @@ int	init_object(t_minirt *minirt);
 int	init_ambient_light(t_minirt *minirt);
 
 void get_ambient_light(t_minirt *minirt);
-t_color multiply_colors(t_color color, t_color ambient_color);
-t_color add_colors(t_color ambient, t_color light);
+t_color	multiply_color_float(t_color color, float f);
+t_color add_colors(t_color color1, t_color color2);
+t_color	get_color_object_pixel(t_minirt *minirt, t_hit hit);
+t_color multiply_colors(t_color color1, t_color color2);
+float	calcul_light_ratio(t_minirt *minirt, t_hit hit);
+
+
 void	hit_point(t_minirt *minirt, t_ray ray, t_hit *hit);
 t_vec3	get_normal(t_minirt *minirt, t_hit hit);
 t_vec3	get_normal_sphere(t_minirt *minirt, t_hit hit);
-t_color	multiply_color_float(t_color color, float f);
-t_color	get_color_object_pixel(t_minirt *minirt, t_hit hit);
 
-float	calcul_light_ratio(t_minirt *minirt, t_hit hit);
+
 
 #endif

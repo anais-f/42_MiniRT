@@ -16,4 +16,8 @@ typedef union u_color
 /* BGR is because with a computer we print white pixel on black screen,
 in real life we use RGB because we print black color on white paper */
 
+t_vec3	color_to_vec3(t_color color);
+t_color	vec3_to_color(t_vec3 vec);
+
+
 #endif

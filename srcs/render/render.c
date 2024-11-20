@@ -56,14 +56,12 @@ void	render_scene(t_minirt *minirt, t_img *img)
 			ft_memset(&hit, 0, sizeof(t_hit));
 			hit.dst = -1;
 
-			//init_color(minirt);
 			ray = create_ray(minirt, x, y);
-
 		
 			int i = 0;
 			while (i < 3)
 			{
-				// trouver l'objet le plus proche - > recuperer la distance
+				// trouver l'objet le plus proche -> recuperer la distance
 				t = object_intersection(minirt,ray, minirt->object[i]); // renvoi un float pour faire le calcul pour trouver l'objet le plus proche 
 				if (t != -1 && (t < hit.dst || hit.dst == -1))
 				{

@@ -74,9 +74,9 @@ int	init_object(t_minirt *minirt)
 	minirt->object[2].type = SPHERE;
 	minirt->object[2].position = (t_vec3){1.f, 0.f, 0.f};
 	minirt->object[2].direction = (t_vec3){0.f, 0.f, 0.f};
-	minirt->object[2].color.r = 243;
-	minirt->object[2].color.g = 225;
-	minirt->object[2].color.b = 172;
+	minirt->object[2].color.r = 255;
+	minirt->object[2].color.g = 255;
+	minirt->object[2].color.b = 255;
 	minirt->object[2].color.a = 0;
 	minirt->object[2].spec.sphere.radius = 0.5f;
 	return (0);
