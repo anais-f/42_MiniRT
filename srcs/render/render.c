@@ -42,8 +42,7 @@ void	render_scene(t_minirt *minirt, t_img *img)
 	int		y;
 	float	t; // distance de hit
 	t_ray	ray;
-	t_hit	hit;	 // a initialiser
-
+	t_hit	hit;
 
 	y = 0;
 	while (y <= HEIGHT_WIN)
@@ -70,9 +69,7 @@ void	render_scene(t_minirt *minirt, t_img *img)
 				i++;
 			}
 			hit_point(minirt, ray, &hit); // calculer mon intersection et la normale
-			minirt->color = get_color_object_pixel(minirt, hit);// calculer la lumiere
-
-
+			minirt->color = get_color_object_pixel(minirt, hit);// calculer la couleur du pixel
 			my_mlx_pixel_put(img, x, y, minirt->color.color);
 			x++;
 		}

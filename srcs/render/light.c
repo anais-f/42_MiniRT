@@ -5,7 +5,8 @@ t_vec3 get_ambient_light(t_minirt *minirt) // a faire dans le parsing
 	t_vec3 ambient_light;
 
 	ambient_light = color_to_vec3(minirt->ambient_light.color);
-	mult_nb_vec3(ambient_light, minirt->ambient_light.brightness);
+	ambient_light = mult_nb_vec3(ambient_light, minirt->ambient_light.brightness);
+	//printf("ambient_light: %f %f %f\n", ambient_light.x, ambient_light.y, ambient_light.z);
 	return (ambient_light);
 }
 
@@ -32,6 +33,7 @@ t_color	get_color_object_pixel(t_minirt *minirt, t_hit hit)
 
 	if (hit.dst == -1)
 		return (t_color){0};
+
 	ambient_light = get_ambient_light(minirt);
 	light_bright = calcul_light_bright(minirt, hit);
 	light_color = color_to_vec3(minirt->light.color);
