@@ -21,6 +21,7 @@ int	prasing_map(t_minirt *minirt, char *file)
 	}
 	free(line);
 	close(map_file);
+	printf("-----END PARSING\n\n");
 	return (0);
 }
 
@@ -41,11 +42,11 @@ int	parse_line(char *line, t_minirt *minirt)
 	else if (ft_strncmp(line_parsed[0], "L", ft_strlen(line_parsed[0])) == 0)
 		return (parse_light(line_parsed, minirt));
 	else if (ft_strncmp(line_parsed[0], "pl", ft_strlen(line_parsed[0])) == 0)
-		printf("%s", line_parsed[0]);
+		return (parse_plane(line_parsed, minirt));
 	else if (ft_strncmp(line_parsed[0], "sp", ft_strlen(line_parsed[0])) == 0)
-		return (parsing_sphere(line_parsed, minirt));
+		return (parse_sphere(line_parsed, minirt));
 	else if (ft_strncmp(line_parsed[0], "cy", ft_strlen(line_parsed[0])) == 0)
-		printf("%s", line_parsed[0]);
+		return (parse_cylinder(line_parsed, minirt));
 	else
 	{
 		printf("Error map, unrecognized line : %s\n", line_parsed[0]); // free & exit function here
@@ -109,5 +110,3 @@ int	parse_color(char *arg_parsed, t_color *color)
 	free(args_color);
 	return (0);
 }
-
-

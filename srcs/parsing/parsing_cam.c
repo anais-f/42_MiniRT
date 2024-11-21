@@ -23,5 +23,3 @@ int	parse_camera(char **line_parsed, t_minirt *minirt)
 	minirt->cam.is_init = true;
 	return (0);
 }
-
-

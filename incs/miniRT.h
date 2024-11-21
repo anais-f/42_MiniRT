@@ -67,8 +67,9 @@ int		prasing_map(t_minirt *minirt, char *file);
 size_t	arr_len(char **arr);
 void	ft_free_arr(char **arr);
 void	print_arr(char **arr);
-int		parsing_sphere(char **line_parsed, t_minirt *minirt);
-
+int		parse_sphere(char **line_parsed, t_minirt *minirt);
+int		parse_plane(char **line_parsed, t_minirt *minirt);
+int		parse_cylinder(char **line_parsed, t_minirt *minirt);
 
 
 /* Others */

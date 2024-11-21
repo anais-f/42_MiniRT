@@ -52,7 +52,6 @@ typedef struct object
 	t_vec3			position;
 	t_vec3			direction;
 	t_color			color;
-	bool			is_init;
 }	t_object;
 
 
