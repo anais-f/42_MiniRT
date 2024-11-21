@@ -5,6 +5,7 @@
 # include <stdio.h>
 # include <mlx.h>
 # include <math.h>
+# include <stdbool.h>
 
 /******OTHERS HEADERS******/ 
 # include "libft.h"
@@ -13,6 +14,7 @@
 # include "camera.h"
 # include "color.h"
 # include "objects.h"
+
 
 
 typedef struct s_ray
@@ -79,17 +81,16 @@ int	init_object(t_minirt *minirt);
 int	init_ambient_light(t_minirt *minirt);
 
 t_vec3 get_ambient_light(t_minirt *minirt);
-t_color	multiply_color_float(t_color color, float f);
-t_color add_colors(t_color color1, t_color color2);
-t_color	get_color_object_pixel(t_minirt *minirt, t_hit hit);
-t_color multiply_colors(t_color color1, t_color color2);
-float	calcul_light_bright(t_minirt *minirt, t_hit hit);
+t_color	get_color_pixel(t_minirt *minirt, t_hit *hit);
+float	calcul_light_bright(t_minirt *minirt, t_hit *hit);
 
 
 void	hit_point(t_minirt *minirt, t_ray ray, t_hit *hit);
 t_vec3	get_normal(t_minirt *minirt, t_hit hit);
 t_vec3	get_normal_sphere(t_minirt *minirt, t_hit hit);
 t_vec3	get_normal_plane(t_minirt *minirt, t_hit hit);
+t_vec3	get_normal_cylinder(t_minirt *minirt, t_hit hit);
+t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y);
 
 
 

@@ -22,7 +22,7 @@
 // }
 
 
-t_ray	create_ray(t_minirt *minirt, int x, int y)
+t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y)
 {
 	t_ray	ray;
 	t_vec2 coord;
@@ -54,7 +54,7 @@ void	render_scene(t_minirt *minirt, t_img *img)
 			ft_memset(&hit, 0, sizeof(t_hit));
 			hit.dst = -1;
 
-			ray = create_ray(minirt, x, y);
+			ray = create_ray_from_cam(minirt, x, y);
 		
 			int i = 0;
 			while (i < 3)
@@ -69,7 +69,7 @@ void	render_scene(t_minirt *minirt, t_img *img)
 				i++;
 			}
 			hit_point(minirt, ray, &hit); // calculer mon intersection et la normale
-			minirt->color = get_color_object_pixel(minirt, hit);// calculer la couleur du pixel
+			minirt->color = get_color_pixel(minirt, &hit);// calculer la couleur du pixel
 			my_mlx_pixel_put(img, x, y, minirt->color.color);
 			x++;
 		}

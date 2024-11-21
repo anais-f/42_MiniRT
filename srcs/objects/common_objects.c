@@ -21,6 +21,8 @@ t_vec3	get_normal(t_minirt *minirt, t_hit hit)
 		normal = get_normal_sphere(minirt, hit);
 	if (hit.object.type == PLANE)
 		normal = get_normal_plane(minirt, hit);
+	if (hit.object.type == CYLINDER)
+		normal = get_normal_cylinder(minirt, hit);
 	return (normal);
 }
 
@@ -29,4 +31,3 @@ void	hit_point(t_minirt *minirt, t_ray ray, t_hit *hit)
 	hit->position = add_vec3(ray.origin, mult_nb_vec3(ray.direction, hit->dst));
 	hit->normal = get_normal(minirt, *hit);
 }
-
