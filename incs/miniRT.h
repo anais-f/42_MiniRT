@@ -15,19 +15,21 @@
 # include "objects.h"
 
 
+typedef struct s_ray
+{
+	t_vec3	origin; // camera position
+	t_vec3	direction; // camera orientation
+}	t_ray;
+
 typedef struct s_hit
 {
 	t_vec3		position;
 	t_vec3		normal;
 	float		dst;
 	t_object	object;
+	t_ray		ray;
 }	t_hit;
 
-typedef struct s_ray
-{
-	t_vec3	origin; // camera position
-	t_vec3	direction; // camera orientation
-}	t_ray;
 
 typedef struct s_minirt
 {
@@ -87,6 +89,7 @@ float	calcul_light_bright(t_minirt *minirt, t_hit hit);
 void	hit_point(t_minirt *minirt, t_ray ray, t_hit *hit);
 t_vec3	get_normal(t_minirt *minirt, t_hit hit);
 t_vec3	get_normal_sphere(t_minirt *minirt, t_hit hit);
+t_vec3	get_normal_plane(t_minirt *minirt, t_hit hit);
 
 
 

@@ -46,14 +46,14 @@ int	init_ambient_light(t_minirt *minirt)
 	minirt->ambient_light.color.g = 255;
 	minirt->ambient_light.color.b = 255;
 	minirt->ambient_light.color.a = 0;
-	minirt->ambient_light.brightness = 0.5f;
+	minirt->ambient_light.brightness = 0.4f;
 	return (0);
 }
 
 int	init_object(t_minirt *minirt)
 {
 	minirt->object[0].type = SPHERE;
-	minirt->object[0].position = (t_vec3){1.f, 0.f, 0.f};
+	minirt->object[0].position = (t_vec3){0.f, 0.f, 0.f};
 	minirt->object[0].direction = (t_vec3){0.f, 0.f, 0.f};
 	minirt->object[0].color.r = 205;
 	minirt->object[0].color.g = 97;
@@ -70,23 +70,23 @@ int	init_object(t_minirt *minirt)
 	minirt->object[1].color.a = 0;
 	minirt->object[1].spec.sphere.radius = 0.5f;
 
-	minirt->object[2].type = SPHERE;
-	minirt->object[2].position = (t_vec3){-1.f, 0.f, 0.f};
-	minirt->object[2].direction = normalize_vec3((t_vec3){0.f, 0.f, 0.f});
+	// minirt->object[2].type = SPHERE;
+	// minirt->object[2].position = (t_vec3){-1.f, 0.f, 0.f};
+	// minirt->object[2].direction = normalize_vec3((t_vec3){0.f, 0.f, 0.f});
+	// minirt->object[2].color.r = 243;
+	// minirt->object[2].color.g = 225;
+	// minirt->object[2].color.b = 172;
+	// minirt->object[2].color.a = 0;
+	// minirt->object[2].spec.sphere.radius = 0.5f;
+
+	minirt->object[2].type = PLANE;
+	minirt->object[2].position = (t_vec3){0.f, 0.f, 0.f};
+	minirt->object[2].direction = normalize_vec3((t_vec3){4.f, -2.f, -1.f});
 	minirt->object[2].color.r = 255;
 	minirt->object[2].color.g = 2;
 	minirt->object[2].color.b = 2;
 	minirt->object[2].color.a = 0;
-	minirt->object[2].spec.sphere.radius = 0.5f;
 
-	// minirt->object[2].type = PLANE;
-	// minirt->object[2].position = (t_vec3){0.f, 0.f, 0.f};
-	// minirt->object[2].direction = normalize_vec3((t_vec3){0.f, 2.f, 1.f});
-	// minirt->object[2].color.r = 255;
-	// minirt->object[2].color.g = 2;
-	// minirt->object[2].color.b = 2;
-	// minirt->object[2].color.a = 0;
-//	minirt->object[2].spec.sphere.radius = 0.5f;
 	return (0);
 }
 
@@ -95,5 +95,9 @@ void init_hit(t_hit *hit)
 	hit->position = (t_vec3){0.f, 0.f, 0.f};
 	hit->normal = (t_vec3){0.f, 0.f, 0.f};
 	hit->dst = 0.f;
+	hit->ray.origin = (t_vec3){0.f, 0.f, 0.f};
+	hit->ray.direction = (t_vec3){0.f, 0.f, 0.f};
 }
+
+
 

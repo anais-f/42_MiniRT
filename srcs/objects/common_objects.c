@@ -18,8 +18,9 @@ t_vec3	get_normal(t_minirt *minirt, t_hit hit)
 
 	ft_memset(&normal, 0, sizeof(t_vec3));
 	if (hit.object.type == SPHERE)
-		normal = normalize_vec3(sub_vec3(hit.position, hit.object.position));
-		// les autres if a faire
+		normal = get_normal_sphere(minirt, hit);
+	if (hit.object.type == PLANE)
+		normal = get_normal_plane(minirt, hit);
 	return (normal);
 }
 

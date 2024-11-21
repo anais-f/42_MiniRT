@@ -32,10 +32,16 @@ t_vec3	get_normal_plane(t_minirt *minirt, t_hit hit)
 	t_vec3 normal;
 	float a;
 
-	normal = cross_vec3(minirt->cam.direction, hit.object.direction);
-	a = dot_vec3(minirt->cam.direction, hit.object.direction);	
+	a = dot_vec3(minirt->cam.direction, hit.object.direction);	// modifier pour nettre la direction du rayon d'origine
 	if (a > 0)
-		normal = mult_nb_vec3(normal, -1.0f);
+		normal = mult_nb_vec3(hit.object.direction, -1.0f);
+	else
+		 normal = hit.object.direction;
+
+	// normal = cross_vec3(minirt->cam.direction, hit.object.direction);
+	// a = dot_vec3(minirt->cam.direction, hit.object.direction);	
+	// if (a > 0)
+	// 	normal = mult_nb_vec3(normal, -1.0f);
 	return (normal);
 }
 /*
