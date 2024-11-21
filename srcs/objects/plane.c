@@ -8,6 +8,8 @@ float	plane_intersection(t_minirt *minirt, t_ray ray, t_object plan)
 	float t;
 
 	a = dot_vec3(ray.direction, plan.direction);
+	if (a == 0)
+		return (-1);
 	b = dot_vec3(plan.direction, sub_vec3(ray.origin, plan.position));
 	t = -b / a;
 	if (t < 0)
@@ -20,6 +22,8 @@ float	plane_intersection(t_minirt *minirt, t_ray ray, t_object plan)
 // A = direc plan * direction camera
 // B = direc plan * (position camera- position plan)
 // T = -B/A -> distance entre le point d'origine et le point d'intersection	
+// si t < 0, l'intersection est derriere la camera
+//si a = 0, le plan est parallele a la camera, il n'y a pas d'intersection
 
 
 t_vec3	get_normal_plane(t_minirt *minirt, t_hit hit)

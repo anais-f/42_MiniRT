@@ -38,7 +38,7 @@ t_color	get_color_object_pixel(t_minirt *minirt, t_hit hit)
 	light_bright = calcul_light_bright(minirt, hit);
 	light_color = color_to_vec3(minirt->light.color);
 	light_color = mult_nb_vec3(light_color, light_bright);
-	light_color = add_vec3(light_color, ambient_light);
+	light_color = add_color_vec3(light_color, ambient_light);
 	light_color.x *= (color_to_vec3(hit.object.color)).x;
 	light_color.y *= (color_to_vec3(hit.object.color)).y;
 	light_color.z *= (color_to_vec3(hit.object.color)).z;

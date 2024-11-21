@@ -23,3 +23,19 @@ t_color	vec3_to_color(t_vec3 vec)
 		color.b = vec.z * 255.f;
 	return (color);
 }
+
+t_vec3	add_color_vec3(t_vec3 a, t_vec3 b)
+{
+	t_vec3 result;
+
+	result.x = a.x + b.x;
+	result.y = a.y + b.y;
+	result.z = a.z + b.z;
+	if (result.x > 1)
+		result.x = 1;
+	if (result.y > 1)
+		result.y = 1;
+	if (result.z > 1)
+		result.z = 1;
+	return (result);
+}

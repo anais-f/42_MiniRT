@@ -39,6 +39,7 @@ float	dot_vec3(t_vec3 a, t_vec3 b);
 float	norm_vec3(t_vec3 a);
 t_vec3	normalize_vec3(t_vec3 a);
 int		compare_norm_vec3(t_vec3 a, t_vec3 b);
+t_vec3	add_color_vec3(t_vec3 a, t_vec3 b);
 
 
 #endif
