@@ -65,42 +65,42 @@ void	ft_free_arr(char **arr);
 // 	return (0);
 // }
 
-int	prasing_map(t_minirt *minirt, char *file)
-{
-	int		map_file;
-	char	*line;
+// int	prasing_map(t_minirt *minirt, char *file)
+// {
+// 	int		map_file;
+// 	char	*line;
 
-	map_file = open(file, O_RDONLY);
+// 	map_file = open(file, O_RDONLY);
 	
-	line = get_next_line(map_file);
-	while (line)
-	{
-		pars_line(line, minirt);
-		printf("%s", line);
-		free(line);
-		line = get_next_line(map_file);
-	}
-	free(line);
-	close(map_file);
-}
+// 	line = get_next_line(map_file);
+// 	while (line)
+// 	{
+// 	//	pars_line(line, minirt);
+// 		printf("%s", line);
+// 		free(line);
+// 		line = get_next_line(map_file);
+// 	}
+// 	free(line);
+// 	close(map_file);
+// }
 
 
-void	print_arr(char **arr)
-{
-	int	i;
+// void	print_arr(char **arr)
+// {
+// 	int	i;
 
-	i = -1;
-	while (arr[++i])
-		printf("%s\n", arr[i]);
-	return ;
-}
+// 	i = -1;
+// 	while (arr[++i])
+// 		printf("%s\n", arr[i]);
+// 	return ;
+// }
 
-void	ft_free_arr(char **arr)
-{
-	int	i;
+// void	ft_free_arr(char **arr)
+// {
+// 	int	i;
 
-	i = -1;
-	while (arr[++i])
-		free(arr[i]);
-	free(arr);
-}
+// 	i = -1;
+// 	while (arr[++i])
+// 		free(arr[i]);
+// 	free(arr);
+// }
