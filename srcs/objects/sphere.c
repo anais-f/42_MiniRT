@@ -1,68 +1,51 @@
 #include "miniRT.h"
 
-int	display_sphere(t_minirt *minirt, int x, int y)
+double	sphere_intersection(t_ray ray, t_object sphere)
 {
-	(void)x, (void)y, (void)minirt;
-	// printf("cam ratio = %f et fov = %f\n", minirt->cam.ratio, minirt->cam.FOV);
-	//t_vec3 light_dir = normalize_vec3((t_vec3){1.0f, 1.0f, -1.0f}); // direction de la lumiere
+	t_vec3	offset_ray_origin;
+	double	abc[3];
+	double	discriminant;
+	double	t0;
+	double	t1;
 
-
-	/* conversion des x et y de pixel sur un range [-1;1] et conserver le ratio de l'écran*/
-	t_vec2 coord;
-	coord.x = (float)x / (float)WIDTH_WIN * 2.0f - 1.0f;
-	coord.x *= minirt->cam.ratio * - 1.0f;
-	coord.y = (float)y / (float)HEIGHT_WIN * 2.0f - 1.0f;
-	
-
-	/* lancé des rayons depuis la caméra */
-	t_vec3 ray_origin = minirt->cam.position;
-	t_vec3 ray_dir = {coord.x, coord.y, -1.0f};
-	ray_dir = normalize_vec3(ray_dir);
-
-	
-
-	/*equation d'intersection de sphere, abc = l sphere */
-	//(bx^2 +by^2)t^2 + 2(bxax + byay)t + (ax^2 + ay^2 - c^2) = 0 -> resolution de l'equation avec a, b et c
-	float a = dot_vec3(ray_dir, ray_dir);
-	float b = 2.0f * dot_vec3(ray_origin, ray_dir);
-	float c = dot_vec3(ray_origin, ray_origin) - minirt->object.spec.sphere.radius * minirt->object.spec.sphere.radius;
-	float discriminant = b * b - 4.0f * a * c;
-
-	if (discriminant >= 0.f) // colorisation de la scene
-	{
-		float t0 = (-b - sqrt(discriminant)) / (2.0f * a); // calcul de la distance entre le point d'origine et le point d'intersection
-		float t1 = (-b + sqrt(discriminant)) / (2.0f * a);
-		if (t0 < 0)
-			t0 = t1;
-
-		/* chercher le point d'intersection*/
-		t_vec3 hitPosition = add_vec3(ray_origin, mult_nb_vec3(ray_dir, t0)); // point d'impact
-		t_vec3 normal = normalize_vec3(sub_vec3(hitPosition, minirt->object.position)); // normalisation du vecteur - A REVOIR
-		if (dot_vec3(minirt->object.position, minirt->cam.position) < minirt->object.spec.sphere.radius) // test si on est a l'interieur de la sphere
-			normal = mult_nb_vec3(normal, -1.0f); // inversion de la normal si on est a l'interieur de la sphere
-
-		/* gestion lumiere */
-		t_vec3 light_dir = normalize_vec3(sub_vec3(minirt->light.position, hitPosition)); // calcul de la direction de la lumiere
-	//	light_dir = mult_nb_vec3(light_dir, -1.0f); // inversion de la direction de la lumiere (et necessite d'inverser la sub)
-		float light = dot_vec3(normal, light_dir); // calcul de la lumiere
-		if (light < 0)
-			light = 0;
-		//printf("vecteur direction lumiere = %f %f %f\n", light_dir.x, light_dir.y, light_dir.z);	
-
-		/* gestion de la couleur */
-		minirt->color.r = minirt->object.color.r * light;
-		minirt->color.g = minirt->object.color.g * light;
-		minirt->color.b = minirt->object.color.b * light;
-		minirt->color.a = 0;
-
-		return (t0); //retourne la distance entre le point d'origine et le point d'intersection
-	}
-	else // remplissage de l'image, de la couleur du pixel, a ressortir dans render ?
-	{
-		minirt->color.r = 0;
-		minirt->color.g = 0;
-		minirt->color.b = 0;
-		minirt->color.a = 0;
-	}
-	return (-1);
+	// vecteur entre le point d'origine et le centre de la sphere
+	offset_ray_origin = sub_vec3(ray.origin, sphere.position);
+	abc[0] = dot_vec3(ray.direction, ray.direction);
+	// ou off set ray origin / ray.origin ?
+	abc[1] = 2.0f * dot_vec3(offset_ray_origin, ray.direction);
+	abc[2] = dot_vec3(offset_ray_origin, offset_ray_origin) - \
+				sphere.spec.sphere.radius * sphere.spec.sphere.radius;
+	discriminant = abc[1] * abc[1] - 4.0f * abc[0] * abc[2];
+	if (discriminant < 0.f)
+		return (-1);
+	// calcul de la distance entre le point d'origine et le point d'intersection
+	t0 = (-abc[1] - sqrt(discriminant)) / (2.0f * abc[0]);
+	t1 = (-abc[1] + sqrt(discriminant)) / (2.0f * abc[0]);
+	// je checke si je suis dans la sphere et je prends la distance la plus proche
+	if (t0 < 0)
+		t0 = t1;
+	// je checke si l'objet n'est pas derriere la camera
+	if (t0 < 0)
+		return (-1);
+	return (t0);
+	//retourne la distance entre le point d'origine et le point d'intersection
 }
+
+	//(bx^2 +by^2)t^2 + (2bxax + 2byay)t + (ax^2 + ay^2 - r^2) = 0 
+	//-> resolution de l'equation avec a, b et c chaque composant de l'equation
+	// t = la distance entre le point d'origine et le point d'intersection
+	// a = origine du rayon
+	// b = la direction du rayon
+	// r = rayon de la sphere
+
+t_vec3	get_normal_sphere(t_camera cam, t_hit hit)
+{
+	t_vec3	normal;
+	t_vec3	sphere_in;
+
+	normal = normalize_vec3(sub_vec3(hit.position, hit.object.position));
+	sphere_in = sub_vec3(cam.position, hit.object.position);
+	if (dot_vec3(sphere_in, sphere_in) <= hit.object.spec.sphere.radius) // test si on est a l'interieur de la sphere, peut le faire au parsing
+		normal = mult_nb_vec3(normal, -1.0f); // inversion de la normal si on est a l'interieur de la sphere
+	return (normal);
+}	

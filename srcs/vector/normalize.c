@@ -1,9 +1,9 @@
 #include "vector.h"
 
 /*vector's lenght*/
-float	norm_vec3(t_vec3 a)
+double	norm_vec3(t_vec3 a)
 {
-	float	length;
+	double	length;
 
 	length = sqrtf(a.x * a.x + a.y * a.y + a.z * a.z);
 	return (length);
@@ -12,7 +12,7 @@ float	norm_vec3(t_vec3 a)
 /* normalize the vector */
 t_vec3	normalize_vec3(t_vec3 a)
 {
-	float	length;
+	double	length;
 
 	length = norm_vec3(a);
 	a.x = (a.x / length);
@@ -26,8 +26,8 @@ t_vec3	normalize_vec3(t_vec3 a)
 /* to compare 2 vectors' norms without sqrt -> more efficience */
 int	compare_norm_vec3(t_vec3 a, t_vec3 b)
 {
-	float	length_a;
-	float	length_b;
+	double	length_a;
+	double	length_b;
 
 	length_a = a.x * a.x + a.y * a.y + a.z * a.z;
 	length_b = b.x * b.x + b.y * b.y + b.z * b.z;

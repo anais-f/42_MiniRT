@@ -1,30 +1,14 @@
 #include "miniRT.h"
 #include "camera.h"
 
-// t_ray create_ray(t_camera cam, t_vec2 coord)
-// {
-// 	t_ray ray;
-
-// 	ray.origin = cam.position;
-
-// 	ray.direction = cam.direction;
-
-
-// 	float fov_scale = tan(cam.FOV * 0.5); // a mettre dans t_camera
-
-// 	/* ray */
-
-// 	coord.px = (2 * (coord.px + 0.5) / (float)WIDTH_WIN - 1) * cam.ratio * fov_scale;
-// 	coord.py = (1 - 2 * (coord.py + 0.5) / (float)HEIGHT_WIN) * fov_scale;
-
-
-// 	return (ray);
-// }
-
 void	render_scene(t_minirt *minirt, t_img *img)
 {
-	int 	x;
+	int		x;
 	int		y;
+	int		i;
+	double	dst;
+	t_ray	ray;
+	t_hit	hit;
 
 	y = 0;
 	while (y <= HEIGHT_WIN)
@@ -33,8 +17,25 @@ void	render_scene(t_minirt *minirt, t_img *img)
 		while (x <= WIDTH_WIN)
 		{
 			// on va afficher l'objet le plus proche en premier
-		
-			display_sphere(minirt, x, y); // renvoi un int pour faire le calcul pour trouver l'objet le plus proche 
+			ft_memset(&hit, 0, sizeof(t_hit));
+			hit.dst = -1;
+
+			ray = create_ray_from_cam(minirt, x, y);
+			hit.ray = ray; // pour recuperer le ray pour le calcul de l'ombre
+			i = 0;
+			while (i < 4)
+			{
+				// trouver l'objet le plus proche -> recuperer la distance
+				dst = object_intersection(ray, minirt->object[i]); // renvoi un double pour faire le calcul pour trouver l'objet le plus proche 
+				if (dst != -1 && (dst < hit.dst || hit.dst == -1))
+				{
+					hit.dst = dst;
+					hit.object = minirt->object[i];
+				}
+				i++;
+			}
+			hit_point(minirt, ray, &hit); // calculer mon intersection et la normale
+			minirt->color = get_color_pixel(minirt, hit);// calculer la couleur du pixel
 			my_mlx_pixel_put(img, x, y, minirt->color.color);
 			x++;
 		}

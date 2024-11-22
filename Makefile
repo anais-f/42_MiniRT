@@ -9,7 +9,6 @@ SRCS_DIR = ./srcs
 
 SRCS=\
 		main.c \
-		test.c \
 		init.c \
 		$(addprefix camera/, $(SRCS_CAMERA)) \
 		$(addprefix display_mlx/, $(SRCS_DISPLAYMLX)) \
@@ -35,6 +34,7 @@ SRCS_OBJECTS=\
 		sphere.c \
 		plane.c \
 		cylinder.c \
+		common_objects.c \
 
 SRCS_PARSING=\
 		check_input.c \
@@ -48,6 +48,8 @@ SRCS_PARSING=\
 
 SRCS_RENDER=\
 		render.c \
+		light.c \
+		ray.c \
 
 SRCS_VECTOR=\
 		arithmetic_vector.c \
@@ -56,6 +58,7 @@ SRCS_VECTOR=\
 		dot_product.c \
 		cross_product.c \
 		normalize.c \
+		color.c \
 
 
 SRCS := $(SRCS:%=$(SRCS_DIR)/%) \
