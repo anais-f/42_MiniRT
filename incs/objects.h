@@ -3,6 +3,7 @@
 
 #include "color.h"
 #include "vector.h"
+#include <stdbool.h>
 
 typedef struct s_light
 {

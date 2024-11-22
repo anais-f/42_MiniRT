@@ -11,12 +11,13 @@
 # include <fcntl.h>
 # include <errno.h>
 
-/******OTHERS HEADERS******/ 
+/******OTHERS HEADERS******/
 # include "libft.h"
 # include "display_mlx.h"
 # include "camera.h"
 # include "color.h"
 # include "objects.h"
+# include "array.h"
 
 
 
@@ -41,15 +42,12 @@ typedef struct s_minirt
 	t_img			img;
 	t_camera		cam;
 	t_color			color;
-	t_object	 	object[4];
-	t_object		*objects;
+	t_object		object[4];
+	t_array			objects;
 	t_light			light;
 	t_ambient_light	ambient_light;
-
-	float	to_radian;
-	float	to_degree;
-
-
+	double			to_radian;
+	double			to_degree;
 }	t_minirt;
 
 typedef enum e_items
@@ -72,10 +70,10 @@ int		check_argv(int argc, char *str);
 int		convert_color(char **args_color, int *colors_int);
 int		parse_ambient_light(char **line_parsed, t_minirt *minirt);
 int		parse_camera(char **line_parsed, t_minirt *minirt);
-int		parse_color(char *arg_parsed, t_color *color);
+int		parse_color(t_minirt *minirt, char *arg_parsed, t_color *color);
 int		parse_coordinates(char *arg_parsed, t_vec3 *position);
 int		parse_light(char **line_parsed, t_minirt *minirt);
-int		parse_line(char *line, t_minirt *minirt);
+void	parse_line(char *line, t_minirt *minirt);
 int		prasing_map(t_minirt *minirt, char *file);
 size_t	arr_len(char **arr);
 void	ft_free_arr(char **arr);
@@ -94,8 +92,9 @@ void	init_color(t_minirt *minirt);
 int		init_camera(t_minirt *minirt);
 int		init_minirt(t_minirt *minirt);
 int		init_light(t_minirt *minirt);
-int	init_object(t_minirt *minirt);
-int	init_ambient_light(t_minirt *minirt);
+int		init_object(t_minirt *minirt);
+int		init_ambient_light(t_minirt *minirt);
+void	ft_free_exit(t_minirt *minirt, char *line, char **line_parsed, int exit_code);
 
 
 

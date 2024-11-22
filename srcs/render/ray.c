@@ -19,15 +19,15 @@ bool	check_ray_to_light(t_minirt *minirt, t_hit hit, t_vec3 light_dir)
 {
 	t_ray	ray;
 	double	t;
-	int		i;
+	size_t	i;
 
 	i = 0;
 	ray.origin = hit.position;
 	ray.direction = light_dir;
 //	ray.origin = add_vec3(ray.origin, mult_nb_vec3(hit.ray.direction, -EPSILON));
-	while (i < 4)
+	while (i < minirt->objects.size)
 	{
-		t = object_intersection(ray, minirt->object[i]);
+		t = object_intersection(ray, *minirt->objects.array[i]);
 		if ((t > EPSILON))
 			return (false);
 		i++;

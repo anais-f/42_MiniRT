@@ -1,6 +1,10 @@
 #ifndef COLOR_H
 # define COLOR_H
 
+#include <stdint.h>
+
+#include <vector.h>
+
 typedef union u_color
 {
 	__uint32_t	color;

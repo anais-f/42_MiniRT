@@ -6,9 +6,12 @@ int main(int argc, char **argv)
 	//printf("Hello Adrien\n");
 	// test2();
 	t_minirt	minirt;
+
+
 	minirt = (t_minirt){0}; // bzero ? 
 	if (check_argv(argc, argv[1]) == 1)
 		return (1);
+	array_init(&minirt.objects);
 	//check l'input check argv
 	// if (check_argv(argc, argv[1]) == 1)
 	// 	return (1);
@@ -17,7 +20,7 @@ int main(int argc, char **argv)
 	// parser le fichier
 	init_camera(&minirt); // for test pars
 	prasing_map(&minirt, argv[1]);
-
+	array_print(minirt.objects);
 
 	if (mlx_init_protected(&minirt.img) != 0)
 	{
@@ -46,7 +49,7 @@ int main(int argc, char **argv)
 	mlx_put_image_to_window(minirt.img.mlx_ptr, minirt.img.win_ptr, minirt.img.img, 0, 0); //  a supprimer apres car compris dans loop
 	mlx_launch_event_and_loop(&minirt.img); // ici le put image  	
 	mlx_destroy_all(&minirt.img);
-
+	array_free(&minirt.objects);
 	return (0);
 }
 

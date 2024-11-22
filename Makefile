@@ -16,7 +16,12 @@ SRCS=\
 		$(addprefix parsing/, $(SRCS_PARSING)) \
 		$(addprefix render/, $(SRCS_RENDER)) \
 		$(addprefix vector/, $(SRCS_VECTOR)) \
+		$(addprefix array/, $(SRCS_ARRAY)) \
+		$(addprefix utils/, $(SRCS_UTILS))
 		
+
+SRCS_ARRAY=\
+		array.c
 
 SRCS_CAMERA=\
 		camera.c \
@@ -50,6 +55,9 @@ SRCS_RENDER=\
 		render.c \
 		light.c \
 		ray.c \
+
+SRCS_UTILS=\
+		utils_error.c \
 
 SRCS_VECTOR=\
 		arithmetic_vector.c \

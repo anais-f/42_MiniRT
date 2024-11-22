@@ -2,11 +2,14 @@
 
 void	print_arr(char **arr)
 {
-	int	i;
+	size_t	i;
 
-	i = -1;
-	while (arr[++i])
+	i = 0;
+	while (arr[i])
+	{
 		printf("%s\n", arr[i]);
+		i++;
+	}
 	return ;
 }
 
@@ -22,10 +25,13 @@ size_t	arr_len(char **arr)
 
 void	ft_free_arr(char **arr)
 {
-	int	i;
+	size_t	i;
 
-	i = -1;
-	while (arr[++i])
+	i = 0;
+	while (arr[i])
+	{
 		free(arr[i]);
+		i++;
+	}
 	free(arr);
 }
