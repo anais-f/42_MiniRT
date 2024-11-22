@@ -8,13 +8,13 @@ typedef struct s_light
 {
 	t_vec3	position;
 	t_color	color;
-	float	brightness;
+	double	brightness;
 }	t_light;
 
 typedef struct s_ambient_light
 {
 	t_color	color;
-	float	brightness;
+	double	brightness;
 }	t_ambient_light;
 
 typedef enum e_object_type
@@ -26,15 +26,15 @@ typedef enum e_object_type
 
 typedef struct s_sphere
 {
-	float	radius; // a diviser au parsing car on recoit le diametre
+	double	radius; // a diviser au parsing car on recoit le diametre
 }	t_sphere;
 
 
 typedef struct s_cylinder
 {
 
-	float	radius; // a diviser par deux au parsing car on recoit le diametre
-	float	height;
+	double	radius; // a diviser par deux au parsing car on recoit le diametre
+	double	height;
 }	t_cylinder;
 
 typedef union u_spec

@@ -4,9 +4,9 @@ t_vec3	color_to_vec3(t_color color)
 {
 	t_vec3 vec;
 
-	vec.x = (float)color.r / 255.0f;
-	vec.y = (float)color.g / 255.0f;
-	vec.z = (float)color.b / 255.0f;
+	vec.x = (double)color.r / 255.0f;
+	vec.y = (double)color.g / 255.0f;
+	vec.z = (double)color.b / 255.0f;
 	return (vec);
 }
 

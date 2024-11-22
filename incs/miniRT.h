@@ -27,7 +27,7 @@ typedef struct s_hit
 {
 	t_vec3		position;
 	t_vec3		normal;
-	float		dst;
+	double		dst;
 	t_object	object;
 	t_ray		ray;
 }	t_hit;
@@ -68,10 +68,10 @@ int		test(t_img *img, t_minirt *minirt);
 void	render_scene(t_minirt *minirt, t_img *img);
 
 /* object*/
-float	sphere_intersection(t_minirt *minirt, t_ray ray, t_object sphere);
-float	cylinder_intersection(t_minirt *minirt, t_ray ray, t_object cylinder);
-float	plane_intersection(t_minirt *minirt, t_ray ray, t_object plan);
-float	object_intersection(t_minirt *minirt, t_ray ray, t_object object);
+double	sphere_intersection(t_minirt *minirt, t_ray ray, t_object sphere);
+double	cylinder_intersection(t_minirt *minirt, t_ray ray, t_object cylinder);
+double	plane_intersection(t_minirt *minirt, t_ray ray, t_object plan);
+double	object_intersection(t_minirt *minirt, t_ray ray, t_object object);
 
 void	init_color(t_minirt *minirt);
 int		init_camera(t_minirt *minirt);
@@ -82,7 +82,7 @@ int	init_ambient_light(t_minirt *minirt);
 
 t_vec3 get_ambient_light(t_minirt *minirt);
 t_color	get_color_pixel(t_minirt *minirt, t_hit hit);
-float	calcul_light_bright(t_minirt *minirt, t_hit hit);
+double	calcul_light_bright(t_minirt *minirt, t_hit hit);
 
 
 void	hit_point(t_minirt *minirt, t_ray ray, t_hit *hit);

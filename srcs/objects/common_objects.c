@@ -1,6 +1,6 @@
 #include "miniRT.h"
 
-float	object_intersection(t_minirt *minirt, t_ray ray, t_object object)
+double	object_intersection(t_minirt *minirt, t_ray ray, t_object object)
 {
 	if (object.type == SPHERE)
 		return (sphere_intersection(minirt, ray, object));

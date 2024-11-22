@@ -1,6 +1,5 @@
 #include "miniRT.h"
-#include <float.h>
-# define EPSILON 1e-5
+# define EPSILON 1e-7
 
 t_vec3 get_ambient_light(t_minirt *minirt) // a faire dans le parsing
 {
@@ -24,7 +23,7 @@ ou utiliser le ray.direction * - 1 au lieu de hit.normal
 bool	check_ray_to_light(t_minirt *minirt, t_hit hit, t_vec3 light_dir)
 {
 	t_ray	ray;
-	float	t;
+	double	t;
 	int i = 0;
 
 	ray.origin = hit.position;
@@ -33,7 +32,7 @@ bool	check_ray_to_light(t_minirt *minirt, t_hit hit, t_vec3 light_dir)
 
 	while (i < 4)
 	{
-		//printf("float = %f\n", object_intersection(minirt, ray, minirt->object[i]));
+		//printf("double = %f\n", object_intersection(minirt, ray, minirt->object[i]));
 		t = object_intersection(minirt, ray, minirt->object[i]);
 		if ((t > EPSILON))
 			return (false);
@@ -44,10 +43,10 @@ bool	check_ray_to_light(t_minirt *minirt, t_hit hit, t_vec3 light_dir)
 
 
 /* calcul du ratio de brightness de la lumiere directionnelle */
-float	calcul_light_bright(t_minirt *minirt, t_hit hit)
+double	calcul_light_bright(t_minirt *minirt, t_hit hit)
 {
 	t_vec3	light_dir;
-	float	light_intensity;
+	double	light_intensity;
 
 	light_dir = sub_vec3(hit.position, minirt->light.position); // calcul de la direction de la lumiere
 	light_dir = mult_nb_vec3(light_dir, -1.0f * (minirt->light.brightness)); // inversion de la direction de la lumiere pour aller de nous a la lumiere et pas le contraire
@@ -72,7 +71,7 @@ t_color	get_color_pixel(t_minirt *minirt, t_hit hit)
 	t_vec3	ambient_light;
 	t_vec3	light_color;
 	t_color final_color;
-	float 	light_bright;
+	double 	light_bright;
 
 	if (hit.dst == -1)
 		return (t_color) {0xFF000000};
@@ -94,7 +93,7 @@ void	get_color_pixel(t_minirt *minirt, t_hit hit)
 	t_vec3	ambient_light;
 	t_vec3	light_color;
 	t_color final_color;
-	float 	light_bright;
+	double 	light_bright;
 
 	if (hit.dst == -1)
 		return ;

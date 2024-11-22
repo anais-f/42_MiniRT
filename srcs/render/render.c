@@ -20,7 +20,7 @@ void	render_scene(t_minirt *minirt, t_img *img)
 {
 	int		x;
 	int		y;
-	float	t; // distance de hit
+	double	t; // distance de hit
 	t_ray	ray;
 	t_hit	hit;
 
@@ -40,7 +40,7 @@ void	render_scene(t_minirt *minirt, t_img *img)
 			while (i < 4)
 			{
 				// trouver l'objet le plus proche -> recuperer la distance
-				t = object_intersection(minirt,ray, minirt->object[i]); // renvoi un float pour faire le calcul pour trouver l'objet le plus proche 
+				t = object_intersection(minirt,ray, minirt->object[i]); // renvoi un double pour faire le calcul pour trouver l'objet le plus proche 
 				if (t != -1 && (t < hit.dst || hit.dst == -1))
 				{
 					hit.dst = t;

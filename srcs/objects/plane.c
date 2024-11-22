@@ -1,11 +1,11 @@
 # include "miniRT.h"
 
-float	plane_intersection(t_minirt *minirt, t_ray ray, t_object plan)
+double	plane_intersection(t_minirt *minirt, t_ray ray, t_object plan)
 {
 	(void)minirt;	
-	float a;
-	float b;
-	float t;
+	double a;
+	double b;
+	double t;
 
 	a = dot_vec3(ray.direction, plan.direction);
 	if (a == 0)
@@ -30,7 +30,7 @@ t_vec3	get_normal_plane(t_minirt *minirt, t_hit hit)
 {
 	(void)minirt;
 	t_vec3 normal;
-	float a;
+	double a;
 
 	a = dot_vec3(minirt->cam.direction, hit.object.direction);	
 	if (a > 0)
