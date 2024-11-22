@@ -1,33 +1,32 @@
 #include "miniRT.h"
 
-double	object_intersection(t_minirt *minirt, t_ray ray, t_object object)
+double	object_intersection(t_ray ray, t_object object)
 {
 	if (object.type == SPHERE)
-		return (sphere_intersection(minirt, ray, object));
+		return (sphere_intersection(ray, object));
 	if (object.type == PLANE)
-		return (plane_intersection(minirt, ray, object));
+		return (plane_intersection(ray, object));
 	if (object.type == CYLINDER)
-		return (cylinder_intersection(minirt, ray, object));
+		return (cylinder_intersection(ray, object));
 	return (-1);
 }
 
-t_vec3	get_normal(t_minirt *minirt, t_hit hit)
+t_vec3	get_normal(t_camera cam, t_hit hit)
 {
 	t_vec3	normal;
 
-	(void)minirt;
 	ft_memset(&normal, 0, sizeof(t_vec3));
 	if (hit.object.type == SPHERE)
-		normal = get_normal_sphere(minirt, hit);
+		normal = get_normal_sphere(cam, hit);
 	if (hit.object.type == PLANE)
-		normal = get_normal_plane(minirt, hit);
+		normal = get_normal_plane(cam, hit);
 	if (hit.object.type == CYLINDER)
-		normal = get_normal_cylinder(minirt, hit);
+		normal = get_normal_cylinder(cam, hit);
 	return (normal);
 }
 
 void	hit_point(t_minirt *minirt, t_ray ray, t_hit *hit)
 {
 	hit->position = add_vec3(ray.origin, mult_nb_vec3(ray.direction, hit->dst));
-	hit->normal = get_normal(minirt, *hit);
+	hit->normal = get_normal(minirt->cam, *hit);
 }

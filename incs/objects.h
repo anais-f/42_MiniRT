@@ -45,14 +45,12 @@ typedef union u_spec
 
 typedef struct s_object
 {
-	t_object_type	type; // voir si pointeur de fonction apres
+	t_object_type	type;
 	t_spec			spec;
 	t_vec3			position;
 	t_vec3			direction;
 	t_color			color;
 
 }	t_object;
-
-
 
 #endif

@@ -1,12 +1,11 @@
 #include "miniRT.h"
 
-double	plane_intersection(t_minirt *minirt, t_ray ray, t_object plan)
+double	plane_intersection(t_ray ray, t_object plan)
 {
 	double	a;
 	double	b;
 	double	t;
 
-	(void)minirt;
 	a = dot_vec3(ray.direction, plan.direction);
 	if (a == 0)
 		return (-1);
@@ -25,13 +24,12 @@ double	plane_intersection(t_minirt *minirt, t_ray ray, t_object plan)
 // si t < 0, l'intersection est derriere la camera
 //si a = 0, le plan est parallele a la camera, il n'y a pas d'intersection
 
-t_vec3	get_normal_plane(t_minirt *minirt, t_hit hit)
+t_vec3	get_normal_plane(t_camera cam, t_hit hit)
 {
 	t_vec3	normal;
 	double	a;
 
-	(void)minirt;
-	a = dot_vec3(minirt->cam.direction, hit.object.direction);
+	a = dot_vec3(cam.direction, hit.object.direction);
 	if (a > 0)
 		normal = mult_nb_vec3(hit.object.direction, -1.0f);
 	else

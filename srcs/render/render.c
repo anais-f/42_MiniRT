@@ -1,19 +1,6 @@
 #include "miniRT.h"
 #include "camera.h"
 
-t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y)
-{
-	t_ray	ray;
-	t_vec2	coord;
-
-	coord.x = (float)x / (float)WIDTH_WIN * 2.0f - 1.0f;
-	coord.x *= minirt->cam.ratio;
-	coord.y = -((float)y / (float)HEIGHT_WIN * 2.0f - 1.0f);
-	ray.origin = minirt->cam.position;
-	ray.direction = (t_vec3){coord.x, coord.y, minirt->cam.direction.z};
-	return (ray);
-}
-
 void	render_scene(t_minirt *minirt, t_img *img)
 {
 	int		x;
@@ -39,7 +26,7 @@ void	render_scene(t_minirt *minirt, t_img *img)
 			while (i < 4)
 			{
 				// trouver l'objet le plus proche -> recuperer la distance
-				dst = object_intersection(minirt,ray, minirt->object[i]); // renvoi un double pour faire le calcul pour trouver l'objet le plus proche 
+				dst = object_intersection(ray, minirt->object[i]); // renvoi un double pour faire le calcul pour trouver l'objet le plus proche 
 				if (dst != -1 && (dst < hit.dst || hit.dst == -1))
 				{
 					hit.dst = dst;

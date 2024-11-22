@@ -1,6 +1,6 @@
 #include "miniRT.h"
 
-double	sphere_intersection(t_minirt *minirt, t_ray ray, t_object sphere)
+double	sphere_intersection(t_ray ray, t_object sphere)
 {
 	t_vec3	offset_ray_origin;
 	double	abc[3];
@@ -8,7 +8,6 @@ double	sphere_intersection(t_minirt *minirt, t_ray ray, t_object sphere)
 	double	t0;
 	double	t1;
 
-	(void)minirt;
 	// vecteur entre le point d'origine et le centre de la sphere
 	offset_ray_origin = sub_vec3(ray.origin, sphere.position);
 	abc[0] = dot_vec3(ray.direction, ray.direction);
@@ -39,13 +38,13 @@ double	sphere_intersection(t_minirt *minirt, t_ray ray, t_object sphere)
 	// b = la direction du rayon
 	// r = rayon de la sphere
 
-t_vec3	get_normal_sphere(t_minirt *minirt, t_hit hit)
+t_vec3	get_normal_sphere(t_camera cam, t_hit hit)
 {
 	t_vec3	normal;
 	t_vec3	sphere_in;
 
 	normal = normalize_vec3(sub_vec3(hit.position, hit.object.position));
-	sphere_in = sub_vec3(minirt->cam.position, hit.object.position);
+	sphere_in = sub_vec3(cam.position, hit.object.position);
 	if (dot_vec3(sphere_in, sphere_in) <= hit.object.spec.sphere.radius) // test si on est a l'interieur de la sphere, peut le faire au parsing
 		normal = mult_nb_vec3(normal, -1.0f); // inversion de la normal si on est a l'interieur de la sphere
 	return (normal);
