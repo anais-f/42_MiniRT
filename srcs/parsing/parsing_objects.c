@@ -12,7 +12,7 @@ int	parse_sphere(char **line_parsed, t_minirt *minirt)
 	minirt->object.type = SPHERE;
 	if (is_valid_float(line_parsed[2]) == false)
 		return (3);
-	minirt->object.spec.sphere.radius = ft_atof(line_parsed[2]);
+	minirt->object.spec.sphere.radius = (double)ft_atof(line_parsed[2]) / 2.f;
 	printf("Sphere pos : %f %f %f diam : %f color %d %d %d\n", minirt->object.position.x, minirt->object.position.y, minirt->object.position.z, minirt->object.spec.sphere.radius, minirt->object.color.r, minirt->object.color.g, minirt->object.color.b);
 	return (0);
 }
@@ -62,8 +62,8 @@ int	parse_cylinder(char **line_parsed, t_minirt *minirt)
 		printf("Cylinder radius or height is not a valid float\n");
 		return (4);
 	}
-	minirt->object.spec.cylinder.radius = ft_atof(line_parsed[3]);
-	minirt->object.spec.cylinder.height = ft_atof(line_parsed[4]);
+	minirt->object.spec.cylinder.radius = (double)ft_atof(line_parsed[3]) / 2.0f;
+	minirt->object.spec.cylinder.height = (double)ft_atof(line_parsed[4]);
 	printf("Cylinder pos : %f %f %f diam : %f height : %f color %d %d %d\n", minirt->object.position.x, minirt->object.position.y, minirt->object.position.z, minirt->object.spec.cylinder.radius, minirt->object.spec.cylinder.height, minirt->object.color.r, minirt->object.color.g, minirt->object.color.b);
 	return (0);
 }

@@ -15,7 +15,7 @@ int	parse_ambient_light(char **line_parsed, t_minirt *minirt)
 	parse_color(line_parsed[2], &minirt->ambient_light.color); // checker retour d'erreur parsing color si != 0 free & exit
 	if (is_valid_float(line_parsed[1]) == false)
 		return (3);
-	minirt->ambient_light.brightness = ft_atof(line_parsed[1]);
+	minirt->ambient_light.brightness = (double)ft_atof(line_parsed[1]);
 	if (check_range_items(minirt, AMBIENT_LIGHT))
 	{
 		printf("Ambient light parameters out of range\n");
@@ -41,7 +41,7 @@ int	parse_light(char **line_parsed, t_minirt *minirt)
 	parse_color(line_parsed[3], &minirt->light.color); // checker retour d'erreur parsing color si != 0 free & exit
 	if (is_valid_float(line_parsed[2]) == false)
 		return (3);
-	minirt->light.brightness = ft_atof(line_parsed[2]);
+	minirt->light.brightness = (double)ft_atof(line_parsed[2]);
 	if (check_range_items(minirt, LIGHT))
 	{
 		printf("Light parameters out of range\n");

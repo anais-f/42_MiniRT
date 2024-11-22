@@ -8,14 +8,14 @@ typedef struct light
 {
 	t_vec3	position;
 	t_color	color;
-	float	brightness;
+	double	brightness;
 	bool	is_init;
 }	t_light;
 
 typedef struct ambient_light
 {
 	t_color	color;
-	float	brightness;
+	double	brightness;
 	bool	is_init;
 }	t_ambient_light;
 
@@ -28,15 +28,15 @@ typedef enum e_object_type
 
 typedef struct sphere
 {
-	float	radius; // a diviser au parsing car on recoit le diametre
+	double	radius; // a diviser au parsing car on recoit le diametre
 }	t_sphere;
 
 
 typedef struct cylinder
 {
 
-	float	radius; // a diviser par deux au parsing car on recoit le diametre
-	float	height;
+	double	radius; // a diviser par deux au parsing car on recoit le diametre
+	double	height;
 }	t_cylinder;
 
 typedef union u_spec
