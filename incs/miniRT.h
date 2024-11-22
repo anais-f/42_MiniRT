@@ -52,13 +52,6 @@ typedef struct s_minirt
 
 }	t_minirt;
 
-
-typedef struct s_ray
-{
-	t_vec3	origin; // camera position
-	t_vec3	direction; // camera orientation
-}	t_ray;
-
 typedef enum e_items
 {
 	AMBIENT_LIGHT,
