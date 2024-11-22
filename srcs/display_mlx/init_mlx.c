@@ -1,15 +1,12 @@
 #include "display_mlx.h"
-# include "libft.h"
 
 int	mlx_init_protected(t_img *img)
 {
-	// ft_bzero(img, sizeof(t_img)); SEGFAULT CHELOU //effacer l'image pour redessiner dessus 
-	// fonction pour init la structure si on ajoute des donnees?
-
 	img->mlx_ptr = mlx_init();
 	if (!img->mlx_ptr)
 		return (-1);
-	img->win_ptr = mlx_new_window(img->mlx_ptr, WIDTH_WIN, HEIGHT_WIN, "miniRT");
+	img->win_ptr = mlx_new_window(img->mlx_ptr, WIDTH_WIN, HEIGHT_WIN, \
+									"miniRT");
 	img->img = mlx_new_image(img->mlx_ptr, WIDTH_WIN, HEIGHT_WIN);
 	if (!img->win_ptr || !img->img)
 	{

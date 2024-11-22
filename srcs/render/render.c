@@ -1,11 +1,10 @@
 #include "miniRT.h"
 #include "camera.h"
 
-
 t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y)
 {
 	t_ray	ray;
-	t_vec2 coord;
+	t_vec2	coord;
 
 	coord.x = (float)x / (float)WIDTH_WIN * 2.0f - 1.0f;
 	coord.x *= minirt->cam.ratio;
@@ -15,12 +14,12 @@ t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y)
 	return (ray);
 }
 
-
 void	render_scene(t_minirt *minirt, t_img *img)
 {
 	int		x;
 	int		y;
-	double	t; // distance de hit
+	int		i;
+	double	dst;
 	t_ray	ray;
 	t_hit	hit;
 
@@ -36,14 +35,14 @@ void	render_scene(t_minirt *minirt, t_img *img)
 
 			ray = create_ray_from_cam(minirt, x, y);
 			hit.ray = ray; // pour recuperer le ray pour le calcul de l'ombre
-			int i = 0;
+			i = 0;
 			while (i < 4)
 			{
 				// trouver l'objet le plus proche -> recuperer la distance
-				t = object_intersection(minirt,ray, minirt->object[i]); // renvoi un double pour faire le calcul pour trouver l'objet le plus proche 
-				if (t != -1 && (t < hit.dst || hit.dst == -1))
+				dst = object_intersection(minirt,ray, minirt->object[i]); // renvoi un double pour faire le calcul pour trouver l'objet le plus proche 
+				if (dst != -1 && (dst < hit.dst || hit.dst == -1))
 				{
-					hit.dst = t;
+					hit.dst = dst;
 					hit.object = minirt->object[i];
 				}
 				i++;

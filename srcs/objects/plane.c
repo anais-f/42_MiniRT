@@ -1,12 +1,12 @@
-# include "miniRT.h"
+#include "miniRT.h"
 
 double	plane_intersection(t_minirt *minirt, t_ray ray, t_object plan)
 {
-	(void)minirt;	
-	double a;
-	double b;
-	double t;
+	double	a;
+	double	b;
+	double	t;
 
+	(void)minirt;
 	a = dot_vec3(ray.direction, plan.direction);
 	if (a == 0)
 		return (-1);
@@ -25,31 +25,21 @@ double	plane_intersection(t_minirt *minirt, t_ray ray, t_object plan)
 // si t < 0, l'intersection est derriere la camera
 //si a = 0, le plan est parallele a la camera, il n'y a pas d'intersection
 
-
 t_vec3	get_normal_plane(t_minirt *minirt, t_hit hit)
 {
-	(void)minirt;
-	t_vec3 normal;
-	double a;
+	t_vec3	normal;
+	double	a;
 
-	a = dot_vec3(minirt->cam.direction, hit.object.direction);	
+	(void)minirt;
+	a = dot_vec3(minirt->cam.direction, hit.object.direction);
 	if (a > 0)
 		normal = mult_nb_vec3(hit.object.direction, -1.0f);
 	else
 		normal = hit.object.direction;
 	return (normal);
 }
-/*
-	a = dot_vec3(minirt->cam.direction, hit.object.direction);	
-	if (a > 0)
-		normal = mult_nb_vec3(hit.object.direction, -1.0f);
-	else
-		normal = hit.object.direction;
 
-*/
-// pour calculer la normale d'un plan, il nous faut 2 vecteurs sur ce plan, soit la direction du plan
-// et un autre vecteur qui n'est pas parallele a la direction du plan, ici on prend la direction de la camera
-// on fait le produit vectoriel de ces deux vecteurs pour obtenir la normale du plan
-// si le produit scalaire entre la direction de la camera et la direction du plan est positif, on inverse la normale
+// si le produit scalaire entre la direction de la camera et
+//la direction du plan est positif, on inverse la normale
 // car on veut que la normale soit dirigée vers la camera
 // si le produit scalaire est negatif, on garde la normale telle quelle

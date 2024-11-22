@@ -43,6 +43,7 @@ SRCS_PARSING=\
 SRCS_RENDER=\
 		render.c \
 		light.c \
+		ray.c \
 
 SRCS_VECTOR=\
 		arithmetic_vector.c \

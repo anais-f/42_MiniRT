@@ -6,16 +6,16 @@ double	object_intersection(t_minirt *minirt, t_ray ray, t_object object)
 		return (sphere_intersection(minirt, ray, object));
 	if (object.type == PLANE)
 		return (plane_intersection(minirt, ray, object));
-	if (object.type == CYLINDER)	
+	if (object.type == CYLINDER)
 		return (cylinder_intersection(minirt, ray, object));
 	return (-1);
-}	
+}
 
 t_vec3	get_normal(t_minirt *minirt, t_hit hit)
 {
-	(void)minirt;
-	t_vec3 normal;
+	t_vec3	normal;
 
+	(void)minirt;
 	ft_memset(&normal, 0, sizeof(t_vec3));
 	if (hit.object.type == SPHERE)
 		normal = get_normal_sphere(minirt, hit);
