@@ -38,7 +38,7 @@ typedef struct s_minirt
 	t_img			img;
 	t_camera		cam;
 	t_color			color;
-	t_object	 	object[3];
+	t_object	 	object[4];
 	t_object		*objects;
 	t_light			light;
 	t_ambient_light	ambient_light;
@@ -81,8 +81,8 @@ int	init_object(t_minirt *minirt);
 int	init_ambient_light(t_minirt *minirt);
 
 t_vec3 get_ambient_light(t_minirt *minirt);
-t_color	get_color_pixel(t_minirt *minirt, t_hit *hit);
-float	calcul_light_bright(t_minirt *minirt, t_hit *hit);
+t_color	get_color_pixel(t_minirt *minirt, t_hit hit);
+float	calcul_light_bright(t_minirt *minirt, t_hit hit);
 
 
 void	hit_point(t_minirt *minirt, t_ray ray, t_hit *hit);
