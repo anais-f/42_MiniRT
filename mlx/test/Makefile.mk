@@ -11,7 +11,8 @@ NAME= mlx-test
 SRC = main.c
 OBJ = $(SRC:%.c=%.o)
 
-LFLAGS = -L.. -lmlx -L$(INCLIB) -lXext -lX11 -lm
+LFLAGS = -L.. -lmlx -L$(INCLIB) -lXext -lX11 -lm 
+#-L/usr/lib/aarch64-linux-gnu/
 
 ifeq ($(UNAME), Darwin)
 	# mac
