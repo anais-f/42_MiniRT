@@ -12,7 +12,7 @@ SRC = main.c
 OBJ = $(SRC:%.c=%.o)
 
 
-LIBBSD_PATH := $(shell find /usr -name "libbsd.so" | xargs dirname)
+LIBBSD_PATH := $(shell find /usr/lib/ -name "libbsd.so" | xargs dirname)
 
 LFLAGS = -L.. -lmlx -L$(INCLIB) -lXext -lX11 -lm -L$(LIBBSD_PATH)
 
