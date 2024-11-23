@@ -3,7 +3,6 @@
 int	check_argv(int argc, char *str)
 {
 	const char	str_check[] = ".rt";
-	size_t		i;
 	size_t		len_str;
 
 	if (argc != 2)
@@ -11,7 +10,6 @@ int	check_argv(int argc, char *str)
 		printf("Invalid number of arguments\n");
 		return (1);
 	}
-	i = 0;
 	len_str = ft_strlen(str);
 	if (len_str < 4)
 	{
