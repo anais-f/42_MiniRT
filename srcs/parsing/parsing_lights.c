@@ -12,7 +12,8 @@ int	parse_ambient_light(char **line_parsed, t_minirt *minirt)
 		printf("Ambient light must have only three parameters\n");
 		return (2);
 	}
-	if (parse_color(minirt, line_parsed[2], &minirt->ambient_light.color) || is_valid_float(line_parsed[1]) == false)
+	if (parse_color(minirt, line_parsed[2], &minirt->ambient_light.color) \
+		|| !is_valid_float(line_parsed[1]))
 		return (3);
 	minirt->ambient_light.brightness = (double)ft_atof(line_parsed[1]);
 	if (check_range_items(minirt, AMBIENT_LIGHT))

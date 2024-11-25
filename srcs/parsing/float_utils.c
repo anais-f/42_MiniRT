@@ -31,7 +31,7 @@ bool	is_valid_float(char *str_float)
 
 int	check_overflow(const char *str, size_t *i, int sign, float *nb)
 {
-	if ((((int)(*nb) * 10 + str[*i] - '0') / 10) != (int)(*nb))
+	if ((((int)(*nb)*10 + str[*i] - '0') / 10) != (int)(*nb))
 	{
 		errno = ERANGE;
 		if (sign < 0)
@@ -59,8 +59,10 @@ float	ft_atof(const char *str)
 	if (str[i] == '+' || str[i] == '-')
 		i++;
 	while ((str[i] >= '0' && str[i] <= '9'))
-	if (check_overflow(str, &i, sign, &nb_bf_comma) == -1)
+	{
+		if (check_overflow(str, &i, sign, &nb_bf_comma) == -1)
 			return (nb_bf_comma);
+	}
 	if (str[i] == '.')
 	{
 		i = ft_strlen(str) - 1;
@@ -69,4 +71,3 @@ float	ft_atof(const char *str)
 	}
 	return ((nb_bf_comma + nb_af_comma / 10) * sign);
 }
-
