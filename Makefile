@@ -49,7 +49,8 @@ SRCS_PARSING=\
 		parsing_cam.c \
 		parsing_utils.c \
 		parsing_objects.c \
-		float_utils.c
+		float_utils.c \
+		split_comas.c
 
 SRCS_RENDER=\
 		render.c \
