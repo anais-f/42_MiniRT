@@ -41,5 +41,5 @@ void	render_scene(t_minirt *minirt, t_img *img)
 		}
 		y++;
 	}
-	printf("render done\n");
+	//printf("render done\n");
 }

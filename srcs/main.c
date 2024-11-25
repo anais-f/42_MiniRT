@@ -20,7 +20,7 @@ int main(int argc, char **argv)
 	// parser le fichier
 	init_camera(&minirt); // for test pars
 	prasing_map(&minirt, argv[1]);
-	array_print(minirt.objects);
+	//array_print(minirt.objects);
 
 	if (mlx_init_protected(&minirt.img) != 0)
 	{

@@ -2,6 +2,14 @@
 #include "camera.h"
 #define EPSILON 1e-7
 
+static double	get_light_distance(t_vec3 p1, t_vec3 p2)
+{
+	double	dst;
+
+	dst = (p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y) + (p2.z - p1.z) * (p2.z - p1.z);
+	return (dst);
+}
+
 t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y)
 {
 	t_ray	ray;
@@ -18,17 +26,19 @@ t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y)
 bool	check_ray_to_light(t_minirt *minirt, t_hit hit, t_vec3 light_dir)
 {
 	t_ray	ray;
-	double	t;
+	double	dst;
+	double	light_dst;
 	size_t	i;
 
 	i = 0;
 	ray.origin = hit.position;
 	ray.direction = light_dir;
-//	ray.origin = add_vec3(ray.origin, mult_nb_vec3(hit.ray.direction, -EPSILON));
+	ray.origin = add_vec3(ray.origin, mult_nb_vec3(hit.ray.direction, -EPSILON));
 	while (i < minirt->objects.size)
 	{
-		t = object_intersection(ray, *minirt->objects.array[i]);
-		if ((t > EPSILON))
+		light_dst = get_light_distance(minirt->light.position, hit.position);
+		dst = object_intersection(ray, *minirt->objects.array[i]);
+		if ((dst > EPSILON) && dst * dst < light_dst)	
 			return (false);
 		i++;
 	}
@@ -43,3 +53,7 @@ Le vec3_add(ray.origin, vec3_multiply(hit.normal, EPSILON)) déplace légèremen
 
 ou utiliser le ray.direction * - 1 au lieu de hit.normal
 */
+
+// checker que l'objet est a une distance plus faible que la lumiere
+// alculer la distance entre la hit position et la lumiere
+
