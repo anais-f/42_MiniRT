@@ -25,7 +25,7 @@ int	parse_sphere(char **line_parsed, t_minirt *minirt)
 		free(object);
 		return(3);
 	}
-	//printf("Sphere pos : %f %f %f diam : %f color %d %d %d\n", object->position.x, object->position.y, object->position.z, object->spec.sphere.radius, object->color.r, object->color.g, object->color.b);
+	printf("Sphere pos : %f %f %f diam : %f color %d %d %d\n", object->position.x, object->position.y, object->position.z, object->spec.sphere.radius, object->color.r, object->color.g, object->color.b);
 	return (0);
 }
 
@@ -63,7 +63,7 @@ int	parse_plane(char **line_parsed, t_minirt *minirt)
 		free(object);
 		ft_free_exit(minirt, NULL, line_parsed, -1);
 	}
-//	printf("Plane pos : %f %f %f direction : %f %f %f color %d %d %d\n", object->position.x, object->position.y, object->position.z, object->direction.x, object->direction.y, object->direction.z, object->color.r, object->color.g, object->color.b);
+	printf("Plane pos : %f %f %f direction : %f %f %f color %d %d %d\n", object->position.x, object->position.y, object->position.z, object->direction.x, object->direction.y, object->direction.z, object->color.r, object->color.g, object->color.b);
 	return (0);
 }
 
@@ -102,6 +102,6 @@ int	parse_cylinder(char **line_parsed, t_minirt *minirt)
 		free(object);
 		ft_free_exit(minirt, NULL, line_parsed, -1);
 	}
-	//printf("Cylinder pos : %f %f %f diam : %f height : %f color %d %d %d\n", object->position.x, object->position.y, object->position.z, object->spec.cylinder.radius, object->spec.cylinder.height, object->color.r, object->color.g, object->color.b);
+	printf("Cylinder pos : %f %f %f diam : %f height : %f color %d %d %d\n", object->position.x, object->position.y, object->position.z, object->spec.cylinder.radius, object->spec.cylinder.height, object->color.r, object->color.g, object->color.b);
 	return (0);
 }
