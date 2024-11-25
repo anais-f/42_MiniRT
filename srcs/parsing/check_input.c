@@ -23,4 +23,3 @@ int	check_argv(int argc, char *str)
 	}
 	return (0);
 }
-

@@ -87,6 +87,13 @@ int	parse_coordinates(char *arg_parsed, t_vec3 *position)
 		coord[i] = ft_atof(args_coord[i]);
 		i++;
 	}
+	if (errno == ERANGE)
+	{
+		errno = 0;
+		printf("Overflow detected\n");
+		ft_free_arr(args_coord);
+		return (3);
+	}
 	position->x = coord[0];
 	position->y = coord[1];
 	position->z = coord[2];
