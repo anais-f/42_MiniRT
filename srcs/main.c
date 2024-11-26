@@ -8,11 +8,12 @@ int main(int argc, char **argv)
 	minirt = (t_minirt){0}; // bzero ? 
 	if (check_argv(argc, argv[1]) == 1)
 		return (1);
+
 	array_init(&minirt.objects);
 
+	prasing_map(&minirt, argv[1]);
 	//init minirt -> voir donnees cam et angle
 	init_camera(&minirt); // for test pars
-	prasing_map(&minirt, argv[1]);
 //	print_parsing(&minirt);
 
 	if (mlx_init_protected(&minirt.img) != 0)

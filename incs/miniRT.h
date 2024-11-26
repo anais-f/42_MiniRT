@@ -81,7 +81,7 @@ void	print_arr(char **arr);
 int		parse_sphere(char **line_parsed, t_minirt *minirt);
 int		parse_plane(char **line_parsed, t_minirt *minirt);
 int		parse_cylinder(char **line_parsed, t_minirt *minirt);
-char	**split_comas(char const *s, char c);
+char	**split_commas(char const *s, char c);
 void	print_parsing(t_minirt *minirt);
 
 

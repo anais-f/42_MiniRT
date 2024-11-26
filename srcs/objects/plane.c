@@ -29,11 +29,10 @@ t_vec3	get_normal_plane(t_camera cam, t_hit hit)
 	t_vec3	normal;
 	double	a;
 
+	normal = hit.object.direction;
 	a = dot_vec3(cam.direction, hit.object.direction);
 	if (a > 0)
 		normal = mult_nb_vec3(hit.object.direction, -1.0f);
-	else
-		normal = hit.object.direction;
 	return (normal);
 }
 
