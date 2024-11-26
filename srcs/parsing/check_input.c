@@ -50,7 +50,7 @@ int	parse_coordinates(char *arg_parsed, t_vec3 *position)
 	char	**args_coord;
 	float	coord[3];
 
-	args_coord = split_comas(arg_parsed, ',');
+	args_coord = split_commas(arg_parsed, ',');
 	if (!args_coord)
 		return (-1);
 	if (arr_len(args_coord) != 3)
@@ -76,7 +76,7 @@ int	parse_color(t_minirt *minirt, char *arg_parsed, t_color *color)
 	char	**args_color;
 	int		colors_int[3];
 
-	args_color = split_comas(arg_parsed, ',');
+	args_color = split_commas(arg_parsed, ',');
 	if (!args_color)
 		return (-1);
 	if (arr_len(args_color) != 3)

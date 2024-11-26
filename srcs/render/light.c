@@ -16,7 +16,7 @@ double	calcul_light_bright(t_minirt *minirt, t_hit hit)
 	double	light_intensity;
 
 	light_dir = sub_vec3(hit.position, minirt->light.position); // calcul de la direction de la lumiere
-	light_dir = mult_nb_vec3(light_dir, -1.0f * (minirt->light.brightness));
+	light_dir = mult_nb_vec3(light_dir, -1.0f * (minirt->light.brightness)); // voir si on peut mettre un -1 tour seul
 	// inversion de la direction de la lumiere pour aller de nous a la lumiere et pas le contraire
 	light_dir = normalize_vec3(light_dir);
 	light_intensity = dot_vec3(hit.normal, light_dir); // calcul de la lumiere, == cos(angle)
@@ -47,9 +47,11 @@ t_color	get_color_pixel(t_minirt *minirt, t_hit hit)
 	light_color = color_to_vec3(minirt->light.color);
 	light_color = mult_nb_vec3(light_color, light_bright);
 	light_color = add_color_vec3(light_color, ambient_light);
+
 	light_color.x *= (color_to_vec3(hit.object.color)).x;
 	light_color.y *= (color_to_vec3(hit.object.color)).y;
 	light_color.z *= (color_to_vec3(hit.object.color)).z;
+	
 	final_color = vec3_to_color(light_color);
 	return (final_color);
 }
