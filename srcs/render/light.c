@@ -15,8 +15,8 @@ double	calcul_light_bright(t_minirt *minirt, t_hit hit)
 	t_vec3	light_dir;
 	double	light_intensity;
 
-	light_dir = sub_vec3(hit.position, minirt->light.position); // calcul de la direction de la lumiere
-	light_dir = mult_nb_vec3(light_dir, -1.0f * (minirt->light.brightness)); // voir si on peut mettre un -1 tour seul
+	light_dir = sub_vec3(hit.position, minirt->light.position); // calcul de la direction de la lumiere ou on peut inverser la soustraction et skip le * -1
+	light_dir = mult_nb_vec3(light_dir, -1.0f); // voir si on peut mettre un -1 tour seul
 	// inversion de la direction de la lumiere pour aller de nous a la lumiere et pas le contraire
 	light_dir = normalize_vec3(light_dir);
 	light_intensity = dot_vec3(hit.normal, light_dir); // calcul de la lumiere, == cos(angle)
@@ -30,6 +30,7 @@ double	calcul_light_bright(t_minirt *minirt, t_hit hit)
 		light_intensity = 0.0f;
 		return (light_intensity);
 	}
+	light_intensity = light_intensity * minirt->light.brightness;
 	return (light_intensity);
 }
 
