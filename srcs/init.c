@@ -2,14 +2,15 @@
 
 /* A CHANGER DE .C PAR LA SUITE */
 
-int	init_camera(t_minirt *minirt)
-{
-	// minirt->cam.position = (t_vec3){0.f, 0.f, 2.f};
-	// minirt->cam.direction = (t_vec3){0.f, 0.f, 1.f};
-	minirt->cam.FOV = 60 * M_PI / 180;
-	minirt->cam.ratio = (float)WIDTH_WIN / (float)HEIGHT_WIN;
-	return (0);
-}
+// int	init_camera(t_minirt *minirt)
+// {
+// 	// minirt->cam.position = (t_vec3){0.f, 0.f, 2.f};
+// 	// minirt->cam.direction = (t_vec3){0.f, 0.f, 1.f};
+// 	minirt->cam.FOV = 60 * M_PI / 180;
+// 	minirt->cam.ratio = (float)WIDTH_WIN / (float)HEIGHT_WIN;
+	
+// 	return (0);
+// }
 
 // void	init_color(t_minirt *minirt)
 // {
@@ -22,6 +23,8 @@ int	init_camera(t_minirt *minirt)
 
 int	init_minirt(t_minirt *minirt)
 {
+	minirt->cam.FOV = 60 * M_PI / 180;
+	minirt->cam.ratio = (float)WIDTH_WIN / (float)HEIGHT_WIN;
 	minirt->to_radian = M_PI / 180;
 	minirt->to_degree = 180 / M_PI;
 	// fonction init camera, image, color, objects etc...

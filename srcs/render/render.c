@@ -1,5 +1,6 @@
 #include "miniRT.h"
 #include "camera.h"
+#include "display_mlx.h"
 
 void	render_scene(t_minirt *minirt, t_img *img)
 {
@@ -9,6 +10,7 @@ void	render_scene(t_minirt *minirt, t_img *img)
 	double	dst;
 	t_ray	ray; // tableau de rayons a la place de la creation des rayons
 	t_hit	hit;
+	
 
 	//calcul de la matrice de transformation des rayons de la camera
 	// matrix = matrix_x * natrix_y
@@ -22,11 +24,12 @@ void	render_scene(t_minirt *minirt, t_img *img)
 			ft_memset(&hit, 0, sizeof(t_hit));
 			hit.dst = -1;
 
-			ray = create_ray_from_cam(minirt, x, y);
+	
+			ray = create_ray_from_cam(minirt, x, y); // a remplacer par ci dessous
 			// ray = mult_matrix(rays[y][x], matrix)
 			// a la place de la creation des rayons, j'ai la transformation des rayons (rotation+translation)
 
-			hit.ray = ray; // pour recuperer le ray pour le calcul de l'ombre
+			hit.ray = ray; // pour recuperer le ray pour le calcul de l'ombre et le point de depart de l'intersection
 			i = 0;
 			while (i < minirt->objects.size)
 			{
