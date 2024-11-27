@@ -7,9 +7,11 @@ void	render_scene(t_minirt *minirt, t_img *img)
 	int		y;
 	size_t	i;
 	double	dst;
-	t_ray	ray;
+	t_ray	ray; // tableau de rayons a la place de la creation des rayons
 	t_hit	hit;
 
+	//calcul de la matrice de transformation des rayons de la camera
+	// matrix = matrix_x * natrix_y
 	y = 0;
 	while (y <= HEIGHT_WIN)
 	{
@@ -21,6 +23,9 @@ void	render_scene(t_minirt *minirt, t_img *img)
 			hit.dst = -1;
 
 			ray = create_ray_from_cam(minirt, x, y);
+			// ray = mult_matrix(rays[y][x], matrix)
+			// a la place de la creation des rayons, j'ai la transformation des rayons (rotation+translation)
+
 			hit.ray = ray; // pour recuperer le ray pour le calcul de l'ombre
 			i = 0;
 			while (i < minirt->objects.size)

@@ -15,6 +15,7 @@ int main(int argc, char **argv)
 	//init minirt -> voir donnees cam et angle
 	init_camera(&minirt); // for test pars
 //	print_parsing(&minirt);
+	// creeer un double tableau de rayon de taille x*y et calculer tous les rayons d'origine 0.0.0 et direction 0.0.1
 
 	if (mlx_init_protected(&minirt.img) != 0)
 	{

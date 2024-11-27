@@ -18,8 +18,8 @@ t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y)
 	coord.x = (float)x / (float)WIDTH_WIN * 2.0f - 1.0f;
 	coord.x *= minirt->cam.ratio;
 	coord.y = -((float)y / (float)HEIGHT_WIN * 2.0f - 1.0f);
-	ray.origin = minirt->cam.position;
-	ray.direction = (t_vec3){coord.x, coord.y, minirt->cam.direction.z};
+	ray.origin = (t_vec3){0, 0, 0};
+	ray.direction = normalize_vec3((t_vec3){coord.x, coord.y, 1});
 	return (ray);
 }
 
@@ -33,7 +33,7 @@ bool	check_ray_to_light(t_minirt *minirt, t_hit hit, t_vec3 light_dir)
 	i = 0;
 	ray.origin = hit.position;
 	ray.direction = light_dir;
-	ray.origin = add_vec3(ray.origin, mult_nb_vec3(hit.ray.direction, -EPSILON));
+	//ray.origin = add_vec3(ray.origin, mult_nb_vec3(hit.ray.direction, -EPSILON));
 	while (i < minirt->objects.size)
 	{
 		light_dst = get_light_distance(minirt->light.position, hit.position);
