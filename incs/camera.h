@@ -13,5 +13,9 @@ typedef struct s_camera
 	bool	is_init;
 }	t_camera;
 
+typedef struct s_matrix
+{
+	double	matrix[3][3];
+}	t_matrix;
 
 #endif

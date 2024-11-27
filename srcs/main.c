@@ -22,9 +22,10 @@ int main(int argc, char **argv)
 	}
 
 	/************************* */
+	camera(&minirt);	
+
 
 	render_scene(&minirt, &minirt.img);
-
 
 	/**************************** */
 	mlx_put_image_to_window(minirt.img.mlx_ptr, minirt.img.win_ptr, minirt.img.img, 0, 0); //  a supprimer apres car compris dans loop

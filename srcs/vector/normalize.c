@@ -9,6 +9,15 @@ double	norm_vec3(t_vec3 a)
 	return (length);
 }
 
+double	norm_vec2(t_vec2 a)
+{
+	double	length;
+
+	length = sqrtf(a.x * a.x + a.y * a.y);
+	printf("length = %f\n", length);
+	return (length);
+}
+
 /* normalize the vector */
 t_vec3	normalize_vec3(t_vec3 a)
 {
@@ -18,6 +27,16 @@ t_vec3	normalize_vec3(t_vec3 a)
 	a.x = (a.x / length);
 	a.y = (a.y / length);
 	a.z = (a.z / length);
+	return (a);
+}
+
+t_vec2	normalize_vec2(t_vec2 a)
+{
+	double	length;
+
+	length = norm_vec2(a);
+	a.x = (a.x / length);
+	a.y = (a.y / length);
 	return (a);
 }
 // A VOIR DANS LE PARSING SI ON RETOURNE

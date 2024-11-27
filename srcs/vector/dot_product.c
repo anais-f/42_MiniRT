@@ -18,3 +18,8 @@ double	dot_vec3(t_vec3 a, t_vec3 b)
 {
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
+
+double	dot_vec2(t_vec2 a, t_vec2 b)
+{
+	return (a.x * b.x + a.y * b.y);
+}

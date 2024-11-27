@@ -85,7 +85,7 @@ void	print_parsing(t_minirt *minirt);
 
 
 
-
+void	camera(t_minirt *minirt);
 
 /* a changer de header plus tard */
 void	render_scene(t_minirt *minirt, t_img *img);
