@@ -14,7 +14,7 @@ double	norm_vec2(t_vec2 a)
 	double	length;
 
 	length = sqrtf(a.x * a.x + a.y * a.y);
-	printf("length = %f\n", length);
+	//printf("length = %f\n", length);
 	return (length);
 }
 
