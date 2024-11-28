@@ -10,18 +10,25 @@ static double	get_light_distance(t_vec3 p1, t_vec3 p2)
 	return (dst);
 }
 
-t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y)
+t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y) //balayage x, balayge y 
 {
 	t_ray	ray;
 	t_vec2	coord;
 
-	coord.x = (float)x / (float)WIDTH_WIN * 2.0f - 1.0f;
+	// quand le pixel balaye est tout a gauche -1, quand il est au mileu de l'ecran ca fait 0, a droite ca fauit 1
+	coord.x = (float)x / (float)WIDTH_WIN * 2.0f - 1.0f; 
 	coord.x *= minirt->cam.ratio;
 	coord.y = -((float)y / (float)HEIGHT_WIN * 2.0f - 1.0f);
 	ray.origin = (t_vec3){0, 0, 0};
 	ray.direction = normalize_vec3((t_vec3){coord.x, coord.y, 1});
+	// ray.direction = normalize_vec3((t_vec3){1, 0, 0});
 	return (ray);
 }
+
+// A FAIRE AVEC COORD X ET COORD.Y POUR LE FOV
+// 	float fov_scale = tan(cam.FOV * 0.5); // a mettre dans t_camera
+// 	coord.px = (2 * (coord.px + 0.5) / (float)WIDTH_WIN - 1) * cam.ratio * fov_scale;
+// 	coord.py = (1 - 2 * (coord.py + 0.5) / (float)HEIGHT_WIN) * fov_scale;
 
 bool	check_ray_to_light(t_minirt *minirt, t_hit hit, t_vec3 light_dir)
 {

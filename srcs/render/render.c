@@ -26,6 +26,8 @@ void	render_scene(t_minirt *minirt, t_img *img)
 
 	
 			ray = create_ray_from_cam(minirt, x, y); // ray cree en 0.0.0 et dir 0.0.1
+//TR -> SUR L'ORIGINE, ON REMPLACE LA VALEUR
+//ROT -> SUR LA DIRECTION * LA MATRICE
 
 			// ray = mult_matrix(rays[y][x], matrix)
 			// a la place de la creation des rayons, j'ai la transformation des rayons (rotation+translation)
