@@ -2,8 +2,8 @@
 
 void	print_obj_cylinder(t_array array, size_t i)
 {
-	printf("object[%ld]_CYLINDER : type %d, position %f,%f,%f, \
-	direction norm. %f,%f,%f, rad :%f, height :%f, color : %hhu,%hhu,%hhu\n", \
+	printf("object[%ld]_CYLINDER : type %d, pos %f,%f,%f, \
+	dir norm. %f,%f,%f, rad :%f, height :%f, color : %hhu,%hhu,%hhu\n", \
 	i, array.array[i]->type, array.array[i]->position.x, \
 	array.array[i]->position.y, array.array[i]->position.z, \
 	array.array[i]->direction.x, array.array[i]->direction.y, \
@@ -15,8 +15,8 @@ void	print_obj_cylinder(t_array array, size_t i)
 
 void	print_obj_plane(t_array array, size_t i)
 {
-	printf("object[%ld]_PLANE : type %d, position %f,%f,%f," \
-	"direction norm. %f,%f,%f, color : %hhu,%hhu,%hhu\n", i, \
+	printf("object[%ld]_PLANE : type %d, pos %f,%f,%f," \
+	"dir norm. %f,%f,%f, color : %hhu,%hhu,%hhu\n", i, \
 	array.array[i]->type, array.array[i]->position.x, \
 	array.array[i]->position.y, array.array[i]->position.z, \
 	array.array[i]->direction.x, array.array[i]->direction.y, \
@@ -26,7 +26,7 @@ void	print_obj_plane(t_array array, size_t i)
 
 void	print_obj_sphere(t_array array, size_t i)
 {
-	printf("object[%ld]_SPHERE : type %d, position %f,%f,%f, rad : %f," \
+	printf("object[%ld]_SPHERE : type %d, pos %f,%f,%f, rad : %f," \
 		" color : %hhu,%hhu,%hhu\n", i, array.array[i]->type, \
 		array.array[i]->position.x, array.array[i]->position.y, \
 		array.array[i]->position.z, array.array[i]->spec.sphere.radius, \
