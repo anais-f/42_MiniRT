@@ -19,7 +19,7 @@ t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y) //balayage x, balayge 
 	coord.x = (float)x / (float)WIDTH_WIN * 2.0f - 1.0f; 
 	coord.x *= minirt->cam.ratio;
 	coord.y = -((float)y / (float)HEIGHT_WIN * 2.0f - 1.0f);
-	ray.origin = (t_vec3){0, 0, 0};
+	ray.origin = (t_vec3){0, 0, 0}; // voir pour remettre la position de la camera apres test
 	ray.direction = normalize_vec3((t_vec3){coord.x, coord.y, 1});
 	// ray.direction = normalize_vec3((t_vec3){1, 0, 0});
 	return (ray);

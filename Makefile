@@ -17,7 +17,8 @@ SRCS=\
 		$(addprefix render/, $(SRCS_RENDER)) \
 		$(addprefix vector/, $(SRCS_VECTOR)) \
 		$(addprefix array/, $(SRCS_ARRAY)) \
-		$(addprefix utils/, $(SRCS_UTILS))
+		$(addprefix utils/, $(SRCS_UTILS)) \
+		$(addprefix matrix/, $(SRCS_MATRIX)) \
 		
 
 SRCS_ARRAY=\
@@ -32,8 +33,10 @@ SRCS_DISPLAYMLX=\
 		event_mlx.c \
 		my_pxl_put.c \
 
-SRCS_CAMERA=\
-		camera.c \
+SRCS_MATRIX=\
+		identity_matrix.c \
+		multiply_matrix.c \
+		rotation_matrix.c \
 
 SRCS_OBJECTS=\
 		sphere.c \

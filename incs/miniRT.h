@@ -86,6 +86,13 @@ void	print_parsing(t_minirt *minirt);
 
 
 void	camera(t_minirt *minirt);
+t_mat	matrix_identity(void);
+t_mat	multiply_matrix(t_mat a, t_mat b);
+void	print_matrix(t_mat mat);
+t_mat	rotation_matrix_x(double theta);
+t_mat	rotation_matrix_y(double theta);
+
+
 
 /* a changer de header plus tard */
 void	render_scene(t_minirt *minirt, t_img *img);

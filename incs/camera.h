@@ -11,11 +11,9 @@ typedef struct s_camera
 	float	FOV; //penser a convertir les angles recus en radian = angle * PI/180
 	float	ratio; // ratio = width / height
 	bool	is_init;
+	t_mat	rotation_matrix;
 }	t_camera;
 
-typedef struct s_matrix
-{
-	double	matrix[3][3];
-}	t_matrix;
+
 
 #endif
