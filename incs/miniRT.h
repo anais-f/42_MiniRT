@@ -45,7 +45,6 @@ typedef struct s_minirt
 	t_array			objects;
 	t_light			light;
 	t_ambient_light	ambient_light;
-	t_vec2			rot_y;
 	double			to_radian;
 	double			to_degree;
 }	t_minirt;
@@ -92,6 +91,9 @@ t_mat	multiply_matrix(t_mat a, t_mat b);
 void	print_matrix(t_mat mat);
 t_mat	rotation_matrix_x(double theta);
 t_mat	rotation_matrix_y(double theta);
+
+t_mat add_mat(t_mat m1, t_mat m2);
+t_mat	mult_float_matrix(float a, t_mat b);
 
 
 

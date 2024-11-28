@@ -27,6 +27,42 @@ t_mat	multiply_matrix(t_mat a, t_mat b)
 	}
 	return(mat);
 }
+
+t_mat	mult_float_matrix(float a, t_mat b)
+{
+	t_mat	res;
+
+	res.mat[0][0] = b.mat[0][0] * a;
+	res.mat[0][1] = b.mat[0][1] * a;
+	res.mat[0][2] = b.mat[0][2] * a;
+	res.mat[1][0] = b.mat[1][0] * a;
+	res.mat[1][1] = b.mat[1][1] * a;
+	res.mat[1][2] = b.mat[1][2] * a;
+	res.mat[2][0] = b.mat[2][0] * a;
+	res.mat[2][1] = b.mat[2][1] * a;
+	res.mat[2][2] = b.mat[2][2] * a;
+	return (res);
+}
+
+t_mat add_mat(t_mat m1, t_mat m2)
+{
+	t_mat res;
+	int i;
+	int j;
+
+	i = 0;
+	while (i < 3)
+	{
+		j = 0;
+		while (j < 3)
+		{
+			res.mat[i][j] = m1.mat[i][j] + m2.mat[i][j];
+			j++;
+		}
+		i++;
+	}
+	return (res);
+}
 /* Multiplication detaillee 
 
 	mat.mat[0][0] = a.mat[0][0] * b.mat[0][0] + a.mat[0][1] * b.mat[1][0] + a.mat[0][2] * b.mat[2][0];
