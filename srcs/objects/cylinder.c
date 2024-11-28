@@ -11,11 +11,14 @@ double	cylinder_intersection(t_ray ray, t_object cylinder)
 	double t1;
 
 	offset_ray_origin = sub_vec3(ray.origin, cylinder.position); // Calcul du vecteur offset_ray_origin (différence entre origine du rayon et position du cylindre)
-	ray_dir_proj = sub_vec3(ray.direction, mult_nb_vec3(cylinder.direction, dot_vec3(ray.direction, cylinder.direction))); 	// Calcul des projections des vecteurs sur l'axe du cylindre
-	offset_ray_origin_proj = sub_vec3(offset_ray_origin, mult_nb_vec3(cylinder.direction, dot_vec3(offset_ray_origin, cylinder.direction))); // Calcul des projections des vecteurs sur l'axe du cylindre
+	ray_dir_proj = sub_vec3(ray.direction, mult_nb_vec3(cylinder.direction, \
+		dot_vec3(ray.direction, cylinder.direction))); // Calcul de la projection du vecteur direction sur l'axe du cylindre
+	offset_ray_origin_proj = sub_vec3(offset_ray_origin, mult_nb_vec3 \
+		(cylinder.direction, dot_vec3(offset_ray_origin, cylinder.direction))); // Calcul de la projection du vecteur offset_ray_origin sur l'axe du cylindre
 	abc[0] = dot_vec3(ray_dir_proj, ray_dir_proj);
 	abc[1] = 2 * dot_vec3(ray_dir_proj, offset_ray_origin_proj);
-	abc[2] = dot_vec3(offset_ray_origin_proj, offset_ray_origin_proj) - (cylinder.spec.cylinder.radius * cylinder.spec.cylinder.radius);
+	abc[2] = dot_vec3(offset_ray_origin_proj, offset_ray_origin_proj) \
+		- (cylinder.spec.cylinder.radius * cylinder.spec.cylinder.radius);
 	discriminant = abc[1] * abc[1] - 4 * abc[0] * abc[2];
 	if (discriminant < 0)
 		return (-1);
