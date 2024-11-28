@@ -45,6 +45,7 @@ typedef struct s_minirt
 	t_array			objects;
 	t_light			light;
 	t_ambient_light	ambient_light;
+	t_vec2			rot_y;
 	double			to_radian;
 	double			to_degree;
 }	t_minirt;

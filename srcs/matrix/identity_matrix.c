@@ -6,6 +6,7 @@ void	print_matrix(t_mat mat)
 	int i;
 	int j;
 
+	printf("Matrix final\n");
 	i = 0;
 	while (i < 3)
 	{

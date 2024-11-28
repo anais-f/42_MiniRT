@@ -1,0 +1,10 @@
+matrix x * y
+Matrix final
+-0.000000 0.000000 -1.000000 
+1.000000 -0.000000 -0.000000 
+-0.000000 -1.000000 0.000000 
+radian theta_y = -1.570796
+degree theta_y = -90.000003
+radian theta_x = -1.570796
+degree theta_x = -90.000003
+Render done

@@ -29,7 +29,10 @@ void	render_scene(t_minirt *minirt, t_img *img)
 //TR -> SUR L'ORIGINE, ON REMPLACE LA VALEUR
 //ROT -> SUR LA DIRECTION * LA MATRICE
 			ray.origin = minirt->cam.position;
-			ray.direction = mult_vec3_matrix(ray.direction, minirt->cam.rotation_matrix);
+			t_vec3 tmp = mult_vec3_matrix((t_vec3){0,0,1}, minirt->cam.rotation_matrix);
+			// /printf("mult vec3 matrix vec.x = %f, vec.y = %f, vec.z = %f\n", tmp.x, tmp.y, tmp.z);
+			// printf("mult vec3 matrix vec.x = %f, vec.y = %f, vec.z = %f\n\n", normalize_vec3(minirt->cam.direction).x, normalize_vec3(minirt->cam.direction).y, normalize_vec3(minirt->cam.direction).z);
+			ray.direction = normalize_vec3(mult_vec3_matrix(ray.direction, minirt->cam.rotation_matrix));
 
 			// a la place de la creation des rayons, j'ai la transformation des rayons (rotation+translation)
 
