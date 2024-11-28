@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 	prasing_map(&minirt, argv[1]);
 	//init minirt -> voir donnees cam et angle
 	init_camera(&minirt); // for test pars
-//	print_parsing(&minirt);
+	print_parsing(&minirt);
 	if (mlx_init_protected(&minirt.img) != 0)
 	{
 		mlx_destroy_all(&minirt.img);

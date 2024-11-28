@@ -21,7 +21,8 @@ SRCS=\
 		
 
 SRCS_ARRAY=\
-		array.c
+		array.c \
+		print_array.c \
 
 SRCS_CAMERA=\
 		camera.c \
