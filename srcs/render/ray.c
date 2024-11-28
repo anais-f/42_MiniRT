@@ -10,18 +10,28 @@ static double	get_light_distance(t_vec3 p1, t_vec3 p2)
 	return (dst);
 }
 
-t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y) //balayage x, balayge y 
+t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y)
 {
 	t_ray	ray;
 	t_vec2	coord;
+	float	rh;
+	float	rv;
 
-	// quand le pixel balaye est tout a gauche -1, quand il est au mileu de l'ecran ca fait 0, a droite ca fauit 1
+	// minirt->cam.FOV = minirt->cam.FOV * minirt->to_radian;
 	coord.x = (float)x / (float)WIDTH_WIN * 2.0f - 1.0f; 
-	coord.x *= minirt->cam.ratio;
-	coord.y = -((float)y / (float)HEIGHT_WIN * 2.0f - 1.0f);
-	ray.origin = minirt->cam.position; // voir pour remettre la position de la camera apres test
+	coord.y = 1 -(float)y / (float)HEIGHT_WIN * 2.0f;
+	rh = 2 * tan(minirt->cam.FOV * 0.5) / WIDTH_WIN;
+	rv = 2 * tan(minirt->cam.FOV * HEIGHT_WIN /(WIDTH_WIN * 2)) / HEIGHT_WIN;
+	ray.origin.x = (coord.x - WIDTH_WIN * 0.5) * rh;
+	ray.origin.y = (HEIGHT_WIN * 0.5 - coord.y) * rv;
+	ray.origin.z = 1;
+
+	// coord.x = (float)x / (float)WIDTH_WIN * 2.0f - 1.0f; 
+	// coord.x *= minirt->cam.ratio;
+	// coord.y = 1 -(float)y / (float)HEIGHT_WIN * 2.0f;
+	// ray.origin = minirt->cam.position;
+	
 	ray.direction = normalize_vec3((t_vec3){coord.x, coord.y, 1});
-	// ray.direction = normalize_vec3((t_vec3){1, 0, 0});
 	return (ray);
 }
 
