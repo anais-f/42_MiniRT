@@ -5,11 +5,6 @@ static int	check_direction(t_minirt minirt)
 	size_t	i;
 
 	i = 0;
-	if (isnan(minirt.cam.direction.x))
-	{
-		printf("Camera direction is not set\n");
-		return (1);
-	}
 	while (i < minirt.objects.size)
 	{
 		if (minirt.objects.array[i]->type == PLANE || \
@@ -17,7 +12,7 @@ static int	check_direction(t_minirt minirt)
 		{
 			if (isnan(minirt.objects.array[i]->direction.x))
 			{
-				printf("Direction can't be normalized\n");
+				printf("Direction of object[%ld] can't be normalized\n", i);
 				return (1);
 			}
 		}

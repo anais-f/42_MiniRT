@@ -33,7 +33,7 @@ bool	check_ray_to_light(t_minirt *minirt, t_hit hit, t_vec3 light_dir)
 	i = 0;
 	ray.origin = hit.position;
 	ray.direction = light_dir;
-	//ray.origin = add_vec3(ray.origin, mult_nb_vec3(hit.ray.direction, -EPSILON));
+	ray.origin = add_vec3(ray.origin, mult_nb_vec3(hit.ray.direction, -EPSILON));
 	while (i < minirt->objects.size)
 	{
 		light_dst = get_light_distance(minirt->light.position, hit.position);
