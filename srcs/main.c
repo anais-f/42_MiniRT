@@ -5,12 +5,10 @@ int main(int argc, char **argv)
 {
 	t_minirt	minirt;
 
-	minirt = (t_minirt){0}; // bzero ? 
+	ft_bzero(&minirt, sizeof(t_minirt));
 	if (check_argv(argc, argv[1]) == 1)
 		return (1);
-
 	array_init(&minirt.objects);
-
 	prasing_map(&minirt, argv[1]);
 	//init minirt -> voir donnees cam et angle
 	init_camera(&minirt); // for test pars
@@ -18,7 +16,8 @@ int main(int argc, char **argv)
 
 	if (mlx_init_protected(&minirt.img) != 0)
 	{
-		// free les trucs de la scene ?
+		mlx_destroy_all(&minirt.img);
+		array_free(&minirt.objects);
 		return (-1);
 	}
 
