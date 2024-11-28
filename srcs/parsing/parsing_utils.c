@@ -78,15 +78,15 @@ void	print_parsing(t_minirt *minirt)
 	size_t	i;
 
 	i = 0;
-	printf("ambient light brightness : %f clolor : %d %d %d\n",
+	printf("Ambient light brightness : %f color : %d %d %d\n",
 		minirt->ambient_light.brightness, minirt->ambient_light.color.r,
 		minirt->ambient_light.color.g, minirt->ambient_light.color.b);
-	printf("camera pos : %f %f %f dir : %f %f %f fov : %f\n",
+	printf("Camera pos : %f %f %f dir : %f %f %f fov : %f\n",
 		minirt->cam.position.x, minirt->cam.position.y,
 		minirt->cam.position.z, minirt->cam.direction.x,
 		minirt->cam.direction.y, minirt->cam.direction.z,
 		minirt->cam.FOV);
-	printf("light pos : %f %f %f brightness : %f color : %d %d %d\n",
+	printf("Light pos : %f %f %f brightness : %f color : %d %d %d\n",
 		minirt->light.position.x, minirt->light.position.y,
 		minirt->light.position.z, minirt->light.brightness,
 		minirt->light.color.r, minirt->light.color.g, minirt->light.color.b);

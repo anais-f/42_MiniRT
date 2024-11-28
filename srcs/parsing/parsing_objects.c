@@ -16,11 +16,11 @@ static int	add_object(t_object object, t_minirt *minirt)
 	return (0);
 }
 
-int	check_range_direction(t_object object, int type)
+int	check_range_direction(t_object *object, int type)
 {
-	if (is_in_range(object.direction.x, -1, 1) == false || \
-		is_in_range(object.direction.y, -1, 1) == false || \
-		is_in_range(object.direction.z, -1, 1) == false)
+	if (is_in_range(object->direction.x, -1, 1) == false || \
+		is_in_range(object->direction.y, -1, 1) == false || \
+		is_in_range(object->direction.z, -1, 1) == false)
 	{
 		if (type == CYLINDER)
 			printf("Cylinder direction out of range\n");
@@ -28,6 +28,7 @@ int	check_range_direction(t_object object, int type)
 			printf("Plane direction out of range\n");
 		return (3);
 	}
+	object->direction = normalize_vec3(object->direction);
 	return (0);
 }
 
@@ -65,7 +66,7 @@ int	parse_plane(char **line_parsed, t_minirt *minirt)
 		parse_color(minirt, line_parsed[3], &object.color))
 		return (2);
 	object.type = PLANE;
-	if (check_range_direction(object, object.type))
+	if (check_range_direction(&object, object.type))
 		return (3);
 	if (add_object(object, minirt))
 		return (4);
@@ -86,7 +87,7 @@ int	parse_cylinder(char **line_parsed, t_minirt *minirt)
 		parse_color(minirt, line_parsed[5], &object.color))
 		return (2);
 	object.type = CYLINDER;
-	if (check_range_direction(object, object.type))
+	if (check_range_direction(&object, object.type))
 		return (3);
 	if (!is_valid_float(line_parsed[3]) || !is_valid_float(line_parsed[4]))
 	{

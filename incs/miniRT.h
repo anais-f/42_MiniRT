@@ -56,8 +56,6 @@ typedef enum e_items
 	LIGHT,
 	OBJECTS,
 }			t_items;
- 
-
 
 /* Parsing */
 bool	check_range_items(t_minirt *minirt, t_items items);
@@ -89,14 +87,16 @@ void	print_parsing(t_minirt *minirt);
 
 /* a changer de header plus tard */
 void	render_scene(t_minirt *minirt, t_img *img);
-
-void	init_color(t_minirt *minirt);
 int		init_camera(t_minirt *minirt);
 int		init_minirt(t_minirt *minirt);
-int		init_light(t_minirt *minirt);
-int		init_object(t_minirt *minirt);
-int		init_ambient_light(t_minirt *minirt);
-void	ft_free_exit(t_minirt *minirt, char *line, char **line_parsed, int exit_code);
+void	ft_free_exit(t_minirt *minirt, char *line, \
+			char **line_parsed, int exit_code);
+
+// void	init_color(t_minirt *minirt);
+// int		init_light(t_minirt *minirt);
+// int		init_object(t_minirt *minirt);
+// int		init_ambient_light(t_minirt *minirt);
+
 
 
 

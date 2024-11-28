@@ -1,5 +1,31 @@
 #include "miniRT.h"
 
+static int	check_direction(t_minirt minirt)
+{
+	size_t	i;
+
+	i = 0;
+	if (isnan(minirt.cam.direction.x))
+	{
+		printf("Camera direction is not set\n");
+		return (1);
+	}
+	while (i < minirt.objects.size)
+	{
+		if (minirt.objects.array[i]->type == PLANE || \
+			minirt.objects.array[i]->type == CYLINDER)
+		{
+			if (isnan(minirt.objects.array[i]->direction.x))
+			{
+				printf("Direction can't be normalized\n");
+				return (1);
+			}
+		}
+		i++;
+	}
+	return (0);
+}
+
 static int	select_parser(char **line_parsed, t_minirt *minirt)
 {
 	if (ft_strncmp(line_parsed[0], "A", ft_strlen(line_parsed[0])) == 0)
@@ -39,6 +65,8 @@ int	prasing_map(t_minirt *minirt, char *file)
 	}
 	free(line);
 	close(map_file);
+	if (check_direction(*minirt))
+		return (1);
 	return (0);
 }
 
