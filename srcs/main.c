@@ -9,7 +9,11 @@ int main(int argc, char **argv)
 	if (check_argv(argc, argv[1]) == 1)
 		return (1);
 	array_init(&minirt.objects);
-	prasing_map(&minirt, argv[1]);
+	if (prasing_map(&minirt, argv[1]))
+	{
+		array_free(&minirt.objects);
+		return (1);
+	}
 	//init minirt -> voir donnees cam et angle
 	init_camera(&minirt); // for test pars
 	print_parsing(&minirt);

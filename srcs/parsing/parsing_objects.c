@@ -27,8 +27,8 @@ int	check_range_direction(t_object *object, int type)
 		else if (type == PLANE)
 			printf("Plane direction out of range\n");
 		return (3);
-		object->direction = normalize_vec3(object->direction);
 	}
+	object->direction = normalize_vec3(object->direction);
 	return (0);
 }
 
