@@ -48,10 +48,10 @@ int main(int argc, char **argv)
 		return (1);
 
 	array_init(&minirt.objects);
-	init_minirt(&minirt);
 
 	prasing_map(&minirt, argv[1]);
-	// print_parsing(&minirt);
+	//print_parsing(&minirt);
+	init_minirt(&minirt);
 	
 
 	if (mlx_init_protected(&minirt.img) != 0)
@@ -62,7 +62,6 @@ int main(int argc, char **argv)
 
 	/************************* */
 	camera(&minirt);	
-
 
 	render_scene(&minirt, &minirt.img);
 

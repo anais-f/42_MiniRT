@@ -14,24 +14,32 @@ t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y)
 {
 	t_ray	ray;
 	t_vec2	coord;
-	float	rh;
-	float	rv;
 
-	// minirt->cam.FOV = minirt->cam.FOV * minirt->to_radian;
-	coord.x = (float)x / (float)WIDTH_WIN * 2.0f - 1.0f; 
-	coord.y = 1 -(float)y / (float)HEIGHT_WIN * 2.0f;
-	rh = 2 * tan(minirt->cam.FOV * 0.5) / WIDTH_WIN;
-	rv = 2 * tan(minirt->cam.FOV * HEIGHT_WIN /(WIDTH_WIN * 2)) / HEIGHT_WIN;
-	ray.origin.x = (coord.x - WIDTH_WIN * 0.5) * rh;
-	ray.origin.y = (HEIGHT_WIN * 0.5 - coord.y) * rv;
-	ray.origin.z = 1;
 
-	// coord.x = (float)x / (float)WIDTH_WIN * 2.0f - 1.0f; 
-	// coord.x *= minirt->cam.ratio;
-	// coord.y = 1 -(float)y / (float)HEIGHT_WIN * 2.0f;
+
+	float rh = 2 * tan(minirt->cam.FOV * 0.5) / WIDTH_WIN;
+	float rv = 2 * tan(minirt->cam.FOV * HEIGHT_WIN /(WIDTH_WIN * 2)) / HEIGHT_WIN;
+	ray.origin = minirt->cam.position;
+	ray.direction.x = ((float)x - (float)WIDTH_WIN * 0.5) * rh;
+	ray.direction.y = ((float)HEIGHT_WIN * 0.5 - (float)y) * rv;
+	ray.direction.z = 1;
+	if ((x == 0 || x == WIDTH_WIN) && (y == 0 || y == HEIGHT_WIN))
+		printf("ray.c ray direction (%f, %f, %f)\n", ray.direction.x, ray.direction.y, -ray.direction.z);
+	ray.direction = normalize_vec3(ray.direction);
+	//angle de 56.08 sur anais
+
+
+	// coord.x = (2 * (float)x / (float)WIDTH_WIN - 1) * minirt->cam.aspect_ratio * minirt->cam.fov_scale;
+	// coord.y = (1 - 2 * (float)y / (float)HEIGHT_WIN) * minirt->cam.fov_scale;
 	// ray.origin = minirt->cam.position;
+	// ray.direction = (t_vec3){coord.x, coord.y, 1};
+	// if ((x == 0 || x == WIDTH_WIN - 1) && (y == 0 || y == HEIGHT_WIN - 1))
+	// 	printf("ray.c ray direction (%f, %f, %f)\n", ray.direction.x, ray.direction.y, -ray.direction.z);
+	// ray.direction = normalize_vec3(ray.direction);
+	// //angle de 67.31 sur anais
+
+
 	
-	ray.direction = normalize_vec3((t_vec3){coord.x, coord.y, 1});
 	return (ray);
 }
 
@@ -39,6 +47,8 @@ t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y)
 // 	float fov_scale = tan(cam.FOV * 0.5); // a mettre dans t_camera
 // 	coord.px = (2 * (coord.px + 0.5) / (float)WIDTH_WIN - 1) * cam.ratio * fov_scale;
 // 	coord.py = (1 - 2 * (coord.py + 0.5) / (float)HEIGHT_WIN) * fov_scale;
+	// coord.x = (2 * (coord.x + 0.5) / (float)WIDTH_WIN - 1) * minirt->cam.ratio * fov_scale;
+	// coord.y = (1 - 2 * (coord.y + 0.5) / (float)HEIGHT_WIN) * fov_scale;
 
 bool	check_ray_to_light(t_minirt *minirt, t_hit hit, t_vec3 light_dir)
 {

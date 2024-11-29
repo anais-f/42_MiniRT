@@ -10,7 +10,6 @@ void	camera(t_minirt *mini)
 	t_vec3 w = cross_vec3(u, v);
 	float w_norm = norm_vec3(w);
 	w = normalize_vec3(w);
-	t_mat R;
 	t_mat I = matrix_identity();
 	float theta;
 	t_mat k;
@@ -34,11 +33,10 @@ void	camera(t_minirt *mini)
 
 	mini->cam.rotation_matrix = add_mat(add_mat(I, m1), m2);
 
-
 	printf("theta = %f\n", theta);	
 	printf("theta degree = %f\n", theta * 180 / M_PI);
 	
-
+	// https://www.geogebra.org/3d/d8tfhpvh
 }
 
 

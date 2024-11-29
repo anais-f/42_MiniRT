@@ -1,7 +1,7 @@
 #ifndef DISPLAY_MLX_H
 # define DISPLAY_MLX_H
 
-# define HEIGHT_WIN 720 /* HEIGHT of MLX WIN */
+# define HEIGHT_WIN 540 /* HEIGHT of MLX WIN */
 # define WIDTH_WIN 720 /* WIDTH of MLX WIN */
 # define ESC_KB 65307 /* ESC BUTTON */
 
