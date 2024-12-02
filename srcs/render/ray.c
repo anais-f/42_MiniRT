@@ -25,8 +25,11 @@ t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y)
 	ray.direction.z = 1;
 	if ((x == 0 || x == WIDTH_WIN) && (y == 0 || y == HEIGHT_WIN))
 		printf("ray.c ray direction (%f, %f, %f)\n", ray.direction.x, ray.direction.y, -ray.direction.z);
+	if ((x == 0 || x == WIDTH_WIN - 1) && (y == HEIGHT_WIN / 2))
+		printf("y=0 ray direction (%f, %f, %f)\n", ray.direction.x, ray.direction.y, -ray.direction.z);
 	ray.direction = normalize_vec3(ray.direction);
 	//angle de 56.08 sur anais
+	// https://www.geogebra.org/3d/vajbwuyv
 
 
 	// coord.x = (2 * (float)x / (float)WIDTH_WIN - 1) * minirt->cam.aspect_ratio * minirt->cam.fov_scale;
@@ -34,9 +37,13 @@ t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y)
 	// ray.origin = minirt->cam.position;
 	// ray.direction = (t_vec3){coord.x, coord.y, 1};
 	// if ((x == 0 || x == WIDTH_WIN - 1) && (y == 0 || y == HEIGHT_WIN - 1))
-	// 	printf("ray.c ray direction (%f, %f, %f)\n", ray.direction.x, ray.direction.y, -ray.direction.z);
+	// 	printf("coin ray direction (%f, %f, %f)\n", ray.direction.x, ray.direction.y, -ray.direction.z);
+	// if ((x == 0 || x == WIDTH_WIN - 1) && (y == HEIGHT_WIN / 2))
+	// 	printf("y=0 ray direction (%f, %f, %f)\n", ray.direction.x, ray.direction.y, -ray.direction.z);
 	// ray.direction = normalize_vec3(ray.direction);
-	// //angle de 67.31 sur anais
+	// //angle de 67.31 sur anais et 75 en 0
+	// https://www.geogebra.org/3d/hmw9wtth
+
 
 
 	
