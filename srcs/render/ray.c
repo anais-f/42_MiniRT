@@ -1,6 +1,6 @@
     #include "miniRT.h"
 #include "camera.h"
-#define EPSILON 1e-7
+#define EPSILON 1e-6
 
 static double	get_light_distance(t_vec3 p1, t_vec3 p2)
 {
@@ -13,7 +13,7 @@ static double	get_light_distance(t_vec3 p1, t_vec3 p2)
 t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y)
 {
 	t_ray	ray;
-	t_vec2	coord;
+	//t_vec2	coord;
 
 
 
@@ -69,7 +69,7 @@ bool	check_ray_to_light(t_minirt *minirt, t_hit hit, t_vec3 light_dir)
 	i = 0;
 	ray.origin = hit.position;
 	ray.direction = light_dir;
-	//ray.origin = add_vec3(ray.origin, mult_nb_vec3(hit.ray.direction, -EPSILON));
+	ray.origin = add_vec3(ray.origin, mult_nb_vec3(hit.ray.direction, -EPSILON));
 	while (i < minirt->objects.size)
 	{
 		light_dst = get_light_distance(minirt->light.position, hit.position);
