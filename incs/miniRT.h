@@ -1,6 +1,8 @@
 #ifndef MINIRT_H
 #define MINIRT_H
 
+# define RANGE 10
+
 # include <stdlib.h>
 # include <stdio.h>
 # include <mlx.h>

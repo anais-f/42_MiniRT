@@ -51,7 +51,7 @@ void	array_print(t_array array)
 	i = 0;
 	while (i < array.size)
 	{
-		printf("object[%ld] :%d\n" , i, array.array[i]->type);
+		printf("object[%ld] :%d\n", i, array.array[i]->type);
 		i++;
 	}
 }

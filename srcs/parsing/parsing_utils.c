@@ -56,9 +56,9 @@ bool	check_range_items(t_minirt *minirt, t_items items)
 	}
 	if (items == CAMERA)
 	{
-		if (!is_in_range(minirt->cam.direction.x, -10, 10) || \
-			!is_in_range(minirt->cam.direction.y, -10, 10) || \
-			!is_in_range(minirt->cam.direction.z, -10, 10) || \
+		if (!is_in_range(minirt->cam.direction.x, -RANGE, RANGE) || \
+			!is_in_range(minirt->cam.direction.y, -RANGE, RANGE) || \
+			!is_in_range(minirt->cam.direction.z, -RANGE, RANGE) || \
 			!is_in_range(minirt->cam.FOV, 0, 180))
 			return (true);
 	}
