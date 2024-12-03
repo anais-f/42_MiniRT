@@ -31,7 +31,7 @@ void	render_scene(t_minirt *minirt, t_img *img)
 			while (i < minirt->objects.size)
 			{
 				// trouver l'objet le plus proche -> recuperer la distance
-				dst = object_intersection(ray, *minirt->objects.array[i]); // renvoi un double pour faire le calcul pour trouver l'objet le plus proche 
+				dst = object_intersection(ray, *minirt->objects.array[i], &hit); // renvoi un double pour faire le calcul pour trouver l'objet le plus proche 
 				if (dst != -1 && (dst < hit.dst || hit.dst == -1))
 				{
 					hit.dst = dst;

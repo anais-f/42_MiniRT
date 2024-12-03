@@ -37,7 +37,7 @@ bool	check_ray_to_light(t_minirt *minirt, t_hit hit, t_vec3 light_dir)
 	while (i < minirt->objects.size)
 	{
 		light_dst = get_light_distance(minirt->light.position, hit.position);
-		dst = object_intersection(ray, *minirt->objects.array[i]);
+		dst = object_intersection(ray, *minirt->objects.array[i], &hit);
 		if ((dst > EPSILON) && (dst * dst) < light_dst)	
 			return (false); // intersecte un objet avant la lumiere
 		i++;
