@@ -23,6 +23,7 @@
 
 int	init_minirt(t_minirt *minirt)
 {
+	minirt->cam.rotate = 0;
 	minirt->cam.FOV *= M_PI / 180;
 	minirt->cam.aspect_ratio = (float)WIDTH_WIN / (float)HEIGHT_WIN;
 	minirt->cam.fov_scale = tan(minirt->cam.FOV * 0.5);

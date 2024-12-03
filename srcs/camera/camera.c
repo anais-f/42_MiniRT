@@ -15,6 +15,15 @@ void	camera(t_minirt *mini)
 	t_mat k;
 	t_mat k2;
 
+	printf("cam direction = %f, %f, %f\n", mini->cam.direction.x, mini->cam.direction.y, mini->cam.direction.z);
+	printf("u direction = %f, %f, %f\n", u.x, u.y, u.z);
+	if (mini->cam.direction.z == u.z)
+	{
+		mini->cam.rotate == 5;
+		printf("error camera bool = %d\n", mini->cam.rotate);
+		return;
+	}
+
 	k.mat[0][0] = 0;
 	k.mat[0][1] = -w.z;
 	k.mat[0][2] = w.y;
@@ -32,7 +41,7 @@ void	camera(t_minirt *mini)
 	t_mat m2 = mult_float_matrix(1 - cos(theta), k2);
 
 	mini->cam.rotation_matrix = add_mat(add_mat(I, m1), m2);
-
+	mini->cam.rotate == 0;
 	printf("theta = %f\n", theta);	
 	printf("theta degree = %f\n", theta * 180 / M_PI);
 	

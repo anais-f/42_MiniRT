@@ -52,6 +52,7 @@ int main(int argc, char **argv)
 	prasing_map(&minirt, argv[1]);
 	//print_parsing(&minirt);
 	init_minirt(&minirt);
+	printf("main init cam.rotate = %d\n", minirt.cam.rotate);
 	
 
 	if (mlx_init_protected(&minirt.img) != 0)
@@ -62,6 +63,7 @@ int main(int argc, char **argv)
 
 	/************************* */
 	camera(&minirt);	
+	printf("main cam cam.rotate = %d\n", minirt.cam.rotate);
 
 	render_scene(&minirt, &minirt.img);
 
