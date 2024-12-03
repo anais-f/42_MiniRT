@@ -2,27 +2,12 @@
 #include "miniRT.h"
 #include "vector.h"
 
+	// https://www.geogebra.org/3d/d8tfhpvh
 
-void	camera(t_minirt *mini)
+t_mat	antisymmetrical_mat(t_vec3 w)
 {
-	t_vec3 u =(t_vec3){0, 0, 1};
-	t_vec3 v = normalize_vec3(mini->cam.direction);
-	t_vec3 w = cross_vec3(u, v);
-	float w_norm = norm_vec3(w);
-	w = normalize_vec3(w);
-	t_mat I = matrix_identity();
-	float theta;
+	
 	t_mat k;
-	t_mat k2;
-
-	printf("cam direction = %f, %f, %f\n", mini->cam.direction.x, mini->cam.direction.y, mini->cam.direction.z);
-	printf("u direction = %f, %f, %f\n", u.x, u.y, u.z);
-	if (mini->cam.direction.z == u.z)
-	{
-		mini->cam.rotate == 5;
-		printf("error camera bool = %d\n", mini->cam.rotate);
-		return;
-	}
 
 	k.mat[0][0] = 0;
 	k.mat[0][1] = -w.z;
@@ -33,32 +18,53 @@ void	camera(t_minirt *mini)
 	k.mat[2][0] = -w.y;
 	k.mat[2][1] = w.x;
 	k.mat[2][2] = 0;
-
-	printf("dot product = %f\n", dot_vec3(u, v));
-	theta = atan2(w_norm, dot_vec3(u, v));
-	k2 = multiply_matrix(k, k);
-	t_mat m1 = mult_float_matrix(sin(theta), k);
-	t_mat m2 = mult_float_matrix(1 - cos(theta), k2);
-
-	mini->cam.rotation_matrix = add_mat(add_mat(I, m1), m2);
-	mini->cam.rotate == 0;
-	printf("theta = %f\n", theta);	
-	printf("theta degree = %f\n", theta * 180 / M_PI);
-	
-	// https://www.geogebra.org/3d/d8tfhpvh
+	return (k);
 }
 
+void	camera(t_minirt *mini, t_vec3 v)
+{
+	const t_vec3 u =(t_vec3){0, 0, 1};
+
+	t_vec3 w = cross_vec3(u, v);
+	float w_norm = norm_vec3(w);
+	w = normalize_vec3(w);
+	t_mat identity = matrix_identity();
+	
+	float theta;
+	t_mat m1;
+	t_mat m2;
+
+	t_mat k = antisymmetrical_mat(w);
 
 
+	theta = atan2(w_norm, dot_vec3(u, v));
+	
+	if (theta * mini->to_degree == 0)
+	{
+		mini->cam.rotation_matrix = identity;
+		return;
+	}
+	if ((int)(theta * mini->to_degree) == 180)
+	{
+		mini->cam.rotation_matrix = mult_float_matrix(-1, identity);
+		return;
+	}
 
 
-//CREER 2 matrices de rotation pour x et y
+	m1 = mult_float_matrix(sin(theta), k);
+	m2 = mult_float_matrix(1 - cos(theta),multiply_matrix(k, k));
+	mini->cam.rotation_matrix = add_mat(add_mat(identity, m1), m2);
 
+	
+}
 
-//arc cosinus -> avec la valeur entre -1 et 1, retourne l'angle en radian
-//cosinus -> pour un angle retourne un rapport entre le cote adjacent et l'hypotenuse
-//sinus -> pour un angle retourne un rapport entre le cote oppose et l'hypotenuse
-//tan -> pour un angle retourne un rapport entre le cote oppose et le cote adjacent	
+float	theta_calc(t_vec3 u, t_vec3 v)
+{
+	float theta;
+	t_vec3 w;
 
-
+	w = cross_vec3(u, v);
+	theta = atan2(norm_vec3(w), dot_vec3(u, v));
+	return (theta);
+}
 

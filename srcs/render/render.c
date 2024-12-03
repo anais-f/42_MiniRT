@@ -11,35 +11,24 @@ void	render_scene(t_minirt *minirt, t_img *img)
 	t_ray	ray; // tableau de rayons a la place de la creation des rayons
 	t_hit	hit;
 	
-
-	// printf("D = %f\n", tan(minirt->cam.FOV * 0.5) * 2);
-
 	y = 0;
 	while (y <= HEIGHT_WIN)
 	{
 		x = 0;
 		while (x <= WIDTH_WIN)
 		{
-			
 			// on va afficher l'objet le plus proche en premier
 			ft_memset(&hit, 0, sizeof(t_hit));
 			hit.dst = -1;
-
-
 			ray = create_ray_from_cam(minirt, x, y); // ray cree en 0.0.0 et dir 0.0.1
 		
-
 			// if ((x == 0 || x == WIDTH_WIN - 1) && (y == 0 || y == HEIGHT_WIN - 1))
 			// 	printf("ray direction (%f, %f, %f)\n", ray.direction.x, ray.direction.y, -ray.direction.z);
 
 			//t_vec3 tmp = mult_vec3_matrix((t_vec3){0,0,1}, minirt->cam.rotation_matrix);
 			// printf("mult vec3 matrix vec.x = %f, vec.y = %f, vec.z = %f\n", tmp.x, tmp.y, tmp.z);
 			// printf("mult vec3 matrix vec.x = %f, vec.y = %f, vec.z = %f\n\n", normalize_vec3(minirt->cam.direction).x, normalize_vec3(minirt->cam.direction).y, normalize_vec3(minirt->cam.direction).z);
-			if (minirt->cam.rotate == 0)
-				ray.direction = normalize_vec3(mult_vec3_matrix(ray.direction, minirt->cam.rotation_matrix));
-
-			// a la place de la creation des rayons, j'ai la transformation des rayons (rotation+translation)
-
+			ray.direction = normalize_vec3(mult_vec3_matrix(ray.direction, minirt->cam.rotation_matrix));
 
 			hit.ray = ray; // pour recuperer le ray pour le calcul de l'ombre et le point de depart de l'intersection
 			i = 0;

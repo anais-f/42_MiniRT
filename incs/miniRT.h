@@ -86,13 +86,11 @@ char	**split_commas(char const *s, char c);
 void	print_parsing(t_minirt *minirt);
 
 
-
-void	camera(t_minirt *minirt);
+void	camera(t_minirt *mini, t_vec3 cam_direction);
 t_mat	matrix_identity(void);
 t_mat	multiply_matrix(t_mat a, t_mat b);
 void	print_matrix(t_mat mat);
-t_mat	rotation_matrix_x(double theta);
-t_mat	rotation_matrix_y(double theta);
+
 
 t_mat add_mat(t_mat m1, t_mat m2);
 t_mat	mult_float_matrix(float a, t_mat b);

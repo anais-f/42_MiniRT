@@ -36,4 +36,3 @@ t_mat	matrix_identity(void)
 	mat.mat[2][2] = 1;
 	return(mat);
 }
-
