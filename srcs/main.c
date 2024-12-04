@@ -14,12 +14,7 @@ int main(int argc, char **argv)
 		array_free(&minirt.objects);
 		return (1);
 	}
-	//init minirt -> voir donnees cam et angle
-	init_camera(&minirt); // for test pars
-	print_parsing(&minirt);
 
-	prasing_map(&minirt, argv[1]);
-	//print_parsing(&minirt);
 	init_minirt(&minirt);
 	
 

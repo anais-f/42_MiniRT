@@ -44,14 +44,3 @@ void	array_free(t_array *array)
 	array_init(array);
 }
 
-void	array_print(t_array array)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < array.size)
-	{
-		printf("object[%ld] :%d\n", i, array.array[i]->type);
-		i++;
-	}
-}
