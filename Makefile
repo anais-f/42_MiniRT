@@ -99,7 +99,7 @@ MLX_TARGET = ./mlx/libmlx_Linux.a
 
 CC = cc
 
-CFLAGS = -Werror -Wextra -Wall -g3 -O3 
+CFLAGS = -Werror -Wextra -Wall -O3 
 
 CFLAGS_DEBUG = -Wextra -Wall -g3
 

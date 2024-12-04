@@ -2,15 +2,30 @@
 
 t_vec3	get_normal_cy_at_pos(t_ray ray, t_object *cy, double t_min, int flag)
 {
+	double	offset_hypo;
+	t_vec3	hit_position;
+	double	offset;
+	t_vec3	tmp_hit_position;
+
 	if (flag == 0)
-		return (normalize_vec3(sub_vec3(add_vec3(ray.origin, \
-			mult_nb_vec3(ray.direction, t_min)), cy->position)));
+	{
+		hit_position = mult_nb_vec3(ray.direction, t_min);
+		hit_position = add_vec3(ray.origin, hit_position);
+		offset_hypo = distance_vec3(hit_position, cy->position);
+		offset = offset_hypo - (cy->spec.cy.radius * cy->spec.cy.radius);
+		offset = sqrtf(offset);
+		if (isnan(offset))
+			offset = 0;
+		tmp_hit_position = sub_vec3(hit_position, \
+			mult_nb_vec3(cy->direction, offset));
+		return (normalize_vec3(sub_vec3(tmp_hit_position, cy->position)));
+	}
 	else if (flag == 1)
 		return (mult_nb_vec3(normalize_vec3(sub_vec3(add_vec3(ray.origin, \
 			mult_nb_vec3(ray.direction, t_min)), cy->position)), -1.f));
 	else if (flag == 2)
 		return (mult_nb_vec3(cy->direction, -1.f));
-	return (cy->direction);
+	return ((cy->direction));
 }
 /*
 Retourne la normale du cylindre en fonction de la position de l'intersection
@@ -85,7 +100,8 @@ static double	find_closest_intersection(t_ray ray, t_object *cy, t_hit *hit)
 		t_min = cy->spec.cy.t0;
 		hit->normal = get_normal_cy_at_pos(ray, cy, t_min, 0);
 	}
-	if (cy->spec.cy.t1 > 0 && (t_min < 0 || cy->spec.cy.t1 < t_min))
+	if (cy->spec.cy.t1 > 0 && (t_min < 0 || cy->spec.cy.t1 < t_min) \
+		&& (cy->spec.cy.t_cap[0] == -1 || cy->spec.cy.t_cap[1] == -1))
 	{
 		t_min = cy->spec.cy.t1;
 		hit->normal = get_normal_cy_at_pos(ray, cy, t_min, 1);

@@ -34,7 +34,7 @@ void	calculate_cap_intersections(t_ray ray, t_object *cy, double radius)
 				cap_point = add_vec3(ray.origin, \
 					mult_nb_vec3(ray.direction, t));
 				if (distance_vec3(cap_point, cy->spec.cy.cap_pos[i]) \
-					<= radius * radius)
+						<= radius * radius)
 					cy->spec.cy.t_cap[i] = t;
 			}
 		}
