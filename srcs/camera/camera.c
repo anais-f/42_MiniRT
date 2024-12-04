@@ -34,6 +34,7 @@ void	camera(t_minirt *mini, t_vec3 cam_dir, t_vec3 world_dir)
 	t_mat	m1;
 	t_mat	m2;
 
+	cam_dir = normalize_vec3(cam_dir);
 	w = cross_vec3(world_dir, cam_dir);
 	theta = theta_calc(world_dir, cam_dir, w);
 	w = normalize_vec3(w);

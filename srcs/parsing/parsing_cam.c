@@ -19,7 +19,6 @@ int	parse_camera(char **line_parsed, t_minirt *minirt)
 		printf("Error parsing camera coordinates\n");
 		return (3);
 	}
-	//minirt->cam.direction = normalize_vec3(minirt->cam.direction);
 	minirt->cam.FOV = ft_atof(line_parsed[3]);
 	if (check_range_items(minirt, CAMERA))
 	{

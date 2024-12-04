@@ -7,15 +7,15 @@ t_vec3	get_normal_cy_at_pos(t_ray ray, t_object *cy, double t_min, int flag)
 			mult_nb_vec3(ray.direction, t_min)), cy->position)));
 	else if (flag == 1)
 		return (mult_nb_vec3(normalize_vec3(sub_vec3(add_vec3(ray.origin, \
-			mult_nb_vec3(ray.direction, t_min)), cy->position)), -1.f));  // Corps peut etre normale *-1 ??)
+			mult_nb_vec3(ray.direction, t_min)), cy->position)), -1.f));
 	else if (flag == 2)
-		return (mult_nb_vec3(cy->direction, -1.f)); // Cap inférieur
-	return (cy->direction); // Cap supérieur
+		return (mult_nb_vec3(cy->direction, -1.f));
+	return (cy->direction);
 }
 /*
 Retourne la normale du cylindre en fonction de la position de l'intersection
 flag == 0 corps
-flag == 1 corps en etant a l'interieur
+flag == 1 corps en etant a l'interieur du cylindre (normale * -1 ?)
 flag == 2 cap inferieur
 flag == 3 cap sup.
 */

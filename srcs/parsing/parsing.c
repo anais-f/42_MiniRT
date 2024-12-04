@@ -94,4 +94,3 @@ void	parse_line(char *line, t_minirt *minirt)
 	ft_free_arr(line_parsed);
 	return ;
 }
-

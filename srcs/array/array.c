@@ -24,7 +24,6 @@ void	array_init(t_array *array)
 	array->size = 0;
 }
 
-
 int	array_add(t_object *object, t_array *array)
 {
 	if (array->allocated_size == array->size && array_extend(array) == -1)
@@ -43,4 +42,3 @@ void	array_free(t_array *array)
 	free(array->array);
 	array_init(array);
 }
-

@@ -18,6 +18,5 @@ t_vec3	mult_vec3_matrix(t_vec3 a, t_mat b)
 	vec.x = a.x * b.mat[0][0] + a.y * b.mat[0][1] + a.z * b.mat[0][2];
 	vec.y = a.x * b.mat[1][0] + a.y * b.mat[1][1] + a.z * b.mat[1][2];
 	vec.z = a.x * b.mat[2][0] + a.y * b.mat[2][1] + a.z * b.mat[2][2];
-	//printf("multvec3/mtrix vec = %f %f %f\n", vec.x, vec.y, vec.z);
 	return (vec);
 }

@@ -15,7 +15,7 @@ static void	calc_pixel_and_check_obj(t_minirt *minirt, t_hit *hit, int x, int y)
 	i = 0;
 	while (i < minirt->objects.size)
 	{
-		dst = object_intersection(hit->ray, *minirt->objects.array[i]);
+		dst = object_intersection(hit->ray, *minirt->objects.array[i], hit);
 		if (dst != -1 && (dst < hit->dst || hit->dst == -1))
 		{
 			hit->dst = dst;

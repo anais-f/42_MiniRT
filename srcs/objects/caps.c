@@ -33,14 +33,15 @@ void	calculate_cap_intersections(t_ray ray, t_object *cy, double radius)
 			{
 				cap_point = add_vec3(ray.origin, \
 					mult_nb_vec3(ray.direction, t));
-				if (distance_vec3(cap_point, cy->spec.cy.cap_pos[i]) <= radius)
+				if (distance_vec3(cap_point, cy->spec.cy.cap_pos[i]) \
+					<= radius * radius)
 					cy->spec.cy.t_cap[i] = t;
 			}
 		}
 		i++;
 	}
 }
-/*Calcul des intersections des capuchons*/
-/*Ci dessus la variable denom ainsi que les conditions verifier autour
+/*Calcul des intersections des capuchons
+Ci dessus la variable denom ainsi que les conditions verifier autour
 de celle-ci servent a eviter les divisions par 0 en ayant une precision
 de 10e^-6*/
