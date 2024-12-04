@@ -94,8 +94,8 @@ int	parse_cylinder(char **line_parsed, t_minirt *minirt)
 		printf("Cylinder radius or height is not a valid float\n");
 		return (4);
 	}
-	object.spec.cylinder.radius = (double)ft_atof(line_parsed[3]) / 2.0f;
-	object.spec.cylinder.height = (double)ft_atof(line_parsed[4]);
+	object.spec.cy.radius = (double)ft_atof(line_parsed[3]) / 2.0f;
+	object.spec.cy.height = (double)ft_atof(line_parsed[4]);
 	if (add_object(object, minirt))
 		return (5);
 	return (0);
@@ -107,5 +107,5 @@ int	parse_cylinder(char **line_parsed, t_minirt *minirt)
 // object->color.r, object->color.g, object->color.b);
 //printf("Cylinder pos : %f %f %f diam : %f height : %f color %d %d %d\n",
 // object.position.x, object.position.y, object.position.z,
-//object.spec.cylinder.radius, object.spec.cylinder.height,
+//object.spec.cy.radius, object.spec.cy.height,
 // object.color.r, object.color.g, object.color.b);

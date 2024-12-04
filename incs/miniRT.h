@@ -113,11 +113,13 @@ bool	check_ray_to_light(t_minirt *minirt, t_hit hit, t_vec3 light_dir);
 void	hit_point(t_minirt *minirt, t_ray ray, t_hit *hit);
 double	object_intersection(t_ray ray, t_object object, t_hit *hit);
 double	sphere_intersection(t_ray ray, t_object sphere);
-double	cylinder_intersection(t_ray ray, t_object cylinder, t_hit *hit);
+double	cylinder_intersection(t_ray ray, t_object *cylinder, t_hit *hit);
 double	plane_intersection(t_ray ray, t_object plan);
 t_vec3	get_normal(t_camera cam, t_hit hit);
 t_vec3	get_normal_sphere(t_camera cam, t_hit hit);
 t_vec3	get_normal_plane(t_camera cam, t_hit hit);
 t_vec3	get_normal_cylinder(t_camera cam, t_hit hit);
+void	calculate_cap_positions(t_object *cy);
+void	calculate_cap_intersections(t_ray ray, t_object *cy, double radius);
 
 #endif

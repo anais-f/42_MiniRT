@@ -7,7 +7,7 @@ double	object_intersection(t_ray ray, t_object object, t_hit *hit)
 	if (object.type == PLANE)
 		return (plane_intersection(ray, object));
 	if (object.type == CYLINDER)
-		return (cylinder_intersection(ray, object, hit));
+		return (cylinder_intersection(ray, &object, hit));
 	return (-1);
 }
 
