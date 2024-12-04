@@ -1,5 +1,14 @@
 #include "miniRT.h"
 
+static bool	is_all_init(t_minirt *minirt)
+{
+	if (minirt->ambient_light.is_init && minirt->cam.is_init && \
+		minirt->light.is_init)
+		return (true);
+	printf("Missing A, C or L\n");
+	return (false);
+}
+
 static int	check_direction(t_minirt minirt)
 {
 	size_t	i;
@@ -60,7 +69,7 @@ int	prasing_map(t_minirt *minirt, char *file)
 	}
 	free(line);
 	close(map_file);
-	if (check_direction(*minirt))
+	if (check_direction(*minirt) || !is_all_init(minirt))
 		return (1);
 	return (0);
 }
@@ -85,3 +94,4 @@ void	parse_line(char *line, t_minirt *minirt)
 	ft_free_arr(line_parsed);
 	return ;
 }
+
