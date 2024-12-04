@@ -1,6 +1,8 @@
 #ifndef MINIRT_H
 #define MINIRT_H
 
+# define RANGE 10
+
 # include <stdlib.h>
 # include <stdio.h>
 # include <mlx.h>
@@ -42,7 +44,6 @@ typedef struct s_minirt
 	t_img			img;
 	t_camera		cam;
 	t_color			color;
-	t_object		object[4];
 	t_array			objects;
 	t_light			light;
 	t_ambient_light	ambient_light;
@@ -83,6 +84,13 @@ char	**split_commas(char const *s, char c);
 void	print_parsing(t_minirt *minirt);
 
 
+void	camera(t_minirt *mini, t_vec3 cam_dir, t_vec3 world_dir);
+t_mat	matrix_identity(void);
+t_mat	multiply_matrix(t_mat a, t_mat b);
+
+
+t_mat add_mat(t_mat m1, t_mat m2);
+t_mat	mult_float_matrix(float a, t_mat b);
 
 
 
@@ -94,9 +102,9 @@ void	ft_free_exit(t_minirt *minirt, char *line, \
 			char **line_parsed, int exit_code);
 
 // void	init_color(t_minirt *minirt);
-// int		init_light(t_minirt *minirt);
-// int		init_object(t_minirt *minirt);
-// int		init_ambient_light(t_minirt *minirt);
+// // int		init_light(t_minirt *minirt);
+// // int		init_object(t_minirt *minirt);
+// // int		init_ambient_light(t_minirt *minirt);
 
 
 

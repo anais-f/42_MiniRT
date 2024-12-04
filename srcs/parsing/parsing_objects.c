@@ -18,9 +18,9 @@ static int	add_object(t_object object, t_minirt *minirt)
 
 int	check_range_direction(t_object *object, int type)
 {
-	if (is_in_range(object->direction.x, -1, 1) == false || \
-		is_in_range(object->direction.y, -1, 1) == false || \
-		is_in_range(object->direction.z, -1, 1) == false)
+	if (is_in_range(object.direction.x, -RANGE, RANGE) == false || \
+		is_in_range(object.direction.y, -RANGE, RANGE) == false || \
+		is_in_range(object.direction.z, -RANGE, RANGE) == false)
 	{
 		if (type == CYLINDER)
 			printf("Cylinder direction out of range\n");

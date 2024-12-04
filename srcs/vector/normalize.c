@@ -1,6 +1,5 @@
 #include "vector.h"
 
-/*vector's lenght*/
 double	norm_vec3(t_vec3 a)
 {
 	double	length;
@@ -9,7 +8,14 @@ double	norm_vec3(t_vec3 a)
 	return (length);
 }
 
-/* normalize the vector */
+double	norm_vec2(t_vec2 a)
+{
+	double	length;
+
+	length = sqrtf(a.x * a.x + a.y * a.y);
+	return (length);
+}
+
 t_vec3	normalize_vec3(t_vec3 a)
 {
 	double	length;
@@ -20,8 +26,16 @@ t_vec3	normalize_vec3(t_vec3 a)
 	a.z = (a.z / length);
 	return (a);
 }
-// A VOIR DANS LE PARSING SI ON RETOURNE
-// UN NOUVEAU VECTEUR OU ON PASSE PAR UN POINTEUR
+
+t_vec2	normalize_vec2(t_vec2 a)
+{
+	double	length;
+
+	length = norm_vec2(a);
+	a.x = (a.x / length);
+	a.y = (a.y / length);
+	return (a);
+}
 
 /* to compare 2 vectors' norms without sqrt -> more efficience */
 int	compare_norm_vec3(t_vec3 a, t_vec3 b)

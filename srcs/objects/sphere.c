@@ -22,9 +22,11 @@ double	sphere_intersection(t_ray ray, t_object sphere)
 	t0 = (-abc[1] - sqrt(discriminant)) / (2.0f * abc[0]);
 	t1 = (-abc[1] + sqrt(discriminant)) / (2.0f * abc[0]);
 	// je checke si je suis dans la sphere et je prends la distance la plus proche
+	//printf("t0 in sphere = %f, t1 = %f\n", t0, t1);
 	if (t0 < 0)
 		t0 = t1;
 	// je checke si l'objet n'est pas derriere la camera
+	//printf("t0 sphere derriere = %f\n", ray.direction.x);
 	if (t0 < 0)
 		return (-1);
 	return (t0);
