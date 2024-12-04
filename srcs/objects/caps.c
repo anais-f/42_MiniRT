@@ -11,6 +11,8 @@ void	calculate_cap_positions(t_object *cy)
 	return ;
 }
 
+/*Calcul des positions des capuchons*/
+
 void	calculate_cap_intersections(t_ray ray, t_object *cy, double radius)
 {
 	int		i;
@@ -38,7 +40,7 @@ void	calculate_cap_intersections(t_ray ray, t_object *cy, double radius)
 		i++;
 	}
 }
-
+/*Calcul des intersections des capuchons*/
 /*Ci dessus la variable denom ainsi que les conditions verifier autour
 de celle-ci servent a eviter les divisions par 0 en ayant une precision
 de 10e^-6*/
