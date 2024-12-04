@@ -36,7 +36,6 @@ SRCS_DISPLAYMLX=\
 SRCS_MATRIX=\
 		identity_matrix.c \
 		multiply_matrix.c \
-		rotation_matrix.c \
 
 SRCS_OBJECTS=\
 		sphere.c \

@@ -3,10 +3,10 @@
 
 t_mat	multiply_matrix(t_mat a, t_mat b)
 {
-	t_mat mat;
-	int i; // ligne
-	int j; // colonne
-	int k; // colonne de a et ligne de b
+	t_mat	mat;
+	int		i;
+	int		j;
+	int		k;
 
 	i = 0;
 	while (i < 3)
@@ -25,7 +25,7 @@ t_mat	multiply_matrix(t_mat a, t_mat b)
 		}
 		i++;
 	}
-	return(mat);
+	return (mat);
 }
 
 t_mat	mult_float_matrix(float a, t_mat b)
@@ -44,11 +44,11 @@ t_mat	mult_float_matrix(float a, t_mat b)
 	return (res);
 }
 
-t_mat add_mat(t_mat m1, t_mat m2)
+t_mat	add_mat(t_mat m1, t_mat m2)
 {
-	t_mat res;
-	int i;
-	int j;
+	t_mat	res;
+	int		i;
+	int		j;
 
 	i = 0;
 	while (i < 3)
@@ -63,19 +63,3 @@ t_mat add_mat(t_mat m1, t_mat m2)
 	}
 	return (res);
 }
-/* Multiplication detaillee 
-
-	mat.mat[0][0] = a.mat[0][0] * b.mat[0][0] + a.mat[0][1] * b.mat[1][0] + a.mat[0][2] * b.mat[2][0];
-	mat.mat[0][1] = a.mat[0][0] * b.mat[0][1] + a.mat[0][1] * b.mat[1][1] + a.mat[0][2] * b.mat[2][1];
-	mat.mat[0][2] = a.mat[0][0] * b.mat[0][2] + a.mat[0][1] * b.mat[1][2] + a.mat[0][2] * b.mat[2][2];
-
-	mat.mat[1][0] = a.mat[1][0] * b.mat[0][0] + a.mat[1][1] * b.mat[1][0] + a.mat[1][2] * b.mat[2][0];
-	mat.mat[1][1] = a.mat[1][0] * b.mat[0][1] + a.mat[1][1] * b.mat[1][1] + a.mat[1][2] * b.mat[2][1];
-	mat.mat[1][2] = a.mat[1][0] * b.mat[0][2] + a.mat[1][1] * b.mat[1][2] + a.mat[1][2] * b.mat[2][2];
-
-	mat.mat[2][0] = a.mat[2][0] * b.mat[0][0] + a.mat[2][1] * b.mat[1][0] + a.mat[2][2] * b.mat[2][0];
-	mat.mat[2][1] = a.mat[2][0] * b.mat[0][1] + a.mat[2][1] * b.mat[1][1] + a.mat[2][2] * b.mat[2][1];
-	mat.mat[2][2] = a.mat[2][0] * b.mat[0][2] + a.mat[2][1] * b.mat[1][2] + a.mat[2][2] * b.mat[2][2];
-
-*/
-
