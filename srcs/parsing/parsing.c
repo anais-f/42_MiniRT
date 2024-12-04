@@ -49,7 +49,7 @@ static int	select_parser(char **line_parsed, t_minirt *minirt)
 	return (-1);
 }
 
-int	prasing_map(t_minirt *minirt, char *file)
+int	parsing_map(t_minirt *minirt, char *file)
 {
 	int		map_file;
 	char	*line;

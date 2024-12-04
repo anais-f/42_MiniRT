@@ -73,7 +73,7 @@ int		parse_color(t_minirt *minirt, char *arg_parsed, t_color *color);
 int		parse_coordinates(char *arg_parsed, t_vec3 *position);
 int		parse_light(char **line_parsed, t_minirt *minirt);
 void	parse_line(char *line, t_minirt *minirt);
-int		prasing_map(t_minirt *minirt, char *file);
+int		parsing_map(t_minirt *minirt, char *file);
 size_t	arr_len(char **arr);
 void	ft_free_arr(char **arr);
 void	print_arr(char **arr);
