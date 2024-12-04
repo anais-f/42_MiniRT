@@ -8,7 +8,5 @@ int	init_minirt(t_minirt *minirt)
 	minirt->cam.fov_scale = tan(minirt->cam.FOV * 0.5);
 	minirt->to_radian = M_PI / 180;
 	minirt->to_degree = 180 / M_PI;
-	
-	// fonction init camera, image, color, objects etc...
 	return (0);
 }

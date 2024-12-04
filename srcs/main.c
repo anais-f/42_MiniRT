@@ -61,7 +61,7 @@ int main(int argc, char **argv)
 	}
 
 	/************************* */
-	camera(&minirt, minirt.cam.direction);	
+	camera(&minirt, minirt.cam.direction, minirt.cam.world_dir);	
 
 
 	render_scene(&minirt, &minirt.img);

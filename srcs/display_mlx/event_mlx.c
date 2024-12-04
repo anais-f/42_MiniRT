@@ -13,10 +13,6 @@ int	ft_mouse_event(int button, int x, int y, t_img *img)
 	(void) y;
 	(void)button;
 	(void)img;
-	// if (button == 4)
-	// 	img->zoom *= 1.1;
-	// if (button == 5)
-	// 	img->zoom *= 0.9;
 	return (0);
 }
 

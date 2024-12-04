@@ -86,7 +86,7 @@ char	**split_commas(char const *s, char c);
 void	print_parsing(t_minirt *minirt);
 
 
-void	camera(t_minirt *mini, t_vec3 cam_direction);
+void	camera(t_minirt *mini, t_vec3 cam_dir, t_vec3 world_dir);
 t_mat	matrix_identity(void);
 t_mat	multiply_matrix(t_mat a, t_mat b);
 void	print_matrix(t_mat mat);

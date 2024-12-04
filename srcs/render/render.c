@@ -52,19 +52,3 @@ void	render_scene(t_minirt *minirt, t_img *img)
 	}
 	printf("Render done\n");
 }
-
-
-/*
-je cree les rayons via l'origine 0.0.0 et direction 0.0.1 pour faire les calculs de la matrice simplement
-je fais tous les calculs pour avoir la matrice de rotation et de translation
-une fois que j'ai la matrice, je la multiplie avec les rayons pour les transformer en repartant de l'origine de la camera
-
-1 - je calcule le acos de axe y et axe x (faire un tvec2 pour plus de lisibilite)
-axe y je prends x et z de direction monde (0.0.1) et x et z de direction camera
-axe x je prends y et z de direction monde (0.0.1) et y et z de direction camera
-le calcul de acos me donne l'angle theta deja en radians
-je fais ensuite le sinus pour avoir le sens positifi ou negatif de la rotation
-
-creer une matrice de rotation 3x3 avec un double tableau de 3*3
-
-*/
