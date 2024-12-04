@@ -27,4 +27,3 @@ int	main(int argc, char **argv)
 	array_free(&minirt.objects);
 	return (0);
 }
-
