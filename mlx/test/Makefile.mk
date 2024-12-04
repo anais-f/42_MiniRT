@@ -12,9 +12,9 @@ SRC = main.c
 OBJ = $(SRC:%.c=%.o)
 
 
-LIBBSD_PATH := $(shell find /usr/lib/ -name "libbsd.so" | xargs dirname)
+#LIBBSD_PATH := $(shell find /usr/lib/ -name "libbsd.so" | xargs dirname)
 
-LFLAGS = -L.. -lmlx -L$(INCLIB) -lXext -lX11 -lm -L$(LIBBSD_PATH)
+LFLAGS = -L.. -lmlx -L$(INCLIB) -lXext -lX11 -lm -lbsd #changer -lbsd par -L$(LIBBSD_PATH) -lbsd pour Macm3
 
 
 ifeq ($(UNAME), Darwin)

@@ -1,16 +1,30 @@
 #include "miniRT.h"
 
-t_vec3	get_normal_cylinder(t_camera cam, t_hit hit)
+t_vec3	get_normal_cy_at_pos(t_ray ray, t_object *cy, double t_min, int flag)
 {
-	(void)cam;
-	return (hit.normal);
+	if (flag == 0)
+		return (normalize_vec3(sub_vec3(add_vec3(ray.origin, \
+			mult_nb_vec3(ray.direction, t_min)), cy->position)));
+	else if (flag == 1)
+		return (mult_nb_vec3(normalize_vec3(sub_vec3(add_vec3(ray.origin, \
+			mult_nb_vec3(ray.direction, t_min)), cy->position)), -1.f));  // Corps peut etre normale *-1 ??)
+	else if (flag == 2)
+		return (mult_nb_vec3(cy->direction, -1.f)); // Cap inférieur
+	return (cy->direction); // Cap supérieur
 }
+/*
+Retourne la normale du cylindre en fonction de la position de l'intersection
+flag == 0 corps
+flag == 1 corps en etant a l'interieur
+flag == 2 cap inferieur
+flag == 3 cap sup.
+*/
 
-void	calculate_body_intersections(t_ray ray, t_object *cy, double radius)
+static void	calculate_body_intersections(t_ray ray, t_object *cy, double radius)
 {
 	double	abc[3];
 	double	discriminant;
-	t_vec3	offset_ray_og; //Offset_ray_origin
+	t_vec3	offset_ray_og;
 	t_vec3	ray_dir_proj;
 	t_vec3	offset_ray_origin_proj;
 
@@ -35,7 +49,7 @@ void	calculate_body_intersections(t_ray ray, t_object *cy, double radius)
 }
 /*Calcul des intersections avec le corps du cylindre*/
 
-void	filter_body_intersections(t_ray ray, t_object *cy)
+static void	filter_body_intersections(t_ray ray, t_object *cy)
 {
 	t_vec3	point_t0;
 	t_vec3	point_t1;
@@ -61,7 +75,7 @@ void	filter_body_intersections(t_ray ray, t_object *cy)
 }
 /*Filtrage des intersections en dehors des limites de hauteur*/
 
-double	find_closest_intersection(t_ray ray, t_object *cy, t_hit *hit)
+static double	find_closest_intersection(t_ray ray, t_object *cy, t_hit *hit)
 {
 	double	t_min;
 
@@ -69,23 +83,22 @@ double	find_closest_intersection(t_ray ray, t_object *cy, t_hit *hit)
 	if (cy->spec.cy.t0 > 0 && (t_min < 0 || cy->spec.cy.t0 < t_min))
 	{
 		t_min = cy->spec.cy.t0;
-		hit->normal = normalize_vec3(sub_vec3(add_vec3(ray.origin, \
-			mult_nb_vec3(ray.direction, t_min)), cy->position));
+		hit->normal = get_normal_cy_at_pos(ray, cy, t_min, 0);
 	}
 	if (cy->spec.cy.t1 > 0 && (t_min < 0 || cy->spec.cy.t1 < t_min))
 	{
 		t_min = cy->spec.cy.t1;
-		hit->normal = mult_nb_vec3(normalize_vec3(sub_vec3(add_vec3(ray.origin, mult_nb_vec3(ray.direction, t_min)), cy->position)), -1.f); // Corps peut etre normale *-1 ??
+		hit->normal = get_normal_cy_at_pos(ray, cy, t_min, 1);
 	}
 	if (cy->spec.cy.t_cap[0] > 0 && (t_min < 0 || cy->spec.cy.t_cap[0] < t_min))
 	{
 		t_min = cy->spec.cy.t_cap[0];
-		hit->normal = mult_nb_vec3(cy->direction, -1.f); // Cap inférieur
+		hit->normal = get_normal_cy_at_pos(ray, cy, t_min, 2);
 	}
 	if (cy->spec.cy.t_cap[1] > 0 && (t_min < 0 || cy->spec.cy.t_cap[1] < t_min))
 	{
 		t_min = cy->spec.cy.t_cap[1];
-		hit->normal = cy->direction; // Cap supérieur
+		hit->normal = get_normal_cy_at_pos(ray, cy, t_min, 3);
 	}
 	return (t_min);
 }

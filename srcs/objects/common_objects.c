@@ -21,7 +21,7 @@ t_vec3	get_normal(t_camera cam, t_hit hit)
 	if (hit.object.type == PLANE)
 		normal = get_normal_plane(cam, hit);
 	if (hit.object.type == CYLINDER)
-		normal = get_normal_cylinder(cam, hit);
+		normal = hit.normal;
 	return (normal);
 }
 
