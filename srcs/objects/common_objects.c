@@ -11,7 +11,6 @@ double	object_intersection(t_ray ray, t_object object, t_hit *hit)
 	return (-1);
 }
 
-
 t_vec3	get_normal(t_camera cam, t_hit hit)
 {
 	t_vec3	normal;

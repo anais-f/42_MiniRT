@@ -32,10 +32,8 @@ typedef struct s_sphere
 	double	radius; // a diviser au parsing car on recoit le diametre
 }	t_sphere;
 
-
 typedef struct s_cylinder
 {
-
 	double	radius; // a diviser par deux au parsing car on recoit le diametre
 	double	height;
 }	t_cylinder;
