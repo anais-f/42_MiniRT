@@ -13,7 +13,7 @@ typedef struct s_camera
 	float	fov_scale;
 	float	aspect_ratio; // ratio = width / height
 	bool	is_init;
-	t_mat	rotation_matrix;
+	t_mat	rot_mat;
 }	t_camera;
 
 

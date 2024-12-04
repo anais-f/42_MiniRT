@@ -2,6 +2,7 @@
 
 int	init_minirt(t_minirt *minirt)
 {
+	minirt->cam.direction = normalize_vec3(minirt->cam.direction);
 	minirt->cam.world_dir = (t_vec3){0, 0, 1};
 	minirt->cam.FOV *= M_PI / 180;
 	minirt->cam.aspect_ratio = (float)HEIGHT_WIN / (float)WIDTH_WIN;

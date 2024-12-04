@@ -1,9 +1,35 @@
-#include "display_mlx.h"
+#include "miniRT.h"
+# include <stdio.h>
 
-int	kb_event(int keycode, t_img *img)
+static void move_camera(t_minirt *mini, t_vec3 direction, float distance)
 {
-	if (keycode == ESC_KB)
-		mlx_loop_end(img->mlx_ptr);
+    t_vec3 delta;
+
+    delta = mult_nb_vec3(direction, distance);
+    mini->cam.position = add_vec3(mini->cam.position, delta);
+}
+
+int	kb_event(int key, t_minirt *mini)
+{
+	float move_speed = 0.2;
+    t_vec3 up = {0, 1, 0};
+
+	if (key == ESC_KB)
+		mlx_loop_end(mini->img.mlx_ptr);
+	if (key == W_KB)
+		move_camera(mini, mini->cam.direction, move_speed);
+    else if (key == S_KB)
+		move_camera(mini, (mini->cam.direction), -move_speed);
+    else if (key == A_KB)
+		move_camera(mini, cross_vec3(up, mini->cam.direction), -move_speed);
+    else if (key == D_KB)
+		move_camera(mini, cross_vec3(up, mini->cam.direction), move_speed);
+	else if (key == R_KB)
+		move_camera(mini, up, move_speed);
+    else if (key == F_KB)
+		move_camera(mini, up, -move_speed);
+	render_scene(mini, &mini->img);
+    mlx_put_image_to_window(mini->img.mlx_ptr, mini->img.win_ptr, mini->img.img, 0, 0);
 	return (0);
 }
 
