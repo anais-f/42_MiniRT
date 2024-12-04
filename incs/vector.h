@@ -48,5 +48,6 @@ double	dot_vec2(t_vec2 a, t_vec2 b);
 double	norm_vec2(t_vec2 a);
 t_vec2	normalize_vec2(t_vec2 a);
 t_vec3	mult_vec3_matrix(t_vec3 a, t_mat b);
+double distance_vec3(t_vec3 a, t_vec3 b);
 
 #endif

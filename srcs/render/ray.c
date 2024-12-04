@@ -7,11 +7,11 @@ t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y)
 	t_ray	ray;
 	t_vec2	coord;
 
-	coord.x = (2 * (float)x / (float)WIDTH_WIN - 1)  * minirt->cam.fov_scale;
-	coord.y = (1 - 2 * (float)y / (float)HEIGHT_WIN) * minirt->cam.fov_scale * minirt->cam.aspect_ratio;
+	coord.x = (float)x / (float)WIDTH_WIN * 2.0f - 1.0f;
+	coord.x *= minirt->cam.ratio;
+	coord.y = -((float)y / (float)HEIGHT_WIN * 2.0f - 1.0f);
 	ray.origin = minirt->cam.position;
-	ray.direction = (t_vec3){coord.x, coord.y, 1};
-	ray.direction = normalize_vec3(ray.direction);
+	ray.direction = normalize_vec3((t_vec3){coord.x, coord.y, 1});
 	return (ray);
 }
 
@@ -36,14 +36,13 @@ bool	check_ray_to_light(t_minirt *minirt, t_hit hit, t_vec3 light_dir)
 	i = 0;
 	ray.origin = hit.position;
 	ray.direction = light_dir;
-	ray.origin = add_vec3(ray.origin, \
-				mult_nb_vec3(hit.ray.direction, -EPSILON));
+	ray.origin = add_vec3(ray.origin, mult_nb_vec3(hit.ray.direction, -EPSILON));
 	while (i < minirt->objects.size)
 	{
 		light_dst = get_light_distance(minirt->light.position, hit.position);
-		dst = object_intersection(ray, *minirt->objects.array[i]);
-		if ((dst > EPSILON) && (dst * dst) < light_dst)
-			return (false);
+		dst = object_intersection(ray, *minirt->objects.array[i], &hit);
+		if ((dst > EPSILON) && (dst * dst) < light_dst)	
+			return (false); // intersecte un objet avant la lumiere
 		i++;
 	}
 	return (true);

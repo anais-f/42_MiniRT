@@ -50,4 +50,4 @@ t_vec3	get_normal_sphere(t_camera cam, t_hit hit)
 	if (dot_vec3(sphere_in, sphere_in) <= hit.object.spec.sphere.radius) // test si on est a l'interieur de la sphere, peut le faire au parsing
 		normal = mult_nb_vec3(normal, -1.0f); // inversion de la normal si on est a l'interieur de la sphere
 	return (normal);
-}	
+}

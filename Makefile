@@ -43,6 +43,7 @@ SRCS_OBJECTS=\
 		plane.c \
 		cylinder.c \
 		common_objects.c \
+		caps.c
 
 SRCS_PARSING=\
 		check_input.c \

@@ -3,20 +3,20 @@
 void	print_obj_cylinder(t_array array, size_t i)
 {
 	printf("object[%ld]_CYLINDER : type %d, pos %f,%f,%f, \
-	dir norm. %f,%f,%f, rad :%f, height :%f, color : %hhu,%hhu,%hhu\n", \
+dir norm. %f,%f,%f, rad : %f, height : %f, color : %hhu,%hhu,%hhu\n", \
 	i, array.array[i]->type, array.array[i]->position.x, \
 	array.array[i]->position.y, array.array[i]->position.z, \
 	array.array[i]->direction.x, array.array[i]->direction.y, \
-	array.array[i]->direction.z, array.array[i]->spec.cylinder.radius, \
-	array.array[i]->spec.cylinder.height, \
+	array.array[i]->direction.z, array.array[i]->spec.cy.radius, \
+	array.array[i]->spec.cy.height, \
 	array.array[i]->color.r, array.array[i]->color.g, \
 	array.array[i]->color.b);
 }
 
 void	print_obj_plane(t_array array, size_t i)
 {
-	printf("object[%ld]_PLANE : type %d, pos %f,%f,%f," \
-	"dir norm. %f,%f,%f, color : %hhu,%hhu,%hhu\n", i, \
+	printf("object[%ld]_PLANE : type %d, pos %f,%f,%f, \
+dir norm. %f,%f,%f, color : %hhu,%hhu,%hhu\n", i, \
 	array.array[i]->type, array.array[i]->position.x, \
 	array.array[i]->position.y, array.array[i]->position.z, \
 	array.array[i]->direction.x, array.array[i]->direction.y, \

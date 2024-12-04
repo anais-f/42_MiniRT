@@ -1,13 +1,13 @@
 #include "miniRT.h"
 
-double	object_intersection(t_ray ray, t_object object)
+double	object_intersection(t_ray ray, t_object object, t_hit *hit)
 {
 	if (object.type == SPHERE)
 		return (sphere_intersection(ray, object));
 	if (object.type == PLANE)
 		return (plane_intersection(ray, object));
 	if (object.type == CYLINDER)
-		return (cylinder_intersection(ray, object));
+		return (cylinder_intersection(ray, &object, hit));
 	return (-1);
 }
 
@@ -21,7 +21,7 @@ t_vec3	get_normal(t_camera cam, t_hit hit)
 	if (hit.object.type == PLANE)
 		normal = get_normal_plane(cam, hit);
 	if (hit.object.type == CYLINDER)
-		normal = get_normal_cylinder(cam, hit);
+		normal = hit.normal;
 	return (normal);
 }
 
