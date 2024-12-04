@@ -9,5 +9,6 @@ int	init_minirt(t_minirt *minirt)
 	minirt->cam.fov_scale = tan(minirt->cam.FOV * 0.5);
 	minirt->to_radian = M_PI / 180;
 	minirt->to_degree = 180 / M_PI;
+	minirt->cam.theta = theta_calc(minirt->cam.world_dir, minirt->cam.direction);
 	return (0);
 }

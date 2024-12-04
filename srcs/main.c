@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 		array_free(&minirt.objects);
 		return (-1);
 	}
-	minirt.cam.rot_mat = rodrigues_rot(&minirt, minirt.cam.direction, minirt.cam.world_dir);
+	minirt.cam.rot_mat = rodrigues_rot(&minirt, minirt.cam.world_dir, minirt.cam.theta);
 	render_scene(&minirt, &minirt.img);
 	mlx_put_image_to_window(minirt.img.mlx_ptr, minirt.img.win_ptr, minirt.img.img, 0, 0);
 	mlx_launch_event_and_loop(&minirt.img);

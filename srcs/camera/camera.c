@@ -18,37 +18,31 @@ static t_mat	mat_k(t_vec3 w)
 	return (k);
 }
 
-static float	theta_calc(t_vec3 u, t_vec3 v, t_vec3 w)
+float	theta_calc(t_vec3 world_dir, t_vec3 cam_dir)
 {
 	float	theta;
+	t_vec3	cross;
 
-	theta = atan2(norm_vec3(w), dot_vec3(u, v));
+	cross = cross_vec3(world_dir, cam_dir);
+	theta = atan2(norm_vec3(cross), dot_vec3(world_dir, cam_dir));
 	return (theta);
 }
 
-t_mat	rodrigues_rot(t_minirt *mini, t_vec3 cam_dir, t_vec3 world_dir)
+t_mat	rodrigues_rot(t_minirt *mini, t_vec3 axis, float theta)
 {
-	float	theta;
 	t_vec3	w;
+	t_mat	k;
 	t_mat	m1;
 	t_mat	m2;
 
-	w = cross_vec3(world_dir, cam_dir);
-	theta = theta_calc(world_dir, cam_dir, w);
+	w = cross_vec3(axis, mini->cam.direction);
 	w = normalize_vec3(w);
 	if (theta * mini->to_degree == 0)
-	{
-	//	mini->cam.rotation_matrix = matrix_identity();
 		return (matrix_identity());
-	}
 	if ((int)(theta * mini->to_degree) == 180)
-	{
-		//mini->cam.rotation_matrix = mult_float_matrix(-1, matrix_identity());
 		return (mult_float_matrix(-1, matrix_identity()));
-	}
-	m1 = mult_float_matrix(sin(theta), mat_k(w));
-	m2 = mult_float_matrix(1 - cos(theta), multiply_matrix(mat_k(w), mat_k(w)));
-	//mini->cam.rotation_matrix = add_mat(add_mat(matrix_identity(), m1), m2);
-	printf("cam direction x: %f y: %f z: %f\n", cam_dir.x, cam_dir.y, cam_dir.z);
+	k = mat_k(w);
+	m1 = mult_float_matrix(sin(theta), k);
+	m2 = mult_float_matrix(1 - cos(theta), multiply_matrix(k, k));
 	return (add_mat(add_mat(matrix_identity(), m1), m2));
 }

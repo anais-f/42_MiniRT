@@ -14,6 +14,8 @@
 # define D_KB 100 /* D BUTTON */
 # define R_KB 114 /* R BUTTON */
 # define F_KB 102 /* F BUTTON */
+# define Q_KB 113 /* Q BUTTON */
+# define E_KB 101 /* E BUTTON */
 
 # include <mlx.h>
 # include <stdlib.h>

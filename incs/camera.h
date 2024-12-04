@@ -14,6 +14,7 @@ typedef struct s_camera
 	float	aspect_ratio; // ratio = width / height
 	bool	is_init;
 	t_mat	rot_mat;
+	float	theta;
 }	t_camera;
 
 
