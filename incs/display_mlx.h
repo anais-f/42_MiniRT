@@ -2,7 +2,7 @@
 # define DISPLAY_MLX_H
 
 # define HEIGHT_WIN 1080 /* HEIGHT of MLX WIN */
-# define WIDTH_WIN 1080 /* WIDTH of MLX WIN */
+# define WIDTH_WIN 1920 /* WIDTH of MLX WIN */
 # define ESC_KB 65307 /* ESC BUTTON */
 # define LEFT_KB 65361 /* LEFT BUTTON */
 # define RIGHT_KB 65363 /* RIGHT BUTTON */

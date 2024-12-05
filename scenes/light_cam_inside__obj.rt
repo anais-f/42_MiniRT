@@ -1,0 +1,7 @@
+A 0.3 255,255,255
+C 0,2,0 0,0,1 60
+L 0,2,0 1 255,255,255
+
+sp 0,2,0 8 0,0,255
+
+# light and camera inside the sphere
