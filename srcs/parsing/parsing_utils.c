@@ -75,9 +75,6 @@ bool	check_range_items(t_minirt *minirt, t_items items)
 
 void	print_parsing(t_minirt *minirt)
 {
-	size_t	i;
-
-	i = 0;
 	printf("Ambient light brightness : %f color : %d %d %d\n",
 		minirt->ambient_light.brightness, minirt->ambient_light.color.r,
 		minirt->ambient_light.color.g, minirt->ambient_light.color.b);

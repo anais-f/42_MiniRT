@@ -5,6 +5,7 @@
 static void	calc_pixel_and_check_obj(t_minirt *minirt, t_hit *hit, int x, int y)
 {
 	size_t	i;
+	t_hit	tp_hit;
 	double	dst;
 
 	ft_memset(hit, 0, sizeof(t_hit));
@@ -16,9 +17,11 @@ static void	calc_pixel_and_check_obj(t_minirt *minirt, t_hit *hit, int x, int y)
 	i = 0;
 	while (i < minirt->objects.size)
 	{
-		dst = object_intersection(hit->ray, *minirt->objects.array[i], hit);
+		tp_hit = *hit;
+		dst = object_intersection(hit->ray, *minirt->objects.array[i], &tp_hit);
 		if (dst != -1 && (dst < hit->dst || hit->dst == -1))
 		{
+			*hit = tp_hit;
 			hit->dst = dst;
 			hit->object = *minirt->objects.array[i];
 		}
