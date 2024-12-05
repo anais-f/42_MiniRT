@@ -84,7 +84,7 @@ char	**split_commas(char const *s, char c);
 void	print_parsing(t_minirt *minirt);
 
 
-void	camera(t_minirt *mini, t_vec3 cam_dir, t_vec3 world_dir);
+t_mat	rodrigues_rot(t_minirt *mini, t_vec3 axis, float theta);
 t_mat	matrix_identity(void);
 t_mat	multiply_matrix(t_mat a, t_mat b);
 
@@ -92,7 +92,8 @@ t_mat	multiply_matrix(t_mat a, t_mat b);
 t_mat add_mat(t_mat m1, t_mat m2);
 t_mat	mult_float_matrix(float a, t_mat b);
 
-
+int	kb_event(int key, t_minirt *mini);
+float	theta_calc(t_vec3 u, t_vec3 v);
 
 /* a changer de header plus tard */
 void	render_scene(t_minirt *minirt, t_img *img);

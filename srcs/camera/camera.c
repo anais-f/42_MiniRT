@@ -2,6 +2,8 @@
 #include "miniRT.h"
 #include "vector.h"
 
+# define EPSILON 1e-6
+
 static t_mat	mat_k(t_vec3 w)
 {
 	t_mat	k;
@@ -18,37 +20,39 @@ static t_mat	mat_k(t_vec3 w)
 	return (k);
 }
 
-static float	theta_calc(t_vec3 u, t_vec3 v, t_vec3 w)
+float	theta_calc(t_vec3 world_dir, t_vec3 cam_dir)
 {
 	float	theta;
+	t_vec3	cross;
+	float	dot;
 
-	w = cross_vec3(u, v);
-	theta = atan2(norm_vec3(w), dot_vec3(u, v));
+	dot = dot_vec3(world_dir, cam_dir);
+	cross = cross_vec3(world_dir, cam_dir);
+	if (fabs(dot - 1.0) < EPSILON)
+		return (0); // Vecteurs alignés
+	if (fabs(dot + 1.0) < EPSILON)
+		return (M_PI); // Vecteurs opposés
+	if (fabs(dot) < EPSILON)
+		return (M_PI / 2); // Vecteurs orthogonaux
+	theta = atan2(norm_vec3(cross), dot);
 	return (theta);
 }
 
-void	camera(t_minirt *mini, t_vec3 cam_dir, t_vec3 world_dir)
+t_mat	rodrigues_rot(t_minirt *mini, t_vec3 axis, float theta)
 {
-	float	theta;
 	t_vec3	w;
+	t_mat	k;
 	t_mat	m1;
 	t_mat	m2;
 
-	cam_dir = normalize_vec3(cam_dir);
-	w = cross_vec3(world_dir, cam_dir);
-	theta = theta_calc(world_dir, cam_dir, w);
-	w = normalize_vec3(w);
+	//w = cross_vec3(axis, mini->cam.direction);)
+	w = normalize_vec3(axis);
 	if (theta * mini->to_degree == 0)
-	{
-		mini->cam.rotation_matrix = matrix_identity();
-		return ;
-	}
+		return (matrix_identity());
 	if ((int)(theta * mini->to_degree) == 180)
-	{
-		mini->cam.rotation_matrix = mult_float_matrix(-1, matrix_identity());
-		return ;
-	}
-	m1 = mult_float_matrix(sin(theta), mat_k(w));
-	m2 = mult_float_matrix(1 - cos(theta), multiply_matrix(mat_k(w), mat_k(w)));
-	mini->cam.rotation_matrix = add_mat(add_mat(matrix_identity(), m1), m2);
+		return (mult_float_matrix(-1, matrix_identity()));
+	k = mat_k(w);
+	m1 = mult_float_matrix(sin(theta), k);
+	m2 = mult_float_matrix(1 - cos(theta), multiply_matrix(k, k));
+	return (add_mat(add_mat(matrix_identity(), m1), m2));
 }
