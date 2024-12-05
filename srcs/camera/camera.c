@@ -28,12 +28,6 @@ float	theta_calc(t_vec3 world_dir, t_vec3 cam_dir)
 
 	dot = dot_vec3(world_dir, cam_dir);
 	cross = cross_vec3(world_dir, cam_dir);
-	if (fabs(dot - 1.0) < EPSILON)
-		return (0); // Vecteurs alignés
-	if (fabs(dot + 1.0) < EPSILON)
-		return (M_PI); // Vecteurs opposés
-	if (fabs(dot) < EPSILON)
-		return (M_PI / 2); // Vecteurs orthogonaux
 	theta = atan2(norm_vec3(cross), dot);
 	return (theta);
 }
