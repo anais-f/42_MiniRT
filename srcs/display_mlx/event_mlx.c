@@ -113,7 +113,7 @@ int	kb_event(int key, t_minirt *mini)
     t_vec3 up ;
 	up = mult_vec3_matrix((t_vec3){0, 1, 0}, mini->cam.rot_mat);
 	up = normalize_vec3(up);
-	printf("up = %f %f %f\n", up.x, up.y, up.z);
+//	printf("up = %f %f %f\n", up.x, up.y, up.z);
 	float angle = 45 * mini->to_radian;
 
 	if (key == ESC_KB)
