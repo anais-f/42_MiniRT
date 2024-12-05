@@ -4,6 +4,9 @@
 
 # define EPSILON 1e-6
 
+# define PI 3.14159265358979323846
+# define RADIAN_TO_DEG(x) (x * 180 / PI)
+
 static t_mat	mat_k(t_vec3 w)
 {
 	t_mat	k;

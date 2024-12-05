@@ -79,7 +79,7 @@ int	kb_event(int key, t_minirt *mini)
 {
 	float move_dst = 0.3;
     t_vec3 up ;
-	up = (t_vec3){0, 1, 0};
+	//up = (t_vec3){0, 1, 0};
 	up = mult_vec3_matrix((t_vec3){0, 1, 0}, mini->cam.rot_mat);
 	up = normalize_vec3(up);
 	//printf("up = %f %f %f\n", up.x, up.y, up.z);
@@ -101,10 +101,10 @@ int	kb_event(int key, t_minirt *mini)
     else if (key == F_KB)
 		move_camera(mini, up, -move_dst);
 
-	// else if (key == Q_KB)
-	// 	mini->cam.rot_mat = rotate_camera(mini, up, -angle);
-	// else if (key == E_KB)
-	// 	mini->cam.rot_mat = rotate_camera(mini, up, angle);
+	else if (key == Q_KB)
+		mini->cam.rot_mat = rotate_camera(mini, up, -angle);
+	else if (key == E_KB)
+		mini->cam.rot_mat = rotate_camera(mini, up, angle);
 
 
 
