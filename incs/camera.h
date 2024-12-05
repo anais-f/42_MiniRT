@@ -15,6 +15,7 @@ typedef struct s_camera
 	bool	is_init;
 	t_mat	rot_mat;
 	float	theta;
+	t_vec3	right;
 }	t_camera;
 
 
