@@ -11,7 +11,7 @@ int	main(int argc, char **argv)
 		array_free(&rt.objects);
 		return (1);
 	}
-	init_rt(&rt);
+	init_minirt(&rt);
 	if (mlx_init_protected(&rt.img) != 0)
 	{
 		mlx_destroy_all(&rt.img);
