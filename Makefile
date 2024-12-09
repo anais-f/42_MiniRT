@@ -9,7 +9,6 @@ SRCS_DIR = ./srcs
 
 SRCS=\
 		main.c \
-		init.c \
 		$(addprefix camera/, $(SRCS_CAMERA)) \
 		$(addprefix display_mlx/, $(SRCS_DISPLAYMLX)) \
 		$(addprefix objects/, $(SRCS_OBJECTS)) \
@@ -26,7 +25,7 @@ SRCS_ARRAY=\
 		print_array.c \
 
 SRCS_CAMERA=\
-		camera.c \
+		cam_rotation.c \
 		cam_move.c \
 
 SRCS_DISPLAYMLX=\
@@ -64,7 +63,7 @@ SRCS_RENDER=\
 
 SRCS_UTILS=\
 		utils_error.c \
-	#	initialization.c \
+		initialization.c \
 
 SRCS_VECTOR=\
 		arithmetic_vector.c \
