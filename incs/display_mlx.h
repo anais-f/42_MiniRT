@@ -1,8 +1,8 @@
 #ifndef DISPLAY_MLX_H
 # define DISPLAY_MLX_H
 
-# define HEIGHT_WIN 540 /* HEIGHT of MLX WIN */
 # define WIDTH_WIN 720 /* WIDTH of MLX WIN */
+# define HEIGHT_WIN 540 /* HEIGHT of MLX WIN */
 # define ESC_KB 65307 /* ESC BUTTON */
 # define LEFT_KB 65361 /* LEFT BUTTON */
 # define RIGHT_KB 65363 /* RIGHT BUTTON */
@@ -16,9 +16,9 @@
 # define F_KB 102 /* F BUTTON */
 # define Q_KB 113 /* Q BUTTON */
 # define E_KB 101 /* E BUTTON */
-
 # include <mlx.h>
-# include <stdlib.h>
+
+typedef struct s_minirt	t_minirt;
 
 typedef struct s_img
 {
@@ -35,9 +35,6 @@ int		mlx_init_protected(t_img *img);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	mlx_launch_event_and_loop(t_img *img);
 void	mlx_destroy_all(t_img *img);
-
-
-
-
+int		kb_event(int key, t_minirt *mini);
 
 #endif	

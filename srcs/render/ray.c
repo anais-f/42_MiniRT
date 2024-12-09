@@ -1,5 +1,4 @@
 #include "miniRT.h"
-#include "camera.h"
 #define EPSILON 1e-6
 
 t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y)

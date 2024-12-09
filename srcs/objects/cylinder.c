@@ -1,5 +1,7 @@
 #include "miniRT.h"
 
+// voir les commentaires qui sont en francais fgdsggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
+
 t_vec3	get_normal_cy_at_pos(t_ray ray, t_object *cy, double t_min, int flag)
 {
 	double	offset_hypo;

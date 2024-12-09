@@ -1,5 +1,4 @@
-#include "miniRT.h"
-#include "camera.h"
+#include "vector.h"
 
 t_mat	multiply_matrix(t_mat a, t_mat b)
 {

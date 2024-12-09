@@ -1,6 +1,4 @@
 #include "miniRT.h"
-#include "camera.h"
-#include "display_mlx.h"
 
 static void	calc_pixel_and_check_obj(t_minirt *minirt, t_hit *hit, int x, int y)
 {

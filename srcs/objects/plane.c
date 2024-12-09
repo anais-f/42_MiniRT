@@ -15,14 +15,16 @@ double	plane_intersection(t_ray ray, t_object plan)
 		return (-1);
 	return (t);
 }
-
-//ax + by + cz + d = 0, avec a, b, c, et d des réels
-// At + B = 0
-// A = direc plan * direction camera
-// B = direc plan * (position camera- position plan)
-// T = -B/A -> distance entre le point d'origine et le point d'intersection	
-// si t < 0, l'intersection est derriere la camera
-//si a = 0, le plan est parallele a la camera, il n'y a pas d'intersection
+/* 
+ax + by + cz +d = 0 with 
+a = direction of the ray, 
+b = origin of the ray,
+c = direction of the plane,
+d = position of the plane
+At + B = 0 with 
+A = dot(ray.direction, plan.direction)
+B = dot(plan.direction, sub(ray.origin, plan.position)
+ */
 
 t_vec3	get_normal_plane(t_camera cam, t_hit hit)
 {
@@ -37,8 +39,6 @@ t_vec3	get_normal_plane(t_camera cam, t_hit hit)
 		normal = hit.object.direction;
 	return (normal);
 }
-
-// si le produit scalaire entre la direction de la camera et
-//la direction du plan est positif, on inverse la normale
-// car on veut que la normale soit dirigée vers la camera
-// si le produit scalaire est negatif, on garde la normale telle quelle
+/* If the dot product between the direction of the camera and
+plane's position is positive, we have to reverse the normal because
+we want the normal to face the camera */

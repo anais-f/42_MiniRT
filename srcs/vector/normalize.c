@@ -1,4 +1,5 @@
 #include "vector.h"
+#include <math.h>
 
 double	norm_vec3(t_vec3 a)
 {

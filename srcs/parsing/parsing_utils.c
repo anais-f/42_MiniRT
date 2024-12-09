@@ -59,7 +59,7 @@ bool	check_range_items(t_minirt *minirt, t_items items)
 		if (!is_in_range(minirt->cam.direction.x, -RANGE, RANGE) || \
 			!is_in_range(minirt->cam.direction.y, -RANGE, RANGE) || \
 			!is_in_range(minirt->cam.direction.z, -RANGE, RANGE) || \
-			!is_in_range(minirt->cam.FOV, 0, 180))
+			!is_in_range(minirt->cam.fov, 0, 180))
 			return (true);
 	}
 	if (items == LIGHT)
@@ -82,7 +82,7 @@ void	print_parsing(t_minirt *minirt)
 		minirt->cam.position.x, minirt->cam.position.y,
 		minirt->cam.position.z, minirt->cam.direction.x,
 		minirt->cam.direction.y, minirt->cam.direction.z,
-		minirt->cam.FOV);
+		minirt->cam.fov);
 	printf("Light pos : %f %f %f brightness : %f color : %d %d %d\n",
 		minirt->light.position.x, minirt->light.position.y,
 		minirt->light.position.z, minirt->light.brightness,

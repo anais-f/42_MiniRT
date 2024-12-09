@@ -1,4 +1,5 @@
 #include "display_mlx.h"
+#include <stdlib.h>
 
 void	mlx_destroy_all(t_img *img)
 {

@@ -1,5 +1,4 @@
-#include "miniRT.h"
-#include "camera.h"
+#include "vector.h"
 
 t_mat	matrix_identity(void)
 {

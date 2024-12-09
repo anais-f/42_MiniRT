@@ -1,4 +1,5 @@
 #include "miniRT.h"
+#include <math.h>
 #define EPSILON 1e-6
 
 static t_mat	mat_k(t_vec3 w)

@@ -1,9 +1,15 @@
 #ifndef OBJECTS_H
 # define OBJECTS_H
 
-#include "color.h"
-#include "vector.h"
-#include <stdbool.h>
+# include "color.h"
+# include "vector.h"
+# include <stdbool.h>
+# include <math.h>
+
+typedef struct s_minirt	t_minirt;
+typedef struct s_hit	t_hit;
+typedef struct s_ray	t_ray;
+typedef struct s_camera	t_camera;
 
 typedef struct s_light
 {
@@ -29,13 +35,13 @@ typedef enum e_object_type
 
 typedef struct s_sphere
 {
-	double	radius; // a diviser au parsing car on recoit le diametre
+	double	radius;
 }	t_sphere;
 
 typedef struct s_cylinder
 {
 	t_vec3	cap_pos[2];
-	double	radius; // a diviser par deux au parsing car on recoit le diametre
+	double	radius;
 	double	height;
 	double	t0;
 	double	t1;
@@ -56,5 +62,19 @@ typedef struct s_object
 	t_vec3			direction;
 	t_color			color;
 }	t_object;
+
+t_vec3	get_ambient_light(t_minirt *minirt);
+double	calcul_light_bright(t_minirt *minirt, t_hit hit);
+void	hit_point(t_minirt *minirt, t_ray ray, t_hit *hit);
+double	object_intersection(t_ray ray, t_object object, t_hit *hit);
+double	sphere_intersection(t_ray ray, t_object sphere);
+double	cylinder_intersection(t_ray ray, t_object *cylinder, t_hit *hit);
+double	plane_intersection(t_ray ray, t_object plan);
+t_vec3	get_normal(t_camera cam, t_hit hit);
+t_vec3	get_normal_sphere(t_camera cam, t_hit hit);
+t_vec3	get_normal_plane(t_camera cam, t_hit hit);
+void	calculate_cap_positions(t_object *cy);
+void	calculate_cap_intersections(t_ray ray, \
+		t_object *cy, double radius);
 
 #endif
