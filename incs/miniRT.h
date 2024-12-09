@@ -83,7 +83,7 @@ int		parse_cylinder(char **line_parsed, t_minirt *minirt);
 char	**split_commas(char const *s, char c);
 void	print_parsing(t_minirt *minirt);
 
-
+void move_camera(t_minirt *mini, t_vec3 direction, float distance);
 t_mat	rodrigues_rot(t_minirt *mini, t_vec3 axis, float theta);
 t_mat	matrix_identity(void);
 t_mat	multiply_matrix(t_mat a, t_mat b);

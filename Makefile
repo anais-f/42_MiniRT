@@ -27,6 +27,7 @@ SRCS_ARRAY=\
 
 SRCS_CAMERA=\
 		camera.c \
+		cam_move.c \
 
 SRCS_DISPLAYMLX=\
 		init_mlx.c \
@@ -63,6 +64,7 @@ SRCS_RENDER=\
 
 SRCS_UTILS=\
 		utils_error.c \
+	#	initialization.c \
 
 SRCS_VECTOR=\
 		arithmetic_vector.c \

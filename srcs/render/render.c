@@ -13,7 +13,6 @@ static void	calc_pixel_and_check_obj(t_minirt *minirt, t_hit *hit, int x, int y)
 	hit->ray = create_ray_from_cam(minirt, x, y);
 	hit->ray.direction = normalize_vec3(\
 			mult_vec3_matrix(hit->ray.direction, minirt->cam.rot_mat));
-	//minirt->cam.direction = normalize_vec3(mult_vec3_matrix(minirt->cam.direction, minirt->cam.rot_mat));
 	i = 0;
 	while (i < minirt->objects.size)
 	{

@@ -1,8 +1,5 @@
-#include "camera.h"
 #include "miniRT.h"
-#include "vector.h"
-
-# define EPSILON 1e-6
+#define EPSILON 1e-6
 
 static t_mat	mat_k(t_vec3 w)
 {
@@ -28,12 +25,6 @@ float	theta_calc(t_vec3 world_dir, t_vec3 cam_dir)
 
 	dot = dot_vec3(world_dir, cam_dir);
 	cross = cross_vec3(world_dir, cam_dir);
-	if (fabs(dot - 1.0) < EPSILON)
-		return (0); // Vecteurs alignés
-	if (fabs(dot + 1.0) < EPSILON)
-		return (M_PI); // Vecteurs opposés
-	if (fabs(dot) < EPSILON)
-		return (M_PI / 2); // Vecteurs orthogonaux
 	theta = atan2(norm_vec3(cross), dot);
 	return (theta);
 }
@@ -45,7 +36,6 @@ t_mat	rodrigues_rot(t_minirt *mini, t_vec3 axis, float theta)
 	t_mat	m1;
 	t_mat	m2;
 
-	//w = cross_vec3(axis, mini->cam.direction);)
 	w = normalize_vec3(axis);
 	if (theta * mini->to_degree == 0)
 		return (matrix_identity());
