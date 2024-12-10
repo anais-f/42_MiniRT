@@ -55,7 +55,8 @@ SRCS_PARSING=\
 		parsing_utils.c \
 		parsing_objects.c \
 		float_utils.c \
-		split_commas.c
+		split_commas.c \
+		parsing_objects_bonus.c \
 
 SRCS_RENDER=\
 		render.c \

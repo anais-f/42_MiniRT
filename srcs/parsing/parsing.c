@@ -46,6 +46,8 @@ static int	select_parser(char **line_parsed, t_minirt *minirt)
 		return (parse_cylinder(line_parsed, minirt));
 	else if (ft_strncmp(line_parsed[0], "#", ft_strlen(line_parsed[0])) == 0)
 		return (0);
+	else if (ft_strncmp(line_parsed[0], "el", ft_strlen(line_parsed[0])) == 0)
+		return (parse_ellipsoid(line_parsed, minirt));
 	return (-1);
 }
 

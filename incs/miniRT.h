@@ -73,6 +73,8 @@ int		parse_plane(char **line_parsed, t_minirt *minirt);
 int		parse_cylinder(char **line_parsed, t_minirt *minirt);
 char	**split_commas(char const *s, char c);
 void	print_parsing(t_minirt *minirt);
+int		add_object(t_object object, t_minirt *minirt);
+int		parse_ellipsoid(char **line_parsed, t_minirt *minirt);
 
 /* Utils functions */
 void	render_scene(t_minirt *minirt, t_img *img);

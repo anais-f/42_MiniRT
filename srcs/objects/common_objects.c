@@ -8,6 +8,8 @@ double	object_intersection(t_ray ray, t_object object, t_hit *hit)
 		return (plane_intersection(ray, object));
 	if (object.type == CYLINDER)
 		return (cylinder_intersection(ray, &object, hit));
+	if (object.type == ELLIPSOID)
+		return (ellipsoid_intersection(ray, object));
 	return (-1);
 }
 
@@ -22,6 +24,8 @@ t_vec3	get_normal(t_camera cam, t_hit hit)
 		normal = get_normal_plane(cam, hit);
 	if (hit.object.type == CYLINDER)
 		normal = hit.normal;
+	if (hit.object.type == ELLIPSOID)
+		normal = get_normal_ellipsoid(cam, hit);
 	return (normal);
 }
 
