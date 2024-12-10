@@ -31,6 +31,7 @@ typedef enum e_object_type
 	SPHERE,
 	PLANE,
 	CYLINDER,
+	ELLIPSOID,
 }	t_object_type;
 
 typedef struct s_sphere
@@ -48,10 +49,16 @@ typedef struct s_cylinder
 	double	t_cap[2];
 }	t_cylinder;
 
+typedef struct s_ellipsoid
+{
+	t_vec3	half_axis;
+}	t_ellipsoid;
+
 typedef union u_spec
 {
 	t_sphere	sphere;
 	t_cylinder	cy;
+	t_ellipsoid	ellipsoid;
 }	t_spec;
 
 typedef struct s_object

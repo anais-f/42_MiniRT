@@ -39,6 +39,7 @@ typedef struct s_minirt
 	t_ambient_light	ambient_light;
 	double			to_radian;
 	double			to_degree;
+	t_object		obj;
 }	t_minirt;
 
 typedef enum e_items
