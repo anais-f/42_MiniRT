@@ -6,7 +6,7 @@
 /*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 16:29:14 by acancel           #+#    #+#             */
-/*   Updated: 2024/12/11 16:29:15 by acancel          ###   ########lyon.fr   */
+/*   Updated: 2024/12/11 16:39:17 by acancel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define ARRAY_H
 
 # include "objects.h"
-# include <stdio.h> // est ce qu'on garde les fonctions de print dans le push mandatory ?
+# include <stdio.h>
 # define INIT_SIZE 4
 
 typedef struct s_array
