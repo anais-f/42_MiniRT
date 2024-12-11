@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   objects.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/09 17:56:00 by anfichet          #+#    #+#             */
+/*   Updated: 2024/12/11 13:43:21 by anfichet         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef OBJECTS_H
 # define OBJECTS_H
 
@@ -31,7 +43,6 @@ typedef enum e_object_type
 	SPHERE,
 	PLANE,
 	CYLINDER,
-	ELLIPSOID,
 }	t_object_type;
 
 typedef struct s_sphere
@@ -49,16 +60,10 @@ typedef struct s_cylinder
 	double	t_cap[2];
 }	t_cylinder;
 
-typedef struct s_ellipsoid
-{
-	t_vec3	radius;
-}	t_ellipsoid;
-
 typedef union u_spec
 {
 	t_sphere	sphere;
 	t_cylinder	cy;
-	t_ellipsoid	el;
 }	t_spec;
 
 typedef struct s_object
@@ -88,12 +93,5 @@ double	cylinder_intersection(t_ray ray, t_object *cylinder, t_hit *hit);
 void	calculate_cap_positions(t_object *cy);
 void	calculate_cap_intersections(t_ray ray, \
 		t_object *cy, double radius);
-
-/* Ellopsoid */
-t_vec3	get_normal_ellipsoid(t_camera cam, t_hit hit);
-double	ellipsoid_intersection(t_ray ray, t_object el);
-
-/* Light */
-t_vec3	get_scene_light(t_minirt *minirt, t_hit hit);
 
 #endif
