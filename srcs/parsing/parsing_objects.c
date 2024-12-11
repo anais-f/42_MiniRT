@@ -100,12 +100,3 @@ int	parse_cylinder(char **line_parsed, t_minirt *minirt)
 		return (5);
 	return (0);
 }
-
-//printf("Plane pos : %f %f %f direction : %f %f %f color %d %d %d\n",
-//object->position.x,object->position.y, object->position.z,
-// object->direction.x, object->direction.y, object->direction.z,
-// object->color.r, object->color.g, object->color.b);
-//printf("Cylinder pos : %f %f %f diam : %f height : %f color %d %d %d\n",
-// object.position.x, object.position.y, object.position.z,
-//object.spec.cy.radius, object.spec.cy.height,
-// object.color.r, object.color.g, object.color.b);
