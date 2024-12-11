@@ -1,7 +1,5 @@
 #include "miniRT.h"
 
-// voir les commentaires qui sont en francais fgdsggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
-
 t_vec3	get_normal_cy_at_pos(t_ray ray, t_object *cy, double t_min, int flag)
 {
 	double	offset_hypo;
@@ -29,13 +27,11 @@ t_vec3	get_normal_cy_at_pos(t_ray ray, t_object *cy, double t_min, int flag)
 		return (mult_nb_vec3(cy->direction, -1.f));
 	return ((cy->direction));
 }
-/*
-Retourne la normale du cylindre en fonction de la position de l'intersection
-flag == 0 corps
-flag == 1 corps en etant a l'interieur du cylindre (normale * -1 ?)
-flag == 2 cap inferieur
-flag == 3 cap sup.
-*/
+/*Returns cylinder normal as a function of intersection position
+flag == 0 body
+flag == 1 body inside cylinder
+flag == 2 lower cap
+flag == 3 upper cap*/
 
 static void	calculate_body_intersections(t_ray ray, t_object *cy, double radius)
 {
@@ -64,7 +60,6 @@ static void	calculate_body_intersections(t_ray ray, t_object *cy, double radius)
 	}
 	return ;
 }
-/*Calcul des intersections avec le corps du cylindre*/
 
 static void	filter_body_intersections(t_ray ray, t_object *cy)
 {
@@ -90,7 +85,7 @@ static void	filter_body_intersections(t_ray ray, t_object *cy)
 			cy->spec.cy.t1 = -1;
 	}
 }
-/*Filtrage des intersections en dehors des limites de hauteur*/
+/*Filtering intersections outside height limits*/
 
 static double	find_closest_intersection(t_ray ray, t_object *cy, t_hit *hit)
 {
@@ -120,9 +115,8 @@ static double	find_closest_intersection(t_ray ray, t_object *cy, t_hit *hit)
 	}
 	return (t_min);
 }
-
-/*Trouver le plus petit (t > 0) et mettre à jour la normale 
-(si c'est celle du corps ou celle des caps)*/
+/*Find the smallest intersection (t > 0) and update the normal 
+(if body or caps)*/
 
 double	cylinder_intersection(t_ray ray, t_object *cy, t_hit *hit)
 {
@@ -135,4 +129,3 @@ double	cylinder_intersection(t_ray ray, t_object *cy, t_hit *hit)
 	t_min = find_closest_intersection(ray, cy, hit);
 	return (t_min);
 }
-/*Calcul de l'intersection avec le cylindre*/
