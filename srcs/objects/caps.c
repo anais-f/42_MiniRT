@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   caps.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/11 15:19:20 by acancel           #+#    #+#             */
+/*   Updated: 2024/12/11 15:19:23 by acancel          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "miniRT.h"
 
 void	calculate_cap_positions(t_object *cy)
@@ -10,8 +22,6 @@ void	calculate_cap_positions(t_object *cy)
 		mult_nb_vec3(cy->direction, height));
 	return ;
 }
-
-/*Calcul des positions des capuchons*/
 
 void	calculate_cap_intersections(t_ray ray, t_object *cy, double radius)
 {
@@ -41,7 +51,6 @@ void	calculate_cap_intersections(t_ray ray, t_object *cy, double radius)
 		i++;
 	}
 }
-/*Calcul des intersections des capuchons
-Ci dessus la variable denom ainsi que les conditions verifier autour
-de celle-ci servent a eviter les divisions par 0 en ayant une precision
-de 10e^-6*/
+/*Above, the variable denom and the conditions to be checked around it
+are used to avoid divisions by 0 with an accuracy of
+10e^-6*/
