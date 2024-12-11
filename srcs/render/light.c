@@ -6,13 +6,13 @@
 /*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:56:33 by anfichet          #+#    #+#             */
-/*   Updated: 2024/12/09 17:56:34 by anfichet         ###   ########lyon.fr   */
+/*   Updated: 2024/12/11 10:22:40 by anfichet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_vec3	get_ambient_light(t_minirt *minirt)
+static t_vec3	get_ambient_light(t_minirt *minirt)
 {
 	t_vec3	ambient_light;
 
@@ -22,7 +22,7 @@ t_vec3	get_ambient_light(t_minirt *minirt)
 	return (ambient_light);
 }
 
-double	calcul_light_bright(t_minirt *minirt, t_hit hit)
+static double	calcul_light_bright(t_minirt *minirt, t_hit hit)
 {
 	t_vec3	light_dir;
 	double	light_intensity;

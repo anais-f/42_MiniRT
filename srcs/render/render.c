@@ -6,7 +6,7 @@
 /*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:56:38 by anfichet          #+#    #+#             */
-/*   Updated: 2024/12/09 17:56:39 by anfichet         ###   ########lyon.fr   */
+/*   Updated: 2024/12/11 10:23:27 by anfichet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,4 @@ void	render_scene(t_minirt *minirt, t_img *img)
 		}
 		y++;
 	}
-	printf("Render done\n");
 }
