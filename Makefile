@@ -33,6 +33,7 @@ SRCS_DISPLAYMLX=\
 		destroy_mlx.c \
 		event_mlx.c \
 		my_pxl_put.c \
+		get_color_pixel.c \
 
 SRCS_MATRIX=\
 		identity_matrix.c \

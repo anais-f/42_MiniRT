@@ -33,7 +33,8 @@ t_vec3	get_normal_ellipsoid(t_camera cam, t_hit hit)
 
 	(void)cam;
 	normal = div_vec3(sub_vec3(hit.position, hit.object.position), \
-				mult_vec3(hit.object.spec.el.radius, hit.object.spec.el.radius));
+				mult_vec3(hit.object.spec.el.radius, \
+							hit.object.spec.el.radius));
 	normal = normalize_vec3(normal);
 	if (dot_vec3(hit.ray.direction, normal) > 0)
 		normal = mult_nb_vec3(normal, -1.0f);

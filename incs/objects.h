@@ -70,20 +70,30 @@ typedef struct s_object
 	t_color			color;
 }	t_object;
 
-t_vec3	get_ambient_light(t_minirt *minirt);
-double	calcul_light_bright(t_minirt *minirt, t_hit hit);
+/* Common functions */
 void	hit_point(t_minirt *minirt, t_ray ray, t_hit *hit);
 double	object_intersection(t_ray ray, t_object object, t_hit *hit);
-double	sphere_intersection(t_ray ray, t_object sphere);
-double	cylinder_intersection(t_ray ray, t_object *cylinder, t_hit *hit);
-double	plane_intersection(t_ray ray, t_object plan);
 t_vec3	get_normal(t_camera cam, t_hit hit);
+
+/* Sphere */
+double	sphere_intersection(t_ray ray, t_object sphere);
 t_vec3	get_normal_sphere(t_camera cam, t_hit hit);
+
+/* Plane */
+double	plane_intersection(t_ray ray, t_object plan);
 t_vec3	get_normal_plane(t_camera cam, t_hit hit);
+
+/* Cylinder */
+double	cylinder_intersection(t_ray ray, t_object *cylinder, t_hit *hit);
 void	calculate_cap_positions(t_object *cy);
 void	calculate_cap_intersections(t_ray ray, \
 		t_object *cy, double radius);
+
+/* Ellopsoid */
 t_vec3	get_normal_ellipsoid(t_camera cam, t_hit hit);
 double	ellipsoid_intersection(t_ray ray, t_object el);
+
+/* Light */
+t_vec3	get_scene_light(t_minirt *minirt, t_hit hit);
 
 #endif

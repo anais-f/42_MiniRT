@@ -81,6 +81,7 @@ void	render_scene(t_minirt *minirt, t_img *img);
 int		init_minirt(t_minirt *minirt);
 void	ft_free_exit(t_minirt *minirt, char *line, \
 			char **line_parsed, int exit_code);
+
 /* Rays functions */
 t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y);
 bool	check_ray_to_light(t_minirt *minirt, t_hit hit, t_vec3 light_dir);
