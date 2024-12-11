@@ -6,7 +6,7 @@
 /*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 15:18:46 by acancel           #+#    #+#             */
-/*   Updated: 2024/12/11 15:18:47 by acancel          ###   ########lyon.fr   */
+/*   Updated: 2024/12/11 16:35:11 by acancel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,8 @@ static double	find_closest_intersection(t_ray ray, t_object *cy, t_hit *hit)
 	return (t_min);
 }
 
-/*Trouver le plus petit (t > 0) et mettre à jour la normale 
-(si c'est celle du corps ou celle des caps)*/
+/*Find the smallest intersection (t > 0) and update the normal 
+(if body or caps)*/
 
 double	cylinder_intersection(t_ray ray, t_object *cy, t_hit *hit)
 {
