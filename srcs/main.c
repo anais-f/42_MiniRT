@@ -5,10 +5,10 @@ int	main(int argc, char **argv)
 	t_minirt	rt;
 
 	ft_bzero(&rt, sizeof(t_minirt));
-	array_init(&rt.objects);
 	if (check_argv(argc, argv[1]) == 1 || parsing_map(&rt, argv[1]))
 	{
 		array_free(&rt.objects);
+		array_free(&rt.lights);
 		return (1);
 	}
 	init_minirt(&rt);
@@ -16,6 +16,7 @@ int	main(int argc, char **argv)
 	{
 		mlx_destroy_all(&rt.img);
 		array_free(&rt.objects);
+		array_free(&rt.lights);
 		return (-1);
 	}
 	rt.cam.rot_mat = rodrigues_rot(&rt, rt.cam.normal_rot, rt.cam.theta);
@@ -24,5 +25,6 @@ int	main(int argc, char **argv)
 	mlx_launch_event_and_loop(&rt.img);
 	mlx_destroy_all(&rt.img);
 	array_free(&rt.objects);
+	array_free(&rt.lights);
 	return (0);
 }

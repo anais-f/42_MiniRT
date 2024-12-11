@@ -3,7 +3,7 @@
 static bool	is_all_init(t_minirt *minirt)
 {
 	if (minirt->ambient_light.is_init && minirt->cam.is_init && \
-		minirt->light.is_init)
+		minirt->lights.size > 0)
 		return (true);
 	printf("Missing A, C or L\n");
 	return (false);
@@ -37,7 +37,7 @@ static int	select_parser(char **line_parsed, t_minirt *minirt)
 	else if (ft_strncmp(line_parsed[0], "C", ft_strlen(line_parsed[0])) == 0)
 		return (parse_camera(line_parsed, minirt));
 	else if (ft_strncmp(line_parsed[0], "L", ft_strlen(line_parsed[0])) == 0)
-		return (parse_light(line_parsed, minirt));
+		return (parse_lights(line_parsed, minirt));
 	else if (ft_strncmp(line_parsed[0], "pl", ft_strlen(line_parsed[0])) == 0)
 		return (parse_plane(line_parsed, minirt));
 	else if (ft_strncmp(line_parsed[0], "sp", ft_strlen(line_parsed[0])) == 0)

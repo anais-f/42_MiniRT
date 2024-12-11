@@ -10,14 +10,7 @@ typedef struct s_minirt	t_minirt;
 typedef struct s_hit	t_hit;
 typedef struct s_ray	t_ray;
 typedef struct s_camera	t_camera;
-
-typedef struct s_light
-{
-	t_vec3	position;
-	t_color	color;
-	double	brightness;
-	bool	is_init;
-}	t_light;
+typedef struct s_array	t_array;
 
 typedef struct s_ambient_light
 {
@@ -33,6 +26,11 @@ typedef enum e_object_type
 	CYLINDER,
 	ELLIPSOID,
 }	t_object_type;
+
+typedef struct s_light
+{
+	double	brightness;
+}	t_light;
 
 typedef struct s_sphere
 {
@@ -59,6 +57,7 @@ typedef union u_spec
 	t_sphere	sphere;
 	t_cylinder	cy;
 	t_ellipsoid	el;
+	t_light		light;
 }	t_spec;
 
 typedef struct s_object
@@ -74,6 +73,7 @@ typedef struct s_object
 void	hit_point(t_minirt *minirt, t_ray ray, t_hit *hit);
 double	object_intersection(t_ray ray, t_object object, t_hit *hit);
 t_vec3	get_normal(t_camera cam, t_hit hit);
+int		add_object(t_object object, t_array *array);
 
 /* Sphere */
 double	sphere_intersection(t_ray ray, t_object sphere);

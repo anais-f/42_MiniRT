@@ -18,7 +18,7 @@ int	parse_ellipsoid(char **line_parsed, t_minirt *minirt)
 	object.spec.el.radius.x = (double)ft_atof(line_parsed[2]) / 2.f;
 	object.spec.el.radius.y = (double)ft_atof(line_parsed[3]) / 2.f;
 	object.spec.el.radius.z = (double)ft_atof(line_parsed[4]) / 2.f;
-	if (add_object(object, minirt))
+	if (add_object(object, &minirt->objects))
 		return (3);
 	return (0);
 }

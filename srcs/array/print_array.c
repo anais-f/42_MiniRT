@@ -50,3 +50,17 @@ void	array_print(t_array array)
 		i++;
 	}
 }
+
+void	lights_print(t_array lights)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < lights.size)
+	{
+		printf("Light[%zu] pos : %f, %f, %f brightness : %f\n", i, \
+		lights.array[i]->position.x, lights.array[i]->position.y, \
+		lights.array[i]->position.z, lights.array[i]->spec.light.brightness);
+		i++;
+	}
+}

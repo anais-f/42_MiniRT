@@ -1,6 +1,6 @@
 #include "miniRT.h"
 
-int	add_object(t_object object, t_minirt *minirt)
+int	add_object(t_object object, t_array *array)
 {
 	t_object	*object_ptr;
 
@@ -8,7 +8,7 @@ int	add_object(t_object object, t_minirt *minirt)
 	if (!object_ptr)
 		return (-1);
 	ft_memcpy(object_ptr, &object, sizeof(t_object));
-	if (array_add(object_ptr, &minirt->objects) == -1)
+	if (array_add(object_ptr, array) == -1)
 	{
 		free(object_ptr);
 		return (1);
@@ -47,7 +47,7 @@ int	parse_sphere(char **line_parsed, t_minirt *minirt)
 		return (2);
 	object.type = SPHERE;
 	object.spec.sphere.radius = (double)ft_atof(line_parsed[2]) / 2.f;
-	if (add_object(object, minirt))
+	if (add_object(object, &minirt->objects))
 		return (3);
 	return (0);
 }
@@ -68,7 +68,7 @@ int	parse_plane(char **line_parsed, t_minirt *minirt)
 	object.type = PLANE;
 	if (check_range_direction(&object, object.type))
 		return (3);
-	if (add_object(object, minirt))
+	if (add_object(object, &minirt->objects))
 		return (4);
 	return (0);
 }
@@ -96,7 +96,7 @@ int	parse_cylinder(char **line_parsed, t_minirt *minirt)
 	}
 	object.spec.cy.radius = (double)ft_atof(line_parsed[3]) / 2.0f;
 	object.spec.cy.height = (double)ft_atof(line_parsed[4]);
-	if (add_object(object, minirt))
+	if (add_object(object, &minirt->objects))
 		return (5);
 	return (0);
 }

@@ -21,7 +21,8 @@ t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y)
 
 /* Need to check if there is an object between 
 	the current object and the light */
-bool	check_ray_to_light(t_minirt *minirt, t_hit hit, t_vec3 light_dir)
+bool	check_ray_to_light(t_minirt *minirt, t_hit hit, \
+			t_object light, t_vec3 light_dir)
 {
 	t_ray	ray;
 	double	dst;
@@ -35,7 +36,7 @@ bool	check_ray_to_light(t_minirt *minirt, t_hit hit, t_vec3 light_dir)
 				mult_nb_vec3(hit.ray.direction, -EPSILON));
 	while (i < minirt->objects.size)
 	{
-		light_dst = distance_vec3(minirt->light.position, hit.position);
+		light_dst = distance_vec3(light.position, hit.position);
 		dst = object_intersection(ray, *minirt->objects.array[i], &hit);
 		if ((dst > EPSILON) && (dst * dst) < light_dst)
 			return (false);

@@ -25,28 +25,23 @@ int	parse_ambient_light(char **line_parsed, t_minirt *minirt)
 	return (0);
 }
 
-int	parse_light(char **line_parsed, t_minirt *minirt)
+int	parse_lights(char **line_parsed, t_minirt *minirt)
 {
-	if (minirt->light.is_init)
-	{
-		printf("Ambient light aleready set\n");
-		return (1);
-	}
+	t_object	light;
+
 	if (arr_len(line_parsed) != 4)
 	{
 		printf("Light must have only three parameters\n");
-		return (2);
+		return (1);
 	}
-	if (parse_coordinates(line_parsed[1], &minirt->light.position) || \
-			parse_color(minirt, line_parsed[3], &minirt->light.color) || \
+	if (parse_coordinates(line_parsed[1], &light.position) || \
+			parse_color(minirt, line_parsed[3], &light.color) || \
 			is_valid_float(line_parsed[2]) == false)
+		return (2);
+	light.spec.light.brightness = (double)ft_atof(line_parsed[2]);
+	if (light.spec.light.brightness < 0.f || light.spec.light.brightness > 1.f)
 		return (3);
-	minirt->light.brightness = (double)ft_atof(line_parsed[2]);
-	if (check_range_items(minirt, LIGHT))
-	{
-		printf("Light parameters out of range\n");
+	if (add_object(light, &minirt->lights))
 		return (4);
-	}
-	minirt->light.is_init = true;
 	return (0);
 }
