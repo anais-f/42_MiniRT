@@ -6,7 +6,7 @@
 /*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:36:35 by acancel           #+#    #+#             */
-/*   Updated: 2024/12/12 16:36:36 by acancel          ###   ########lyon.fr   */
+/*   Updated: 2024/12/12 20:49:52 by acancel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_vec3	get_normal_cy_at_pos(t_ray ray, t_object *cy, double t_min, int flag)
 	else if (flag == 1)
 		return (mult_nb_vec3(normalize_vec3(sub_vec3(add_vec3(ray.origin, \
 			mult_nb_vec3(ray.direction, t_min)), cy->position)), -1.f));
-	else if (flag == 2)
+	if (dot_vec3(ray.direction, cy->direction) > 0)
 		return (mult_nb_vec3(cy->direction, -1.f));
 	return ((cy->direction));
 }
