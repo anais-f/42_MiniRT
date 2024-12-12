@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   float_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 15:20:30 by acancel           #+#    #+#             */
-/*   Updated: 2024/12/11 15:20:31 by acancel          ###   ########lyon.fr   */
+/*   Updated: 2024/12/12 14:59:52 by anfichet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,21 @@ bool	is_valid_float(char *str_float)
 	comma = false;
 	if (str_float[i] == '+' || str_float[i] == '-')
 		i++;
-	if (str_float[i] == '.')
-	{
-		comma = true;
-		i++;
-	}
 	while ((str_float[i] >= '0' && str_float[i] <= '9') || str_float[i] == '.')
 	{
 		if (str_float[i] == '.')
 		{
 			if (comma == true)
-				return (printf("Wrong float format %s\n", str_float), false);
+			{
+				printf("Error :\nWrong float format %s\n", str_float);
+				return (false);
+			}
 			comma = true;
 		}
 		i++;
 	}
 	if (i != (int)ft_strlen(str_float))
-		return (printf("Wrong float format %s\n", str_float), false);
+		return (printf("Error :\nWrong float format %s\n", str_float), false);
 	return (true);
 }
 

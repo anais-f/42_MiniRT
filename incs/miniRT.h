@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 16:29:32 by acancel           #+#    #+#             */
-/*   Updated: 2024/12/11 16:29:33 by acancel          ###   ########lyon.fr   */
+/*   Updated: 2024/12/12 15:15:56 by anfichet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int		check_argv(int argc, char *str);
 int		convert_color(char **args_color, int *colors_int);
 int		parse_ambient_light(char **line_parsed, t_minirt *minirt);
 int		parse_camera(char **line_parsed, t_minirt *minirt);
-int		parse_color(t_minirt *minirt, char *arg_parsed, t_color *color);
+int		parse_color(char *arg_parsed, t_color *color);
 int		parse_coordinates(char *arg_parsed, t_vec3 *position);
 int		parse_light(char **line_parsed, t_minirt *minirt);
 void	parse_line(char *line, t_minirt *minirt);

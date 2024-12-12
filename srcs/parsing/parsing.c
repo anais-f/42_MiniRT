@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 15:21:04 by acancel           #+#    #+#             */
-/*   Updated: 2024/12/11 15:21:05 by acancel          ###   ########lyon.fr   */
+/*   Updated: 2024/12/12 15:04:19 by anfichet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static bool	is_all_init(t_minirt *minirt)
 	if (minirt->ambient_light.is_init && minirt->cam.is_init && \
 		minirt->light.is_init)
 		return (true);
-	printf("Missing A, C or L\n");
+	printf("Error :\nMissing A, C or L\n");
 	return (false);
 }
 
@@ -33,7 +33,8 @@ static int	check_direction(t_minirt minirt)
 		{
 			if (isnan(minirt.objects.array[i]->direction.x))
 			{
-				printf("Direction of object[%ld] can't be normalized\n", i);
+				printf("Error :\nDirection of object[%ld] \
+					can't be normalized\n", i);
 				return (1);
 			}
 		}
@@ -69,7 +70,7 @@ int	parsing_map(t_minirt *minirt, char *file)
 	map_file = open(file, O_RDONLY);
 	if (map_file == -1)
 	{
-		printf("Failed to open the map\n");
+		printf("Error :\nFailed to open the map\n");
 		return (-1);
 	}
 	line = get_next_line(map_file);

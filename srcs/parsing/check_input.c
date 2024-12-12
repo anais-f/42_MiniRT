@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 15:20:26 by acancel           #+#    #+#             */
-/*   Updated: 2024/12/11 15:20:27 by acancel          ###   ########lyon.fr   */
+/*   Updated: 2024/12/12 15:15:27 by anfichet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ int	check_argv(int argc, char *str)
 
 	if (argc != 2)
 	{
-		printf("Invalid number of arguments\n");
+		printf("Error :\nInvalid number of arguments\n");
 		return (1);
 	}
 	len_str = ft_strlen(str);
 	if (len_str < 4)
 	{
-		printf("Invalid parameter\n");
+		printf("Error :\nInvalid parameter\n");
 		return (1);
 	}
 	if (ft_strncmp(str_check, &str[len_str - 3], 4) != 0)
 	{
-		printf("Invalid file\n");
+		printf("Error :\nInvalid file\n");
 		return (1);
 	}
 	return (0);
@@ -49,7 +49,7 @@ int	fill_coord(char **args_coord, float *coord)
 		if (errno == ERANGE)
 		{
 			errno = 0;
-			printf("Overflow detected\n");
+			printf("Error :\nOverflow detected\n");
 			return (1);
 		}
 		i++;
@@ -67,7 +67,8 @@ int	parse_coordinates(char *arg_parsed, t_vec3 *position)
 		return (-1);
 	if (arr_len(args_coord) != 3)
 	{
-		printf("coordinates args must have only three parameters (XYZ)\n");
+		printf("Error :\ncoordinates args must have only \
+			three parameters (XYZ)\n");
 		ft_free_arr(args_coord);
 		return (1);
 	}
@@ -83,7 +84,7 @@ int	parse_coordinates(char *arg_parsed, t_vec3 *position)
 	return (0);
 }
 
-int	parse_color(t_minirt *minirt, char *arg_parsed, t_color *color)
+int	parse_color(char *arg_parsed, t_color *color)
 {
 	char	**args_color;
 	int		colors_int[3];
@@ -93,8 +94,8 @@ int	parse_color(t_minirt *minirt, char *arg_parsed, t_color *color)
 		return (-1);
 	if (arr_len(args_color) != 3)
 	{
-		printf("Color args must have only three parameters (RGB)\n");
-		ft_free_exit(minirt, arg_parsed, args_color, 2);
+		printf("Error :\nColor args must have only three parameters (RGB)\n");
+		ft_free_arr(args_color);
 		return (1);
 	}
 	if (convert_color(args_color, colors_int))

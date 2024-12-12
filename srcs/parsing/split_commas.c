@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_commas.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 15:21:15 by acancel           #+#    #+#             */
-/*   Updated: 2024/12/11 15:21:16 by acancel          ###   ########lyon.fr   */
+/*   Updated: 2024/12/12 15:05:50 by anfichet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static size_t	count_commas(char *str, char c)
 	}
 	if (commas != 2)
 	{
-		printf("Too many commas\n");
+		printf("Error :\nWrong numbers of commas\n");
 		return (0);
 	}
 	return (count);
