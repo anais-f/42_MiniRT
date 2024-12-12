@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dot_product.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/12 16:14:22 by anfichet          #+#    #+#             */
+/*   Updated: 2024/12/12 16:14:23 by anfichet         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "vector.h"
 
 /* The dot product gives a scalar (a numerical value), not a new vector.

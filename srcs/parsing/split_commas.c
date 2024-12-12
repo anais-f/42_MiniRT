@@ -42,7 +42,7 @@ static size_t	count_commas(char *str, char c)
 	}
 	if (commas != 2)
 	{
-		printf("Too many commas\n");
+		printf("Error :\nWrong numbers of commas\n");
 		return (0);
 	}
 	return (count);

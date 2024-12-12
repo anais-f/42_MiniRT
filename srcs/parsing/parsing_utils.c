@@ -26,7 +26,7 @@ int	convert_color(char **args_color, int *colors_int)
 		if ((colors_int[i] == -1 || colors_int[i] > 255) || errno == ERANGE)
 		{
 			errno = 0;
-			printf("Color must be a value between 0 and 255\n");
+			printf("Error :\nColor must be a value between 0 and 255\n");
 			return (1);
 		}
 		i++;
@@ -38,7 +38,7 @@ bool	is_in_range(float value, float min, float max)
 {
 	if (value < min || value > max)
 	{
-		printf("value : %f min : %f max : %f\n", value, min, max);
+		printf("Value : %f min : %f max : %f\n", value, min, max);
 		return (false);
 	}
 	return (true);

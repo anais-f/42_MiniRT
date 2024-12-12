@@ -5,7 +5,7 @@ static bool	is_all_init(t_minirt *minirt)
 	if (minirt->ambient_light.is_init && minirt->cam.is_init && \
 		minirt->lights.size > 0)
 		return (true);
-	printf("Missing A, C or L\n");
+	printf("Error :\nMissing A, C or L\n");
 	return (false);
 }
 
@@ -21,7 +21,8 @@ static int	check_direction(t_minirt minirt)
 		{
 			if (isnan(minirt.objects.array[i]->direction.x))
 			{
-				printf("Direction of object[%ld] can't be normalized\n", i);
+				printf("Error :\nDirection of object[%ld] \
+can't be normalized\n", i);
 				return (1);
 			}
 		}
@@ -59,7 +60,7 @@ int	parsing_map(t_minirt *minirt, char *file)
 	map_file = open(file, O_RDONLY);
 	if (map_file == -1)
 	{
-		printf("Failed to open the map\n");
+		printf("Error :\nFailed to open the map\n");
 		return (-1);
 	}
 	line = get_next_line(map_file);

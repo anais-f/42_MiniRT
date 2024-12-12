@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   common_objects.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/12 16:13:19 by anfichet          #+#    #+#             */
+/*   Updated: 2024/12/12 16:13:20 by anfichet         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "miniRT.h"
 
 double	object_intersection(t_ray ray, t_object object, t_hit *hit)

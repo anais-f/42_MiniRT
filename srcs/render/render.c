@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/12 16:14:01 by anfichet          #+#    #+#             */
+/*   Updated: 2024/12/12 16:14:02 by anfichet         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "miniRT.h"
 
 static void	calc_pixel_and_check_obj(t_minirt *minirt, t_hit *hit, int x, int y)
@@ -46,5 +58,4 @@ void	render_scene(t_minirt *minirt, t_img *img)
 		}
 		y++;
 	}
-	printf("Render done\n");
 }

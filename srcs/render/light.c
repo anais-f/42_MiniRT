@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   light.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/12 16:13:36 by anfichet          #+#    #+#             */
+/*   Updated: 2024/12/12 16:13:49 by anfichet         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "miniRT.h"
 
 static t_vec3	get_ambient_light(t_minirt *minirt)
@@ -37,7 +49,7 @@ static double	get_specular_reflection(t_object light, t_hit hit)
 		specular_coef = 0.0f;
 		return (specular_coef);
 	}
-	specular_intensity = pow(specular_coef, 100);
+	specular_intensity = pow(specular_coef, SPECULAR);
 	return (specular_intensity);
 }
 
