@@ -6,7 +6,7 @@
 /*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:13:57 by anfichet          #+#    #+#             */
-/*   Updated: 2024/12/12 16:13:58 by anfichet         ###   ########lyon.fr   */
+/*   Updated: 2024/12/14 20:46:42 by anfichet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,8 @@ t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y)
 	t_vec2	coord;
 
 	coord.x = (2 * (float)x / (float)WIDTH_WIN - 1) * minirt->cam.fov_scale;
-	if ((int)(minirt->cam.theta * minirt->to_degree) == 180)
-		coord.y = (2 * (float)y / (float)HEIGHT_WIN - 1) * \
-					minirt->cam.fov_scale * minirt->cam.aspect_ratio;
-	else
-		coord.y = (1 - 2 * (float)y / (float)HEIGHT_WIN) * \
-					minirt->cam.fov_scale * minirt->cam.aspect_ratio;
+	coord.y = (1 - 2 * (float)y / (float)HEIGHT_WIN) * \
+				minirt->cam.fov_scale * minirt->cam.aspect_ratio;
 	ray.origin = minirt->cam.position;
 	ray.direction = (t_vec3){coord.x, coord.y, 1};
 	ray.direction = normalize_vec3(ray.direction);
