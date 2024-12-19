@@ -3,6 +3,7 @@
 		"minirt.h": "c",
 		"array.h": "c",
 		"stdbool.h": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"cmath": "cpp"
 	}
 }
