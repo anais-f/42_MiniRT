@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_mlx.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:35:24 by acancel           #+#    #+#             */
-/*   Updated: 2024/12/14 20:41:04 by anfichet         ###   ########lyon.fr   */
+/*   Updated: 2024/12/25 13:52:20 by acancel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
