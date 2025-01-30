@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 16:11:51 by anfichet          #+#    #+#             */
-/*   Updated: 2024/12/12 16:11:52 by anfichet         ###   ########lyon.fr   */
+/*   Created: 2024/12/09 17:55:44 by anfichet          #+#    #+#             */
+/*   Updated: 2025/01/30 17:12:27 by acancel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define COLOR_H
 
 # include <stdint.h>
-# include <vector.h>
+# include "vector.h"
 
 typedef struct s_minirt	t_minirt;
 typedef struct s_hit	t_hit;

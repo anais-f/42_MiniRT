@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 16:35:15 by acancel           #+#    #+#             */
-/*   Updated: 2024/12/12 16:35:16 by acancel          ###   ########lyon.fr   */
+/*   Created: 2024/12/11 16:29:14 by acancel           #+#    #+#             */
+/*   Updated: 2024/12/11 16:39:17 by acancel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,5 @@ void	array_init(t_array *array);
 int		array_add(t_object *object, t_array *array);
 void	array_free(t_array *array);
 void	array_print(t_array array);
-void	lights_print(t_array lights);
 
 #endif

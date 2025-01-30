@@ -14,7 +14,7 @@ OBJ = $(SRC:%.c=%.o)
 
 #LIBBSD_PATH := $(shell find /usr/lib/ -name "libbsd.so" | xargs dirname)
 
-LFLAGS = -L.. -lmlx -L$(INCLIB) -lXext -lX11 -lm -lbsd #changer -lbsd par -L$(LIBBSD_PATH) -lbsd pour Macm3
+LFLAGS = -L.. -lmlx -L$(INCLIB) -lXext -lX11 -lm -lbsd #change -lbsd by -L$(LIBBSD_PATH) -lbsd for Macm3
 
 
 ifeq ($(UNAME), Darwin)

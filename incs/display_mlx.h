@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   display_mlx.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 16:35:24 by acancel           #+#    #+#             */
-/*   Updated: 2024/12/14 20:41:04 by anfichet         ###   ########lyon.fr   */
+/*   Created: 2024/12/11 16:29:23 by acancel           #+#    #+#             */
+/*   Updated: 2024/12/11 16:29:24 by acancel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DISPLAY_MLX_H
 # define DISPLAY_MLX_H
 
-# define WIDTH_WIN 1280 /* WIDTH of MLX WIN */
-# define HEIGHT_WIN 720 /* HEIGHT of MLX WIN */
+# define WIDTH_WIN 720 /* WIDTH of MLX WIN */
+# define HEIGHT_WIN 540 /* HEIGHT of MLX WIN */
 # define ESC_KB 65307 /* ESC BUTTON */
 # define LEFT_KB 65361 /* LEFT BUTTON */
 # define RIGHT_KB 65363 /* RIGHT BUTTON */

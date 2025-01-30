@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ellipsoid.c                                        :+:      :+:    :+:   */
+/*   ellipsoid_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:13:22 by anfichet          #+#    #+#             */
-/*   Updated: 2024/12/12 16:13:23 by anfichet         ###   ########lyon.fr   */
+/*   Updated: 2025/01/29 13:27:38 by acancel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "miniRT_bonus.h"
 
 double	ellipsoid_intersection(t_ray ray, t_object el)
 {

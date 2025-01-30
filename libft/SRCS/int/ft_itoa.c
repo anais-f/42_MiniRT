@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:08:11 by anfichet          #+#    #+#             */
-/*   Updated: 2024/12/19 17:35:53 by anfichet         ###   ########lyon.fr   */
+/*   Updated: 2024/12/11 16:31:03 by acancel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,3 +57,10 @@ char	*ft_itoa(int n)
 	nbstr[digit - 1] = ln % 10 + 48;
 	return (nbstr);
 }
+
+/*int	main(void)
+ {
+ 	int	nb = 0;
+ 	printf("%s\n", ft_itoa(nb));
+ 	return (0);
+ }*/
