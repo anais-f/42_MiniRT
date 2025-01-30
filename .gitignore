@@ -10,6 +10,8 @@
 *.lo
 *.o
 *.obj
+*.objs
+*.objs_bonus
 
 # Precompiled Headers
 *.gch
@@ -35,6 +37,7 @@
 *.out
 *.app
 miniRT
+miniRT_bonus
 
 ### CLion+all ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
@@ -146,3 +149,6 @@ _deps
 *.pdf
 
 # End of https://www.toptal.com/developers/gitignore/api/cmake,clion+all,c++
+
+# Vscode
+.vscode

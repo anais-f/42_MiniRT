@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 16:37:43 by acancel           #+#    #+#             */
-/*   Updated: 2024/12/12 16:37:44 by acancel          ###   ########lyon.fr   */
+/*   Created: 2024/12/11 15:20:51 by acancel           #+#    #+#             */
+/*   Updated: 2024/12/12 15:43:31 by anfichet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,14 @@ bool	check_range_items(t_minirt *minirt, t_items items)
 			!is_in_range(minirt->cam.fov, 0, 180))
 			return (true);
 	}
+	if (items == LIGHT)
+	{
+		if (!is_in_range(minirt->light.brightness, 0.f, 1.f) || \
+			!is_in_range(minirt->light.color.r, 0, 255) || \
+			!is_in_range(minirt->light.color.g, 0, 255) || \
+			!is_in_range(minirt->light.color.b, 0, 255))
+			return (true);
+	}
 	return (false);
 }
 
@@ -87,6 +95,9 @@ void	print_parsing(t_minirt *minirt)
 		minirt->cam.position.z, minirt->cam.direction.x,
 		minirt->cam.direction.y, minirt->cam.direction.z,
 		minirt->cam.fov);
-	lights_print(minirt->lights);
+	printf("Light pos : %f %f %f brightness : %f color : %d %d %d\n",
+		minirt->light.position.x, minirt->light.position.y,
+		minirt->light.position.z, minirt->light.brightness,
+		minirt->light.color.r, minirt->light.color.g, minirt->light.color.b);
 	array_print(minirt->objects);
 }

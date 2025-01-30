@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 16:11:59 by anfichet          #+#    #+#             */
-/*   Updated: 2024/12/12 16:12:32 by anfichet         ###   ########lyon.fr   */
+/*   Created: 2024/12/11 16:29:32 by acancel           #+#    #+#             */
+/*   Updated: 2024/12/12 15:15:56 by anfichet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define MINIRT_H
 
 # define RANGE 10
-# define SPECULAR 100
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <errno.h>
@@ -48,11 +47,10 @@ typedef struct s_minirt
 	t_camera		cam;
 	t_color			color;
 	t_array			objects;
-	t_array			lights;
+	t_light			light;
 	t_ambient_light	ambient_light;
 	double			to_radian;
 	double			to_degree;
-	t_object		obj;
 }	t_minirt;
 
 typedef enum e_items
@@ -75,7 +73,7 @@ int		parse_ambient_light(char **line_parsed, t_minirt *minirt);
 int		parse_camera(char **line_parsed, t_minirt *minirt);
 int		parse_color(char *arg_parsed, t_color *color);
 int		parse_coordinates(char *arg_parsed, t_vec3 *position);
-int		parse_lights(char **line_parsed, t_minirt *minirt);
+int		parse_light(char **line_parsed, t_minirt *minirt);
 void	parse_line(char *line, t_minirt *minirt);
 int		parsing_map(t_minirt *minirt, char *file);
 size_t	arr_len(char **arr);
@@ -86,17 +84,14 @@ int		parse_plane(char **line_parsed, t_minirt *minirt);
 int		parse_cylinder(char **line_parsed, t_minirt *minirt);
 char	**split_commas(char const *s, char c);
 void	print_parsing(t_minirt *minirt);
-int		parse_ellipsoid(char **line_parsed, t_minirt *minirt);
 
 /* Utils functions */
 void	render_scene(t_minirt *minirt, t_img *img);
 int		init_minirt(t_minirt *minirt);
 void	ft_free_exit(t_minirt *minirt, char *line, \
 			char **line_parsed, int exit_code);
-
 /* Rays functions */
 t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y);
-bool	check_ray_to_light(t_minirt *minirt, t_hit hit, \
-			t_object light, t_vec3 light_dir);
+bool	check_ray_to_light(t_minirt *minirt, t_hit hit, t_vec3 light_dir);
 
 #endif

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 16:36:30 by acancel           #+#    #+#             */
-/*   Updated: 2024/12/12 16:36:31 by acancel          ###   ########lyon.fr   */
+/*   Created: 2024/12/11 15:19:20 by acancel           #+#    #+#             */
+/*   Updated: 2024/12/11 15:19:23 by acancel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,4 @@ void	calculate_cap_intersections(t_ray ray, t_object *cy, double radius)
 }
 /*Above, the variable denom and the conditions to be checked around it
 are used to avoid divisions by 0 with an accuracy of
-10e^-6
-*/
+10e^-6*/

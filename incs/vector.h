@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 16:12:06 by anfichet          #+#    #+#             */
-/*   Updated: 2024/12/14 20:42:05 by anfichet         ###   ########lyon.fr   */
+/*   Created: 2024/12/09 17:55:49 by anfichet          #+#    #+#             */
+/*   Updated: 2024/12/09 17:55:50 by anfichet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ t_vec2	normalize_vec2(t_vec2 a);
 t_vec3	mult_vec3_matrix(t_vec3 a, t_mat b);
 double	distance_vec3(t_vec3 a, t_vec3 b);
 t_mat	matrix_identity(void);
-t_mat	reverse_identity_matrix(void);
 t_mat	multiply_matrix(t_mat a, t_mat b);
 t_mat	add_mat(t_mat m1, t_mat m2);
 t_mat	mult_float_matrix(float a, t_mat b);

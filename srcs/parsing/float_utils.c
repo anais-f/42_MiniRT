@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   float_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 16:37:21 by acancel           #+#    #+#             */
-/*   Updated: 2024/12/12 16:37:22 by acancel          ###   ########lyon.fr   */
+/*   Created: 2024/12/11 15:20:30 by acancel           #+#    #+#             */
+/*   Updated: 2024/12/12 14:59:52 by anfichet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
