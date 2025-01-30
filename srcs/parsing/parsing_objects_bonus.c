@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_ellipsoid_bonus.c                          :+:      :+:    :+:   */
+/*   parsing_objects_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:37:40 by acancel           #+#    #+#             */
-/*   Updated: 2025/01/30 17:24:52 by acancel          ###   ########lyon.fr   */
+/*   Updated: 2024/12/12 16:37:41 by acancel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT_bonus.h"
+#include "miniRT.h"
 
 int	parse_ellipsoid(char **line_parsed, t_minirt *minirt)
 {

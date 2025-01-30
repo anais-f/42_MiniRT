@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 15:21:04 by acancel           #+#    #+#             */
-/*   Updated: 2024/12/12 15:04:19 by anfichet         ###   ########lyon.fr   */
+/*   Created: 2024/12/12 16:37:25 by acancel           #+#    #+#             */
+/*   Updated: 2024/12/12 16:37:26 by acancel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static bool	is_all_init(t_minirt *minirt)
 {
 	if (minirt->ambient_light.is_init && minirt->cam.is_init && \
-		minirt->light.is_init)
+		minirt->lights.size > 0)
 		return (true);
 	printf("Error :\nMissing A, C or L\n");
 	return (false);
@@ -34,7 +34,7 @@ static int	check_direction(t_minirt minirt)
 			if (isnan(minirt.objects.array[i]->direction.x))
 			{
 				printf("Error :\nDirection of object[%ld] \
-					can't be normalized\n", i);
+can't be normalized\n", i);
 				return (1);
 			}
 		}
@@ -50,7 +50,7 @@ static int	select_parser(char **line_parsed, t_minirt *minirt)
 	else if (ft_strncmp(line_parsed[0], "C", ft_strlen(line_parsed[0])) == 0)
 		return (parse_camera(line_parsed, minirt));
 	else if (ft_strncmp(line_parsed[0], "L", ft_strlen(line_parsed[0])) == 0)
-		return (parse_light(line_parsed, minirt));
+		return (parse_lights(line_parsed, minirt));
 	else if (ft_strncmp(line_parsed[0], "pl", ft_strlen(line_parsed[0])) == 0)
 		return (parse_plane(line_parsed, minirt));
 	else if (ft_strncmp(line_parsed[0], "sp", ft_strlen(line_parsed[0])) == 0)
@@ -59,6 +59,8 @@ static int	select_parser(char **line_parsed, t_minirt *minirt)
 		return (parse_cylinder(line_parsed, minirt));
 	else if (ft_strncmp(line_parsed[0], "#", ft_strlen(line_parsed[0])) == 0)
 		return (0);
+	else if (ft_strncmp(line_parsed[0], "el", ft_strlen(line_parsed[0])) == 0)
+		return (parse_ellipsoid(line_parsed, minirt));
 	return (-1);
 }
 

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 15:20:03 by acancel           #+#    #+#             */
-/*   Updated: 2024/12/11 15:20:04 by acancel          ###   ########lyon.fr   */
+/*   Created: 2024/12/12 16:37:52 by acancel           #+#    #+#             */
+/*   Updated: 2024/12/12 16:37:53 by acancel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,20 @@ void	array_print(t_array array)
 			print_obj_plane(array, i);
 		else if (array.array[i]->type == CYLINDER)
 			print_obj_cylinder(array, i);
+		i++;
+	}
+}
+
+void	lights_print(t_array lights)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < lights.size)
+	{
+		printf("Light[%zu] pos : %f, %f, %f brightness : %f\n", i, \
+		lights.array[i]->position.x, lights.array[i]->position.y, \
+		lights.array[i]->position.z, lights.array[i]->spec.light.brightness);
 		i++;
 	}
 }

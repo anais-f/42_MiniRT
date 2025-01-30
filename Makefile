@@ -1,13 +1,13 @@
 NAME = miniRT
-NAME_BONUS = miniRT_bonus
 
-LIBS = libft.a libmlx_Linux.a
+LIBFT = libft.a
+MLX = libmlx_Linux.a
 
 # *********************************VARIABLES**************************************** #
 
-SRCS_DIR = ./srcs/
+SRCS_DIR = ./srcs
 
-SRCS_LST= \
+SRCS=\
 		main.c \
 		$(addprefix camera/, $(SRCS_CAMERA)) \
 		$(addprefix display_mlx/, $(SRCS_DISPLAYMLX)) \
@@ -18,6 +18,7 @@ SRCS_LST= \
 		$(addprefix array/, $(SRCS_ARRAY)) \
 		$(addprefix utils/, $(SRCS_UTILS)) \
 		$(addprefix matrix/, $(SRCS_MATRIX)) \
+		
 
 SRCS_ARRAY=\
 		array.c \
@@ -28,10 +29,11 @@ SRCS_CAMERA=\
 		cam_move.c \
 
 SRCS_DISPLAYMLX=\
+		init_mlx.c \
 		destroy_mlx.c \
 		event_mlx.c \
-		init_mlx.c \
 		my_pxl_put.c \
+		get_color_pixel.c \
 
 SRCS_MATRIX=\
 		identity_matrix.c \
@@ -43,22 +45,24 @@ SRCS_OBJECTS=\
 		cylinder.c \
 		common_objects.c \
 		caps.c \
+		ellipsoid.c \
 
 SRCS_PARSING=\
-		array_utils.c \
 		check_input.c \
-		float_utils.c \
-		parsing_cam.c \
-		parsing_lights.c \
-		parsing_objects.c \
-		parsing_utils.c \
 		parsing.c \
-		split_commas.c
+		array_utils.c \
+		parsing_lights.c \
+		parsing_cam.c \
+		parsing_utils.c \
+		parsing_objects.c \
+		float_utils.c \
+		split_commas.c \
+		parsing_objects_bonus.c \
 
 SRCS_RENDER=\
+		render.c \
 		light.c \
 		ray.c \
-		render.c \
 
 SRCS_UTILS=\
 		utils_error.c \
@@ -66,41 +70,35 @@ SRCS_UTILS=\
 
 SRCS_VECTOR=\
 		arithmetic_vector.c \
-		color.c \
-		cross_product.c \
+		multiply.c \
 		divide.c \
 		dot_product.c \
-		multiply.c \
+		cross_product.c \
 		normalize.c \
+		color.c \
 
-SRCS := $(addprefix $(SRCS_DIR), $(SRCS_LST))
 
-SRCS_DIR_BONUS = ./srcs_bonus/
+SRCS := $(SRCS:%=$(SRCS_DIR)/%) \
 
-SRCS_LST_BONUS =\
-		./objects/ellipsoid_bonus.c \
-		./display_mlx/get_color_pixel_bonus.c \
-		./parsing/parsing_ellipsoid_bonus.c
+SRCS_BONUS =\
 
-SRCS_BONUS := $(patsubst $(SRCS_DIR)%, $(SRCS_DIR_BONUS)% , $(patsubst %.c, %_bonus.c, $(SRCS)))
-SRCS_BONUS += $(addprefix $(SRCS_DIR_BONUS), $(SRCS_LST_BONUS))
+SRCS_BONUS := $(SRCS_BONUS:%=$(SRCS_DIR)/%)
 
-OBJS_DIR = ./.objs/
-OBJS = $(SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)
+OBJS_DIR = ./.objs
 
-OBJS_DIR_BONUS = ./.objs_bonus/
-OBJS_BONUS = $(SRCS_BONUS:$(SRCS_DIR_BONUS)%.c=$(OBJS_DIR_BONUS)%.o)
+OBJS = $(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
+OBJS_BONUS = $(SRCS_BONUS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
-INCS = ./incs/ ./mlx/ ./libft/INCS/ 
-INCS_BONUS = ./incs_bonus/ ./mlx/ ./libft/INCS/
+INCS = ./incs
 
+INCS_LIBFT = ./libft/INCS
+INCS_MLX = ./mlx
 
 DEPS = $(OBJS:.o=.d)
 DEPS_BONUS = $(OBJS_BONUS:.o=.d)
 
-LIBS_PATH = ./libft/libft.a ./mlx/libmlx_Linux.a
-LIBS_TARGET = $(patsubst lib%.a, %, $(notdir $(LIBS_PATH))) X11 Xext m z
-
+LIBFT_TARGET = ./libft/libft.a
+MLX_TARGET = ./mlx/libmlx_Linux.a
 # **********************************COMMANDS**************************************** #
 
 CC = cc
@@ -109,17 +107,15 @@ CFLAGS = -Werror -Wextra -Wall -O3
 
 CFLAGS_DEBUG = -Wextra -Wall -g3
 
-CPPFLAGS = $(addprefix -I, $(dir $(INCS))) -MMD -MP
-CPPFLAGS_BONUS = $(addprefix -I, $(dir $(INCS_BONUS))) -MMD -MP
+CPPFLAGS = -I$(INCS) -I$(INCS_LIBFT) -I$(INCS_MLX) -MMD -MP
 
-LDFLAGS = $(addprefix -L, $(dir $(LIBS_PATH)))
-LDLIBS =  $(addprefix -l, $(LIBS_TARGET))
+MLX_FLAGS = -L$(dir $(MLX_TARGET)) -lmlx_Linux -L/usr/lib -lX11 -lXext -lm -lz -lmlx
 
 CFSIGSEV = -Wextra -Wall -fsanitize=address
 
 RM = rm -rf
 
-DIR_DUP = mkdir -p $(@D)
+DIR_DUP= mkdir -p $(@D)
 
 AR = ar rcs
 
@@ -131,49 +127,80 @@ MAKEFLAGS += --no-print-directory
 all: $(NAME)
 
 .PHONY: bonus
-bonus: $(NAME_BONUS)
+bonus:
 
 -include $(DEPS)
 -include $(DEPS_BONUS)
 
-$(NAME): $(LIBS_PATH) $(OBJS)
-	$(CC) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(NAME)
-	
-$(NAME_BONUS): $(LIBS_PATH) $(OBJS_BONUS)
-	$(CC) $(OBJS_BONUS) $(LDFLAGS) $(LDLIBS) -o $(NAME_BONUS)
+$(NAME): $(LIBFT_TARGET) $(MLX_TARGET) $(OBJS)
+	$(CC) $(CFLAGS) -g3 $(CPPFLAGS) $(OBJS) -L$(dir $(LIBFT_TARGET)) -lft $(MLX_FLAGS) -o $(NAME)
 
-$(LIBS_PATH): FORCE
+$(LIBFT_TARGET): FORCE
 	@echo " "
-	@echo "\033[1m\033[35m#-------------------------[COMPILATION LIBS]-------------------------#\033[0m"
+	@echo "\033[1m\033[35m#-------------------------[COMPILATION LIBFT]-------------------------#\033[0m"
 	$(MAKE) -C $(@D)
-	@echo "\033[1m\033[35m#---------------------------[LIBS COMPILED]--------------------------#\033[0m"
+	@echo "\033[1m\033[35m#---------------------------[LIBFT COMPILED]--------------------------#\033[0m"
 	@echo " "
 
+$(MLX_TARGET): FORCE
+	@echo " "
+	@echo "\033[1m\033[36m#-------------------------[COMPILATION MLX]-------------------------#\033[0m"
+	$(MAKE) -C $(@D)
+	@echo "\033[1m\033[36m#---------------------------[MLX COMPILED]--------------------------#\033[0m"
+	@echo " "
 
-$(OBJS_DIR)%.o: $(SRCS_DIR)%.c
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@$(DIR_DUP)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
-$(OBJS_DIR_BONUS)%.o: $(SRCS_DIR_BONUS)%.c
-	@$(DIR_DUP)
-	$(CC) $(CFLAGS) $(CPPFLAGS_BONUS) -c $< -o $@
+.PHONY: fsanitize
+fsanitize: CFLAGS = $(CFSIGSEV)
+fsanitize : fclean $(LIBFT_TARGET) $(MLX_TARGET) $(OBJS)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJS) -L$(dir $(LIBFT_TARGET)) -lft $(MLX_FLAGS) -o $(NAME)
+
+
+.PHONY: debug
+debug: CFLAGS = $(CFLAGS_DEBUG)
+debug : $(LIBFT_TARGET) $(MLX_TARGET) $(OBJS)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJS) -L$(dir $(LIBFT_TARGET)) -lft $(MLX_FLAGS) -o $(NAME)
 
 .PHONY: clean
 clean :
 	$(RM) $(OBJS_DIR)
-	$(RM) $(OBJS_DIR_BONUS)
 	$(MAKE) $@ -C ./libft
 	$(MAKE) $@ -C ./mlx
 
 .PHONY: fclean
 fclean : clean
 	$(RM) $(NAME)
-	$(RM) $(NAME_BONUS)
 	$(MAKE) $@ -C ./libft
 	$(MAKE) $@ -C ./mlx
 
 .PHONY: re
 re : fclean all
 
+.PHONY: print%
+print% :
+	@echo $(patsubst print%,%,$@)=
+	@echo $($(patsubst print%,%,$@))
+
 .PHONY: FORCE
 FORCE:
+
+# Colors
+BLACK=\033[30m
+RED=\033[31m
+GREEN=\033[32m
+YELLOW=\033[33m
+BLUE=\033[34m
+PURPLE=\033[35m
+CYAN=\033[36m
+WHITE=\033[37m
+
+# Text
+ERASE=\033[2K\r
+RESET=\033[0m
+BOLD=\033[1m
+FAINT=\033[2m
+ITALIC=\033[3m
+UNDERLINE=\033[4m

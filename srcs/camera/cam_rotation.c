@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 17:56:08 by anfichet          #+#    #+#             */
-/*   Updated: 2024/12/09 17:56:09 by anfichet         ###   ########lyon.fr   */
+/*   Created: 2024/12/12 16:12:44 by anfichet          #+#    #+#             */
+/*   Updated: 2024/12/14 20:46:34 by anfichet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_mat	rodrigues_rot(t_minirt *mini, t_vec3 axis, float theta)
 	if (theta * mini->to_degree == 0)
 		return (matrix_identity());
 	if ((int)(theta * mini->to_degree) == 180)
-		return (mult_float_matrix(-1, matrix_identity()));
+		return (reverse_identity_matrix());
 	k = mat_k(w);
 	m1 = mult_float_matrix(sin(theta), k);
 	m2 = mult_float_matrix(1 - cos(theta), multiply_matrix(k, k));
