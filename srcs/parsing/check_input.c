@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 15:20:26 by acancel           #+#    #+#             */
-/*   Updated: 2024/12/12 15:15:27 by anfichet         ###   ########lyon.fr   */
+/*   Created: 2024/12/12 16:37:18 by acancel           #+#    #+#             */
+/*   Updated: 2024/12/12 16:37:19 by acancel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	parse_coordinates(char *arg_parsed, t_vec3 *position)
 	if (arr_len(args_coord) != 3)
 	{
 		printf("Error :\ncoordinates args must have only \
-			three parameters (XYZ)\n");
+three parameters (XYZ)\n");
 		ft_free_arr(args_coord);
 		return (1);
 	}
@@ -94,7 +94,8 @@ int	parse_color(char *arg_parsed, t_color *color)
 		return (-1);
 	if (arr_len(args_color) != 3)
 	{
-		printf("Error :\nColor args must have only three parameters (RGB)\n");
+		printf("Error :\nColor args must \
+have only three parameters (RGB)\n");
 		ft_free_arr(args_color);
 		return (1);
 	}

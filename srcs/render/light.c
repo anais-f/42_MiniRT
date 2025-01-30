@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 17:56:33 by anfichet          #+#    #+#             */
-/*   Updated: 2024/12/11 10:22:40 by anfichet         ###   ########lyon.fr   */
+/*   Created: 2024/12/12 16:13:36 by anfichet          #+#    #+#             */
+/*   Updated: 2024/12/12 16:13:49 by anfichet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,46 +22,78 @@ static t_vec3	get_ambient_light(t_minirt *minirt)
 	return (ambient_light);
 }
 
-static double	calcul_light_bright(t_minirt *minirt, t_hit hit)
+/* Inversion of substract to have the ray from object to light */
+static t_vec3	get_light_dir(t_object light, t_hit hit)
+{
+	t_vec3	light_dir;
+
+	light_dir = sub_vec3(light.position, hit.position);
+	light_dir = normalize_vec3(light_dir);
+	return (light_dir);
+}
+
+static double	get_specular_reflection(t_object light, t_hit hit)
+{
+	t_vec3	light_dir;
+	t_vec3	reflection_dir;
+	double	specular_intensity;
+	double	specular_coef;
+
+	light_dir = mult_nb_vec3(get_light_dir(light, hit), -1);
+	reflection_dir = sub_vec3(light_dir, mult_nb_vec3(hit.normal, \
+						2.0f * dot_vec3(hit.normal, light_dir)));
+	specular_coef = dot_vec3(reflection_dir, \
+						mult_nb_vec3(hit.ray.direction, -1));
+	if (specular_coef < 0.0f)
+	{
+		specular_coef = 0.0f;
+		return (specular_coef);
+	}
+	specular_intensity = pow(specular_coef, SPECULAR);
+	return (specular_intensity);
+}
+
+static double	get_light_bright(t_minirt *minirt, t_object light, t_hit hit)
 {
 	t_vec3	light_dir;
 	double	light_intensity;
 
-	light_dir = sub_vec3(hit.position, minirt->light.position);
-	light_dir = mult_nb_vec3(light_dir, -1.0f);
-	light_dir = normalize_vec3(light_dir);
-	light_intensity = dot_vec3(hit.normal, light_dir);
+	light_dir = get_light_dir(light, hit);
+	light_intensity = dot_vec3(hit.normal, light_dir) + \
+						get_specular_reflection(light, hit);
 	if (light_intensity < 0.0f)
 	{
 		light_intensity = 0.0f;
 		return (light_intensity);
 	}
-	if (check_ray_to_light(minirt, hit, light_dir) == false)
+	if (check_ray_to_light(minirt, hit, light, light_dir) == false)
 	{
 		light_intensity = 0.0f;
 		return (light_intensity);
 	}
-	light_intensity = light_intensity * minirt->light.brightness;
+	light_intensity = light_intensity * light.spec.light.brightness;
 	return (light_intensity);
 }
 
-t_color	get_color_pixel(t_minirt *minirt, t_hit hit)
+t_vec3	get_scene_light(t_minirt *minirt, t_hit hit)
 {
-	t_vec3	ambient_light;
-	t_vec3	light_color;
-	t_color	final_color;
-	double	light_bright;
+	t_vec3		light_color;
+	double		light_bright;
+	size_t		i;
+	t_object	light;
+	t_vec3		final_color;
 
-	if (hit.dst == -1)
-		return ((t_color){0xFF000000});
-	ambient_light = get_ambient_light(minirt);
-	light_bright = calcul_light_bright(minirt, hit);
-	light_color = color_to_vec3(minirt->light.color);
-	light_color = mult_nb_vec3(light_color, light_bright);
-	light_color = add_color_vec3(light_color, ambient_light);
-	light_color.x *= (color_to_vec3(hit.object.color)).x;
-	light_color.y *= (color_to_vec3(hit.object.color)).y;
-	light_color.z *= (color_to_vec3(hit.object.color)).z;
-	final_color = vec3_to_color(light_color);
+	final_color = (t_vec3){0, 0, 0};
+	i = 0;
+	while (i < minirt->lights.size)
+	{
+		light = *minirt->lights.array[i];
+		light_bright = get_light_bright(minirt, light, hit);
+		light_color = color_to_vec3(light.color);
+		light_color = mult_nb_vec3(light_color, light_bright);
+		i++;
+		final_color = add_color_vec3(light_color, final_color);
+	}
+	final_color = add_color_vec3(final_color, get_ambient_light(minirt));
 	return (final_color);
 }

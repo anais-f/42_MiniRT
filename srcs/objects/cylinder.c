@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 15:18:46 by acancel           #+#    #+#             */
-/*   Updated: 2025/01/29 12:55:59 by acancel          ###   ########lyon.fr   */
+/*   Created: 2024/12/12 16:36:35 by acancel           #+#    #+#             */
+/*   Updated: 2024/12/15 00:25:37 by anfichet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,11 @@ t_vec3	get_normal_cy_at_pos(t_ray ray, t_object *cy, double t_min, int flag)
 		return (mult_nb_vec3(cy->direction, -1.f));
 	return ((cy->direction));
 }
-/*
-Returns cylinder normal as a function of intersection position
+/*Returns cylinder normal as a function of intersection position
 flag == 0 body
 flag == 1 body inside cylinder
 flag == 2 lower cap
-flag == 3 upper cap
-*/
+flag == 3 upper cap*/
 
 static void	calculate_body_intersections(t_ray ray, t_object *cy, double radius)
 {
@@ -129,7 +127,6 @@ static double	find_closest_intersection(t_ray ray, t_object *cy, t_hit *hit)
 	}
 	return (t_min);
 }
-
 /*Find the smallest intersection (t > 0) and update the normal 
 (if body or caps)*/
 

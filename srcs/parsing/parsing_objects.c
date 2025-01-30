@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_objects.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 15:20:47 by acancel           #+#    #+#             */
-/*   Updated: 2024/12/12 15:36:32 by anfichet         ###   ########lyon.fr   */
+/*   Created: 2024/12/12 16:37:36 by acancel           #+#    #+#             */
+/*   Updated: 2024/12/12 16:37:37 by acancel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-static int	add_object(t_object object, t_minirt *minirt)
+int	add_object(t_object object, t_array *array)
 {
 	t_object	*object_ptr;
 
@@ -20,7 +20,7 @@ static int	add_object(t_object object, t_minirt *minirt)
 	if (!object_ptr)
 		return (-1);
 	ft_memcpy(object_ptr, &object, sizeof(t_object));
-	if (array_add(object_ptr, &minirt->objects) == -1)
+	if (array_add(object_ptr, array) == -1)
 	{
 		free(object_ptr);
 		return (1);
@@ -37,7 +37,7 @@ int	check_range_direction(t_object *object, int type)
 		if (type == CYLINDER)
 			printf("Error :\nCylinder direction out of range\n");
 		else if (type == PLANE)
-			printf("Error :\nlane direction out of range\n");
+			printf("Error :\nPlane direction out of range\n");
 		return (3);
 	}
 	object->direction = normalize_vec3(object->direction);
@@ -64,7 +64,7 @@ int	parse_sphere(char **line_parsed, t_minirt *minirt)
 		printf("Error :\nSphere radius must be positive\n");
 		return (3);
 	}
-	if (add_object(object, minirt))
+	if (add_object(object, &minirt->objects))
 		return (4);
 	return (0);
 }
@@ -85,7 +85,7 @@ int	parse_plane(char **line_parsed, t_minirt *minirt)
 	object.type = PLANE;
 	if (check_range_direction(&object, object.type))
 		return (3);
-	if (add_object(object, minirt))
+	if (add_object(object, &minirt->objects))
 		return (4);
 	return (0);
 }
@@ -107,14 +107,14 @@ int	parse_cylinder(char **line_parsed, t_minirt *minirt)
 	if (check_range_direction(&object, object.type))
 		return (3);
 	if (!is_valid_float(line_parsed[3]) || !is_valid_float(line_parsed[4]))
-		return (printf("Error :\nCylinder radius or height is not a \
-valid float\n"), 4);
+		return (printf("Error :\nCylinder radius or height is not \
+a valid float\n"), 4);
 	object.spec.cy.radius = (double)ft_atof(line_parsed[3]) / 2.0f;
 	object.spec.cy.height = (double)ft_atof(line_parsed[4]);
 	if (object.spec.cy.radius <= 0.f || object.spec.cy.height <= 0.f)
 		return (printf("Error :\nCylinder radius or height must \
 be positive\n"), 5);
-	if (add_object(object, minirt))
+	if (add_object(object, &minirt->objects))
 		return (6);
 	return (0);
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_color_pixel_bonus.c                            :+:      :+:    :+:   */
+/*   get_color_pixel.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acancel <acancel@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:13:04 by anfichet          #+#    #+#             */
-/*   Updated: 2025/01/29 13:26:57 by acancel          ###   ########lyon.fr   */
+/*   Updated: 2024/12/12 16:13:05 by anfichet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT_bonus.h"
+#include "miniRT.h"
 
 t_color	get_color_pixel(t_minirt *minirt, t_hit hit)
 {
