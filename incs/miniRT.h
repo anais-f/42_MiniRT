@@ -6,7 +6,7 @@
 /*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:11:59 by anfichet          #+#    #+#             */
-/*   Updated: 2024/12/12 16:12:32 by anfichet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/05 15:10:45 by anfichet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_minirt
 	double			to_radian;
 	double			to_degree;
 	t_object		obj;
+	bool			to_redraw;
 }	t_minirt;
 
 typedef enum e_items
@@ -93,6 +94,7 @@ void	render_scene(t_minirt *minirt, t_img *img);
 int		init_minirt(t_minirt *minirt);
 void	ft_free_exit(t_minirt *minirt, char *line, \
 			char **line_parsed, int exit_code);
+int		draw_image(t_minirt *mini);
 
 /* Rays functions */
 t_ray	create_ray_from_cam(t_minirt *minirt, int x, int y);

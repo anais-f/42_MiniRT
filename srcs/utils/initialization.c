@@ -6,7 +6,7 @@
 /*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:14:07 by anfichet          #+#    #+#             */
-/*   Updated: 2024/12/12 16:14:08 by anfichet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/05 15:09:17 by anfichet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int	init_minirt(t_minirt *minirt)
 						minirt->cam.direction);
 	minirt->cam.normal_rot = cross_vec3(minirt->cam.world_dir, \
 						minirt->cam.direction);
+	minirt->to_redraw = true;
 	return (0);
 }

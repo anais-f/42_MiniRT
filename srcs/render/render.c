@@ -6,7 +6,7 @@
 /*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:14:01 by anfichet          #+#    #+#             */
-/*   Updated: 2024/12/12 16:14:02 by anfichet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/05 15:10:32 by anfichet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,15 @@ void	render_scene(t_minirt *minirt, t_img *img)
 		}
 		y++;
 	}
+}
+
+int	draw_image(t_minirt *mini)
+{
+	if (mini->to_redraw == false)
+		return (0);
+	render_scene(mini, &mini->img);
+	mlx_put_image_to_window(mini->img.mlx_ptr, \
+			mini->img.win_ptr, mini->img.img, 0, 0);
+	mini->to_redraw = false;
+	return (0);
 }

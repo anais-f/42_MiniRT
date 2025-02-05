@@ -6,7 +6,7 @@
 /*   By: anfichet <anfichet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:35:24 by acancel           #+#    #+#             */
-/*   Updated: 2024/12/14 20:41:04 by anfichet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/05 14:46:56 by anfichet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_img
 
 int		mlx_init_protected(t_img *img);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
-void	mlx_launch_event_and_loop(t_img *img);
+void	mlx_launch_event_and_loop(t_img *img, t_minirt *mini);
 void	mlx_destroy_all(t_img *img);
 int		kb_event(int key, t_minirt *mini);
 
